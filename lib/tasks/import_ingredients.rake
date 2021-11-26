@@ -11,7 +11,10 @@ namespace :ingredients do
   desc 'Import ingredients from openfoodfacts public database'
   task :import do
     ingredients = []
-    CSV.foreach('/home/adrian/Descargas/en.openfoodfacts.org.products.csv', headers: true, col_sep: "\t", quote_char: "\x00") do |row|
+    path = ENV['CSV_PATH']
+    abort 'It is necessary to specify the path of the csv' if path.blank?
+
+    CSV.foreach(path, headers: true, col_sep: "\t", quote_char: "\x00") do |row|
       contry = row['countries_en']
       next unless contry == 'Spain'
 
