@@ -29,7 +29,7 @@ namespace :ingredients do
       quantity_unit = get_quantity_unit(quantity)
 
       if quantity_number.blank? || quantity_unit.blank?
-        quantity_number = 1
+        quantity_number = 1.to_f
         quantity_unit = 'ud'
       end
       url = row['url']
@@ -51,9 +51,7 @@ namespace :ingredients do
   end
 
   def parse_quantity_number(quantity_string)
-    return quantity_string.gsub(',', '.').to_f if quantity_string.include?(',') || quantity_string.include?('.')
-
-    quantity_string.to_i
+    quantity_string.gsub(',', '.').to_f
   end
 
   def get_quantity_unit(quantity)
