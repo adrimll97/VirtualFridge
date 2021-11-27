@@ -6,10 +6,24 @@ MULTIPLICACION_REGEX = /^\d+\s*x\s*\d+/
 FIRST_NUMBER_REGEX = /^[\d.,]+/
 LAST_NUMBER_REGEX = /[\d.,]+$/
 UNITS_REGEX = /([a-wyzA-WYZ]+)/
+UNITS = {
+  kg: %w[kg k kgrs kilos],
+  g: %w[g gr gm gms grs grm grms gramos grammes grams neto],
+  mg: %w[mg],
+  mcg: %w[mcg],
+  lb: %w[lb lbs],
+  l: %w[l lt ltr lts litro litros litre litres],
+  cl: %w[cl dl ck cc],
+  ml: %w[ml mi m],
+  oz: %w[oz o fl],
+  ud: %w[ud u un uds und unid unidad unidades unit units tablet tablets pieza piezas barritas sobres bolsa
+         bolsas pastillas sticks pots paquetes tazas bolsitas c capsulas capsules pack tarros manojo rebanadas
+         comprimidos huevos barras bricks porciones planta ufs galetes cabezas cu dose cubes]
+}.freeze
 
 namespace :ingredients do
   desc 'Import ingredients from openfoodfacts public database'
-  task :import do
+  task import: :environment do
     ingredients = []
     path = ENV['CSV_PATH']
     abort 'It is necessary to specify the path of the csv' if path.blank?
@@ -18,22 +32,19 @@ namespace :ingredients do
       contry = row['countries_en']
       next unless contry == 'Spain'
 
-      name = row['product_name'] || row['brands']
+      name = row['product_name']
       next if name.blank? || ingredients.include?(name)
 
-      ingredients << name
       quantity = row['quantity']
       next if quantity.blank?
 
       quantity_number = get_quantity_number(quantity)
       quantity_unit = get_quantity_unit(quantity)
+      next if quantity_number.blank? || quantity_unit.blank?
 
-      if quantity_number.blank? || quantity_unit.blank?
-        quantity_number = 1.to_f
-        quantity_unit = 'ud'
-      end
       url = row['url']
       image_url = row['image_small_url']
+      ingredients << name
     end
   end
 
@@ -56,6 +67,14 @@ namespace :ingredients do
 
   def get_quantity_unit(quantity)
     quantity_unit = quantity.match(UNITS_REGEX)
-    quantity_unit.present? ? quantity_unit[0] : nil
+    quantity_unit.present? ? parse_quantity_unit(quantity_unit[0].downcase) : nil
+  end
+
+  def parse_quantity_unit(unit)
+    final_unit = nil
+    UNITS.each do |key, values|
+      final_unit = key.to_s if values.include? unit
+    end
+    final_unit
   end
 end
