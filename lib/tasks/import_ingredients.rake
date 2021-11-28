@@ -2,7 +2,7 @@
 
 require 'csv'
 
-MULTIPLICACION_REGEX = /^\d+\s*x\s*\d+/
+MULTIPLICATION_REGEX = /^\d+\s*x\s*\d+/
 FIRST_NUMBER_REGEX = /^[\d.,]+/
 LAST_NUMBER_REGEX = /[\d.,]+$/
 UNITS_REGEX = /([a-wyzA-WYZ]+)/
@@ -44,12 +44,22 @@ namespace :ingredients do
 
       url = row['url']
       image_url = row['image_small_url']
+
+      Ingredient.create(
+        {
+          name: name,
+          url: url,
+          image_url: image_url,
+          quantity_number: quantity_number,
+          quantity_unit: quantity_unit
+        }
+      )
       ingredients << name
     end
   end
 
   def get_quantity_number(quantity)
-    multiplication = quantity.match(MULTIPLICACION_REGEX)
+    multiplication = quantity.match(MULTIPLICATION_REGEX)
 
     if multiplication
       first_number = parse_quantity_number(multiplication.to_s.match(FIRST_NUMBER_REGEX)[0])
