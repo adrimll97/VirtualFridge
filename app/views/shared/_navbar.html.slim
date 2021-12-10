@@ -1,0 +1,24 @@
+div.sidebar
+
+nav.navbar.navbar-expand-lg.navbar-light.bg-light
+  button.sidebar-toggler
+    span.navbar-toggler-icon
+  a.navbar-brand href="/" VirtualFridge
+  #navbarSupportedContent.collapse.navbar-collapse
+    ul.navbar-nav.ml-auto
+      - if user_signed_in?
+        li.nav-item
+          = link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'nav-link'
+      - else
+        li.nav-item
+          = link_to 'Sign In', new_user_session_path, class: 'nav-link'
+        li.nav-item
+          = link_to 'Register', new_user_registration_path, class: 'nav-link'
+
+javascript:
+  $(document).ready(function() {
+    $('.sidebar-toggler').on('click', function() {
+      $('.sidebar').toggleClass('hidden-sidebar', 0);
+      $('body').toggleClass('expanded', 0);
+    });
+  });
