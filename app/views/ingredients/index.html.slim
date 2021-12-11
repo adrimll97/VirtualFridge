@@ -1,0 +1,8 @@
+h1 Ingredientes
+- @ingredients.each do |ingredient|
+  div.ingredient
+    = ingredient.name
+    / = ingredient.url
+    / = ingredient.quantity_number
+    / = ingredient.quantity_unit
+    / = link_to 'Show', ingredient

@@ -10,7 +10,6 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-white
       - if user_signed_in?
         li.nav-item
           = button_to "Log out", destroy_user_session_path, method: :delete, class: 'nav-link'
-
       - else
         li.nav-item
           = link_to 'Sign In', new_user_session_path, class: 'nav-link'
