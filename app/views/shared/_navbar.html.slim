@@ -1,14 +1,16 @@
-div.sidebar
+div.sidebar.bg-white
+  = render 'shared/sidebar'
 
-nav.navbar.navbar-expand-lg.navbar-light.bg-light
+nav.navbar.navbar-expand-lg.navbar-light.bg-white
   button.sidebar-toggler
     span.navbar-toggler-icon
   a.navbar-brand href="/" VirtualFridge
-  #navbarSupportedContent.collapse.navbar-collapse
+  div.right
     ul.navbar-nav.ml-auto
       - if user_signed_in?
         li.nav-item
-          = link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'nav-link'
+          = button_to "Log out", destroy_user_session_path, method: :delete, class: 'nav-link'
+
       - else
         li.nav-item
           = link_to 'Sign In', new_user_session_path, class: 'nav-link'
