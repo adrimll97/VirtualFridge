@@ -1,10 +1,13 @@
 h1 Ingredientes
-- @ingredients.each do |ingredient|
-  div.ingredient
-    = ingredient.name
-    / = ingredient.url
-    / = ingredient.quantity_number
-    / = ingredient.quantity_unit
-    / = link_to 'Show', ingredient
+div.col-md-12.col-lg-12
+  div.row
+    - @ingredients.each do |ingredient|
+      div.col-xs-12.col-sm-6.col-md-3
+        div.ingredient
+          = ingredient.name
+          / = ingredient.url
+          / = ingredient.quantity_number
+          / = ingredient.quantity_unit
+          / = link_to 'Show', ingredient
 br
 = paginate @ingredients
