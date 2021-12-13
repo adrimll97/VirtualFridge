@@ -4,6 +4,8 @@ div.col-md-12.col-lg-12
     - @ingredients.each do |ingredient|
       div.col-xs-12.col-sm-6.col-md-3
         div.ingredient
+          = image_tag(ingredient.image_url) if ingredient.image_url?
+          br
           = ingredient.name
           / = ingredient.url
           / = ingredient.quantity_number
