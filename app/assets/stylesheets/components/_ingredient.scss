@@ -1,7 +1,17 @@
 .ingredient {
-  height: 200px;
   width: 250px;
   margin-bottom: 1em;
   border-radius: 5px;
   box-shadow: 5px 5px 8px grey;
+  background-color: white;
+}
+.ingredient_image{
+  padding: 1em;
+  text-align: center;
+}
+
+.ingredient_name{
+  padding: 1em;
+  border-top-style: solid;
+  border-top-width: 1px;
 }
