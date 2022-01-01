@@ -27,3 +27,31 @@
 body .content{
   padding: 1em 10em;
 }
+
+nav {
+    text-align:center;
+}
+nav ul {
+    display:inline-block;
+}
+nav li {
+    display:inline-block;
+}
+.pagination{
+  margin-top: 1em;
+  display:inline-block;
+}
+.page-item.active{
+  .page-link{
+    background-color: $teal;
+    border-color: $teal;
+  }
+}
+.page-link{
+  color: $teal;
+  &:hover{
+    color: $teal-600;
+    background-color: $gray-300;
+    transition: .25s;
+  }
+}

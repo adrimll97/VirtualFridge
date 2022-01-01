@@ -31,6 +31,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'devise'
 
 gem 'bootstrap', '~> 5.1.3'
+gem 'bootstrap5-kaminari-views'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'slim-rails'
