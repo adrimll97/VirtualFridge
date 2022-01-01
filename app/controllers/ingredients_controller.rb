@@ -1,4 +1,4 @@
-#frozen_string_literal: true
+# frozen_string_literal: true
 
 class IngredientsController < ApplicationController
   before_action :set_ingredient, only: %i[show]
@@ -10,6 +10,7 @@ class IngredientsController < ApplicationController
 
   # GET /ingredients/1 or /ingredients/1.json
   def show
+    @ingredient
   end
 
   private

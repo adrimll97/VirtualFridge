@@ -1,5 +1,14 @@
-p#notice = notice
+h1 #{@ingredient.name}
 
-=> link_to 'Edit', edit_ingredient_path(@ingredient)
-'|
-=< link_to 'Back', ingredients_path
+div.container
+  div.row
+    div.col-md-3
+      div.ingredient_image
+        = image_tag(@ingredient.image.medium.url) if @ingredient.image.present?
+    div.col-md-9
+      div.row
+        = 'Fecha de caducidad:'
+      div.row
+        = 'Cantidad'
+
+= link_to 'Back', ingredients_path
