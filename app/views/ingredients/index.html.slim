@@ -2,11 +2,11 @@ h1 Ingredientes
 div.col-md-12.col-lg-12
   div.row
     - @ingredients.each do |ingredient|
-      div.col-xs-12.col-sm-6.col-md-3
+      div.col-md-2
         div.ingredient
           = link_to ingredient_path(ingredient) do
             div.ingredient_image
-              = image_tag(ingredient.image.medium.url) if ingredient.image.present?
+              = image_tag(ingredient.image.medium_fill.url) if ingredient.image.present?
             div.ingredient_name
               = ingredient.name
 

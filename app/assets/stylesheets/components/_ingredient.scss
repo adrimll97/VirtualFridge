@@ -1,12 +1,9 @@
 .ingredient {
   width: 250px;
   margin-bottom: 1em;
-  border-radius: 5px;
-  box-shadow: 5px 5px 8px grey;
-  background-color: white;
   &:hover {
-    background-color: $gray-300;
-    transition: .25s;
+    -webkit-filter: brightness(80%);
+    transition: .2s;
   }
   a {
     color: black;
@@ -15,12 +12,9 @@
 }
 
 .ingredient_image{
-  padding: 1em;
-  text-align: center;
+  padding: 1em 1em 0 1em;
 }
 
 .ingredient_name{
-  padding: 1em;
-  border-top-style: solid;
-  border-top-width: 1px;
+  padding: 0 1em;
 }

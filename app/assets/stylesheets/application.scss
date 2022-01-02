@@ -38,20 +38,27 @@ nav li {
     display:inline-block;
 }
 .pagination{
-  margin-top: 1em;
+  margin: 1em 0 0 0;
   display:inline-block;
 }
 .page-item.active{
   .page-link{
-    background-color: $teal;
-    border-color: $teal;
+    background-color: $light-blue;
+    border-color: $light-blue;
   }
 }
 .page-link{
-  color: $teal;
+  color: $light-blue;
   &:hover{
-    color: $teal-600;
+    color: $light-blue;
     background-color: $gray-300;
     transition: .25s;
   }
+}
+
+.bg-light-teal {
+  background-color: $light-teal;
+}
+.bg-light-brown {
+  background-color: $light-brown;
 }
