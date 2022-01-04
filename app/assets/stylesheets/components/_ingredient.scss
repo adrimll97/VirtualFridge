@@ -2,7 +2,7 @@
   width: 250px;
   margin-bottom: 1em;
   &:hover {
-    -webkit-filter: brightness(80%);
+    -webkit-filter: brightness(70%);
     transition: .2s;
   }
   a {
@@ -17,4 +17,8 @@
 
 .ingredient_name{
   padding: 0 1em;
+  &:hover {
+    color: $blue;
+    transition: .2s;
+  }
 }
