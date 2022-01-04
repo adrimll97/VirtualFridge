@@ -1,0 +1,24 @@
+.ingredient {
+  width: 250px;
+  margin-bottom: 1em;
+  &:hover {
+    -webkit-filter: brightness(70%);
+    transition: .2s;
+  }
+  a {
+    color: black;
+    text-decoration: none;
+  }
+}
+
+.ingredient_image{
+  padding: 1em 1em 0 1em;
+}
+
+.ingredient_name{
+  padding: 0 1em;
+  &:hover {
+    color: $blue;
+    transition: .2s;
+  }
+}

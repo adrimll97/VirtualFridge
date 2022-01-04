@@ -1,0 +1,19 @@
+.modal.fade id="ingredientModal"
+  .modal-dialog
+    .modal-content
+      .modal-header.bg-light-brown
+        h4.modal-title
+          a href="#{@ingredient.url}" target='_blank' #{@ingredient.name}
+        button.btn-close type='button' data-bs-dismiss='modal' aria-label="Close"
+      .modal-body
+        div.container
+          div.row.align-items-center
+            div.col-md-6
+              div.ingredient_image
+                = image_tag(@ingredient.image.url) if @ingredient.image.present?
+            div.col-md-6
+              div.ingredient_quantity
+                = "Cantidad: #{@ingredient.quantity_number} #{@ingredient.quantity_unit}"
+      .modal-footer
+        button.btn.btn-danger type='button' data-bs-dismiss='modal' Close
+        button.btn.btn-primary type='button' Save
