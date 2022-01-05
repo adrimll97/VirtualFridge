@@ -8,6 +8,7 @@ import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import "bootstrap/dist/js/bootstrap"
+import 'bootstrap-icons/font/bootstrap-icons.css'
 
 global.$ = require("jquery")
 import "jquery"

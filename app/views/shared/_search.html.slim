@@ -2,4 +2,5 @@
 div.row.text-center.d-flex.search-row
   = form_tag search_ingredients_path, method: :get, class: 'search-div' do
     = search_field_tag 'search', value, class: 'search form-control', placeholder: "Buscar #{zone}..."
-    = submit_tag 'Buscar', class: 'btn btn-outline-primary btn-search'
+    = button_tag name: nil, type: 'submit', class: 'btn btn-outline-primary btn-search'
+      i.bi.bi-search
