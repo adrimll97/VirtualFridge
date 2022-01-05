@@ -4,5 +4,7 @@ Rails.application.routes.draw do
   get 'home/index'
   root to: 'home#index'
 
-  resources :ingredients, only: %i[index show]
+  resources :ingredients, only: %i[index show] do
+    get 'search', on: :collection
+  end
 end

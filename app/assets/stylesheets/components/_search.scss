@@ -1,0 +1,27 @@
+.search-row {
+  margin: 1em;
+}
+.search-div {
+  position: relative;
+}
+.search {
+  display: unset;
+  background-color: white;
+  border-color: $primary;
+  border-radius: 0.25rem 0 0 0.25rem;
+  width: 500px;
+  height: 60px;
+  padding: 0.45rem 0.75rem;
+  &:focus{
+    background-color: white;
+  }
+}
+.btn-search {
+  background-color: white;
+  vertical-align: unset;
+  border-radius: 0 0.25rem 0.25rem 0;
+  top: 5px;
+  bottom: 5px;
+  height: 60px;
+  width: 60px;
+}
