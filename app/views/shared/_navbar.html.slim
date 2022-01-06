@@ -1,9 +1,11 @@
-div.sidebar.bg-light-brown
-  = render 'shared/sidebar'
+- if user_signed_in?
+  div.sidebar.bg-light-brown
+    = render 'shared/sidebar'
 
 nav.navbar.navbar-expand-lg.navbar-light.bg-light-brown.nav-shadow.sticky-top
-  button.sidebar-toggler
-    span.navbar-toggler-icon
+  - if user_signed_in?
+    button.sidebar-toggler
+      span.navbar-toggler-icon
   a.navbar-brand href="/" VirtualFridge
   div.right
     ul.navbar-nav.ml-auto
