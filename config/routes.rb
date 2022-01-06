@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :users, {
     controllers: {
       sessions: 'devise/my_session',
+      registrations: 'devise/my_registration',
       passwords: 'devise/my_passwords'
     }
   }
