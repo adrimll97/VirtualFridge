@@ -14,9 +14,9 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light-brown.nav-shadow.sticky-top
           = button_to "Log out", destroy_user_session_path, method: :delete, class: 'nav-link'
       - else
         li.nav-item
-          = link_to 'Sign In', new_user_session_path, class: 'nav-link', remote: true
+          = link_to 'Sign In', new_user_session_path, class: 'nav-link'
         li.nav-item
-          = link_to 'Register', new_user_registration_path, class: 'nav-link', remote: true
+          = link_to 'Register', new_user_registration_path, class: 'nav-link'
 
 javascript:
   $(document).ready(function() {
