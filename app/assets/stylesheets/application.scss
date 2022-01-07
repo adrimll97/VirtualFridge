@@ -63,6 +63,13 @@ nav li {
   background-color: $light-brown;
 }
 
+.errors {
+  border-radius: 5px;
+  background-color: #e980744D;
+  border: 1px solid $danger;
+  padding-top: 1rem;
+  padding-left: 1rem;
+}
 .center-screen {
   position: fixed;
   top: 50%;
