@@ -1,15 +1,22 @@
-= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  .field
-    = f.label :email
-    br
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .field
-    = f.label :contraseña
-    br
-    = f.password_field :password, autocomplete: "current-password"
-  - if devise_mapping.rememberable?
-    .field
-      = f.check_box :remember_me
-      = f.label :recuerdame
-  .actions
-    = f.submit "Entrar"
+.devise-form.center-screen
+  .form-header.bg-light-brown
+    h4.form-title= "Iniciar sesión"
+  .form-body
+    div.container
+      = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+        .field
+          = f.label 'Email'
+          br
+          = f.email_field :email, autofocus: true, autocomplete: "email"
+        .field
+          = f.label 'Contraseña'
+          br
+          = f.password_field :password, autocomplete: "current-password"
+        - if devise_mapping.rememberable?
+          .field
+            = f.check_box :remember_me
+            = f.label 'Recuérdame'
+        .actions
+          = f.submit 'Entrar', class:"btn btn-primary btn-devise"
+  .form-footer
+    = link_to '¿Has olvidado tu contraseña?', new_password_path(resource_name)

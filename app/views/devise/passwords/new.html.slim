@@ -1,11 +1,14 @@
-= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
-  = render "devise/shared/error_messages", resource: resource
-  .field
-    = 'Introduce tu dirección de correo electrónico y te enviaremos un enlace para restablecer tu contraseña.'
-    br/
-  .field
-    = f.label :email
-    br/
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .actions
-    = f.submit "Reestablecer contraseña"
+.devise-form.center-screen
+  .form-header.bg-light-brown
+    h4.form-title= "Reestablecer contraseña"
+  .form-body
+    div.container
+      = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+        = render "devise/shared/error_messages", resource: resource
+        .field
+          = f.label :email
+          br
+          = f.email_field :email, autofocus: true, autocomplete: "email"
+        .actions
+          = f.submit "Reestablecer contraseña", class:"btn btn-primary btn-devise"
+  .form-footer

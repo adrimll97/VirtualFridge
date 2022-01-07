@@ -1,19 +1,25 @@
-= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-  = render "devise/shared/error_messages", resource: resource
-  .field
-    = f.label :email
-    br/
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .field
-    = f.label :contraseña
-    - if @minimum_password_length
-      em
-        | (mínimo #{@minimum_password_length} caracteres)
-    br/
-    = f.password_field :password, autocomplete: "new-password"
-  .field
-    = f.label :confirmar_contraseña
-    br/
-    = f.password_field :password_confirmation, autocomplete: "new-password"
-  .actions
-    = f.submit "Registrarse"
+.devise-form.center-screen
+  .form-header.bg-light-brown
+    h4.form-title= 'Registrarse'
+  .form-body
+    div.container
+      = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+        = render "devise/shared/error_messages", resource: resource
+        .field
+          = f.label :email
+          br/
+          = f.email_field :email, autofocus: true, autocomplete: "email"
+        .field
+          = f.label :contraseña
+          - if @minimum_password_length
+            em
+              | (mínimo #{@minimum_password_length} caracteres)
+          br/
+          = f.password_field :password, autocomplete: "new-password"
+        .field
+          = f.label :confirmar_contraseña
+          br/
+          = f.password_field :password_confirmation, autocomplete: "new-password"
+        .actions
+          = f.submit "Registrarse", class:"btn btn-primary btn-devise"
+  .form-footer
