@@ -6,17 +6,17 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light-brown.nav-shadow.sticky-top
   - if user_signed_in?
     button.sidebar-toggler
       span.navbar-toggler-icon
-  a.navbar-brand href="/" VirtualFridge
+  a.navbar-brand href="/"= I18n.t(:app_name, scope: :navbar)
   div.right
     ul.navbar-nav.ml-auto
       - if user_signed_in?
         li.nav-item
-          = link_to 'Cerrar sesión', destroy_user_session_path, method: :delete, class: 'nav-link'
+          = link_to I18n.t(:log_out, scope: :navbar), destroy_user_session_path, method: :delete, class: 'nav-link'
       - else
         li.nav-item
-          = link_to 'Acceder', new_user_session_path, class: 'nav-link'
+          = link_to I18n.t(:sign_in, scope: :navbar), new_user_session_path, class: 'nav-link'
         li.nav-item
-          = link_to 'Registrarse', new_user_registration_path, class: 'nav-link'
+          = link_to I18n.t(:sign_up, scope: :navbar), new_user_registration_path, class: 'nav-link'
 
 javascript:
   $(document).ready(function() {

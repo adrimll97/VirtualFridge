@@ -4,22 +4,21 @@
       = render "devise/shared/error_messages", resource: resource
   .devise-form.center-screen
     .form-header.bg-light-brown
-      h4.form-title= "Cambiar tu contraseña"
+      h4.form-title= I18n.t(:change_password, scope: [:devise, :views])
     .form-body
       div.container
         = f.hidden_field :reset_password_token
         .field
-          = f.label "Nueva contraseña"
+          = f.label I18n.t(:new_password, scope: [:user, :attributes])
           br
           - if @minimum_password_length
-            em
-              | (#{@minimum_password_length} characters minimum)
+            em= "(#{I18n.t(:minimum_length, scope: [:devise, :views], count: @minimum_password_length)})"
             br
           = f.password_field :password, autofocus: true, autocomplete: "new-password"
         .field
-          = f.label "Confirmar nueva contraseña"
+          = f.label I18n.t(:new_password_confirmation, scope: [:user, :attributes])
           br
           = f.password_field :password_confirmation, autocomplete: "new-password"
         .actions
-          = f.submit "Cambiar mi contraseña", class: 'btn btn-primary btn-devise'
+          = f.submit I18n.t(:change_password, scope: [:devise, :views]), class: 'btn btn-primary btn-devise'
     .form-footer

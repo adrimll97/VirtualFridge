@@ -1,0 +1,4 @@
+es:
+  default:
+    search:
+      placeholder: Buscar %{zone}...

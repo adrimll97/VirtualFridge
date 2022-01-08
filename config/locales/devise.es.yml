@@ -53,6 +53,15 @@ es:
       send_instructions: "Recibirás un email con instrucciones para desbloquear tu cuenta en unos minutos"
       send_paranoid_instructions: "Si tu cuenta existe, recibirás un email con instrucciones para desbloquear tu cuenta en unos minutos"
       unlocked: "Tu cuenta ha sido desbloqueada. Inicia sesión para continuar."
+    views:
+      change_password: Cambiar contraseña
+      enter: Entrar
+      forgotten_pass: ¿Has olvidado tu contraseña?
+      minimum_length: mínimo %{count} caracteres
+      remember_me: Recuérdame
+      reset_password: Reestablecer contraseña
+      sign_in: Iniciar sesión
+      sign_up: Registrarse
   errors:
     messages:
       already_confirmed: "ya fue confirmada. Intenta ingresar."

@@ -1,14 +1,14 @@
 .devise-form.center-screen
   .form-header.bg-light-brown
-    h4.form-title= "Reestablecer contraseña"
+    h4.form-title= I18n.t(:reset_password, scope: [:devise, :views])
   .form-body
     div.container
       = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
         = render "devise/shared/error_messages", resource: resource
         .field
-          = f.label :email
+          = f.label I18n.t(:email, scope: [:user, :attributes])
           br
           = f.email_field :email, autofocus: true, autocomplete: "email"
         .actions
-          = f.submit "Reestablecer contraseña", class:"btn btn-primary btn-devise"
+          = f.submit I18n.t(:reset_password, scope: [:devise, :views]), class:"btn btn-primary btn-devise"
   .form-footer

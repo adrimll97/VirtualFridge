@@ -4,24 +4,23 @@
       = render "devise/shared/error_messages", resource: resource
   .devise-form.center-screen
     .form-header.bg-light-brown
-      h4.form-title= 'Registrarse'
+      h4.form-title= I18n.t(:sign_up, scope: [:devise, :views])
     .form-body
       div.container
         .field
-          = f.label 'Email'
+          = f.label I18n.t(:email, scope: [:user, :attributes])
           br
           = f.email_field :email, autofocus: true, autocomplete: "email"
         .field
-          = f.label 'Contraseña'
+          = f.label I18n.t(:password, scope: [:user, :attributes])
           - if @minimum_password_length
-            em
-              | (mínimo #{@minimum_password_length} caracteres)
+            em= "(#{I18n.t(:minimum_length, scope: [:devise, :views], count: @minimum_password_length)})"
           br
           = f.password_field :password, autocomplete: "new-password"
         .field
-          = f.label 'Confirmar contraseña'
+          = f.label I18n.t(:password_confirmation, scope: [:user, :attributes])
           br
           = f.password_field :password_confirmation, autocomplete: "new-password"
         .actions
-          = f.submit "Registrarse", class:"btn btn-primary btn-devise"
+          = f.submit I18n.t(:sign_up, scope: [:devise, :views]), class:"btn btn-primary btn-devise"
     .form-footer
