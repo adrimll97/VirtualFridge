@@ -55,8 +55,12 @@ es:
       unlocked: "Tu cuenta ha sido desbloqueada. Inicia sesión para continuar."
     views:
       change_password: Cambiar contraseña
+      confirm_current_password: Necesario para confirimar los cambios
+      current_password: Contraseña actual
+      edit_user: Editar usuario
       enter: Entrar
       forgotten_pass: ¿Has olvidado tu contraseña?
+      leave_blank_password: Deja en blanco si no quieres cambiarla
       minimum_length: mínimo %{count} caracteres
       remember_me: Recuérdame
       reset_password: Reestablecer contraseña

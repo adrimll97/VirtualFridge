@@ -14,7 +14,7 @@
         .field
           = f.label I18n.t(:password, scope: [:user, :attributes])
           - if @minimum_password_length
-            em= "(#{I18n.t(:minimum_length, scope: [:devise, :views], count: @minimum_password_length)})"
+            em.subtext= "(#{I18n.t(:minimum_length, scope: [:devise, :views], count: @minimum_password_length)})"
           br
           = f.password_field :password, autocomplete: "new-password"
         .field

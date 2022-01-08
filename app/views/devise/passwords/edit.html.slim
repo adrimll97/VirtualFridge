@@ -10,10 +10,9 @@
         = f.hidden_field :reset_password_token
         .field
           = f.label I18n.t(:new_password, scope: [:user, :attributes])
-          br
           - if @minimum_password_length
-            em= "(#{I18n.t(:minimum_length, scope: [:devise, :views], count: @minimum_password_length)})"
-            br
+            em.subtext= "(#{I18n.t(:minimum_length, scope: [:devise, :views], count: @minimum_password_length)})"
+          br
           = f.password_field :password, autofocus: true, autocomplete: "new-password"
         .field
           = f.label I18n.t(:new_password_confirmation, scope: [:user, :attributes])

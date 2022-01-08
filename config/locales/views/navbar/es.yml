@@ -1,8 +1,9 @@
 es:
   navbar:
     app_name: VirtualFridge
+    log_out: Cerrar sesión
+    profile: Perfil
     sign_in: Acceder
     sign_up: Registrarse
-    log_out: Cerrar sesión
     sidebar:
       btn_ingredients: Ingredientes

@@ -1,0 +1,9 @@
+div.col-md-12
+  div.row
+    div.col-md-11
+      h1= "Usuario #{current_user.email}"
+    div.col-md-1
+      = link_to edit_user_registration_path, class: 'btn', method: :get
+        i.bi.bi-pencil-fill
+
+= link_to I18n.t(:log_out, scope: :navbar), destroy_user_session_path, method: :delete, class: 'btn btn-danger'
