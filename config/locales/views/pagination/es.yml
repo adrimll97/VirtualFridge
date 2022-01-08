@@ -1,11 +1,11 @@
-en:
+es:
   views:
     pagination:
-      first: "&laquo"
-      last: "&raquo"
-      previous: "&lsaquo"
-      next: "&rsaquo"
-      truncate: "&hellip"
+      first: "<< Inicio"
+      last: "Final >>"
+      previous: "< Anterior"
+      next: "Siguiente >"
+      truncate: "..."
   helpers:
     page_entries_info:
       one_page:
