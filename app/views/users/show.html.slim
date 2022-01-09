@@ -1,7 +1,7 @@
 div.col-md-12
   div.row
     div.col-md-11
-      h1= "Usuario #{current_user.email}"
+      h1= "Usuario #{current_user.name}"
     div.col-md-1
       = link_to edit_user_registration_path, class: 'btn fs-l', method: :get
         i.bi.bi-pencil-fill

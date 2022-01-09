@@ -8,6 +8,10 @@
       = link_to '', user_path(current_user.id), class: 'btn btn-close right', style: 'margin-top: -1.7rem'
     .form-body
       .field
+        = f.label I18n.t(:name, scope: [:user, :attributes])
+        br
+        = f.text_field :name, autofocus: true
+      .field
         = f.label I18n.t(:email, scope: [:user, :attributes])
         br
         = f.email_field :email, autofocus: true, autocomplete: "email"
@@ -17,7 +21,6 @@
           em.subtext= "(#{I18n.t(:minimum_length, scope: [:devise, :views], count: @minimum_password_length)})"
         br
         = f.password_field :password, autocomplete: "new-password"
-        br
         p.subtext= I18n.t(:leave_blank_password, scope: [:devise, :views])
       .field
         = f.label I18n.t(:password_confirmation, scope: [:user, :attributes])
@@ -27,7 +30,6 @@
         = f.label I18n.t(:current_password, scope: [:devise, :views])
         br
         = f.password_field :current_password, autocomplete: "current-password"
-        br
         p.subtext= I18n.t(:confirm_current_password, scope: [:devise, :views])
       .actions
         = f.submit I18n.t(:edit_user, scope: [:devise, :views]), class: 'btn btn-primary btn-devise'

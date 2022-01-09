@@ -8,9 +8,13 @@
     .form-body
       div.container
         .field
+          = f.label I18n.t(:name, scope: [:user, :attributes])
+          br
+          = f.text_field :name, autofocus: true
+        .field
           = f.label I18n.t(:email, scope: [:user, :attributes])
           br
-          = f.email_field :email, autofocus: true, autocomplete: "email"
+          = f.email_field :email, autocomplete: "email"
         .field
           = f.label I18n.t(:password, scope: [:user, :attributes])
           - if @minimum_password_length
