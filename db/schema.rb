@@ -10,7 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_08_202739) do
+ActiveRecord::Schema.define(version: 2022_01_09_010880) do
+
+  create_table "fridge_ingredients", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "fridge_id"
+    t.bigint "ingredient_id"
+    t.date "expiration_date"
+    t.float "quantity_number", null: false
+    t.string "quantity_unit", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["fridge_id", "ingredient_id"], name: "index_fridge_ingredients_on_fridge_id_and_ingredient_id", unique: true
+    t.index ["fridge_id"], name: "index_fridge_ingredients_on_fridge_id"
+    t.index ["ingredient_id"], name: "index_fridge_ingredients_on_ingredient_id"
+  end
+
+  create_table "fridges", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_fridges_on_user_id"
+  end
 
   create_table "ingredients", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
@@ -36,4 +56,7 @@ ActiveRecord::Schema.define(version: 2022_01_08_202739) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "fridge_ingredients", "fridges"
+  add_foreign_key "fridge_ingredients", "ingredients"
+  add_foreign_key "fridges", "users"
 end
