@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_09_010880) do
+ActiveRecord::Schema.define(version: 2022_01_09_175702) do
 
   create_table "fridge_ingredients", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "fridge_id"
@@ -43,6 +43,25 @@ ActiveRecord::Schema.define(version: 2022_01_09_010880) do
     t.string "image"
   end
 
+  create_table "shopping_cart_ingredients", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "shopping_cart_id"
+    t.bigint "ingredient_id"
+    t.float "quantity_number", null: false
+    t.string "quantity_unit", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["ingredient_id"], name: "index_shopping_cart_ingredients_on_ingredient_id"
+    t.index ["shopping_cart_id", "ingredient_id"], name: "index_sci_on_shopping_cart_id_and_ingredient_id", unique: true
+    t.index ["shopping_cart_id"], name: "index_shopping_cart_ingredients_on_shopping_cart_id"
+  end
+
+  create_table "shopping_carts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_shopping_carts_on_user_id"
+  end
+
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -59,4 +78,7 @@ ActiveRecord::Schema.define(version: 2022_01_09_010880) do
   add_foreign_key "fridge_ingredients", "fridges"
   add_foreign_key "fridge_ingredients", "ingredients"
   add_foreign_key "fridges", "users"
+  add_foreign_key "shopping_cart_ingredients", "ingredients"
+  add_foreign_key "shopping_cart_ingredients", "shopping_carts"
+  add_foreign_key "shopping_carts", "users"
 end

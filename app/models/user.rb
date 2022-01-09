@@ -7,7 +7,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_one :fridge, dependent: :destroy
+  has_one :shopping_cart, dependent: :destroy
   has_many :fridge_ingredients, through: :fridge
+  has_many :shopping_cart_ingredients, through: :shopping_cart
 
   validates :name, presence: true
   validates :name, uniqueness: true
