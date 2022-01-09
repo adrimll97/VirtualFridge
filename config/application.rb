@@ -19,5 +19,8 @@ module VirtualFridge
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
     config.assets.initialize_on_precompile = false
+
+    config.i18n.default_locale = :es
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.yml')]
   end
 end

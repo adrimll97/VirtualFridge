@@ -1,0 +1,9 @@
+es:
+  user:
+    attributes:
+      email: Email
+      name: Nombre
+      new_password: Nueva contraseña
+      new_password_confirmation: Confirmar nueva contraseña
+      password: Contraseña
+      password_confirmation: Confirmar contraseña

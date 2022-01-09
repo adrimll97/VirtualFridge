@@ -1,19 +1,23 @@
-h2 Change your password
 = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
-  = render "devise/shared/error_messages", resource: resource
-  = f.hidden_field :reset_password_token
-  .field
-    = f.label :password, "New password"
-    br/
-    - if @minimum_password_length
-      em
-        | (#{@minimum_password_length} characters minimum)
-      br/
-    = f.password_field :password, autofocus: true, autocomplete: "new-password"
-  .field
-    = f.label :password_confirmation, "Confirm new password"
-    br/
-    = f.password_field :password_confirmation, autocomplete: "new-password"
-  .actions
-    = f.submit "Change my password"
-= render "devise/shared/links"
+  - if resource.errors.any?
+    div.errors
+      = render "devise/shared/error_messages", resource: resource
+  .devise-form.center-screen
+    .form-header.bg-light-brown
+      h4.form-title= I18n.t(:change_password, scope: [:devise, :views])
+    .form-body
+      div.container
+        = f.hidden_field :reset_password_token
+        .field
+          = f.label I18n.t(:new_password, scope: [:user, :attributes])
+          - if @minimum_password_length
+            em.subtext= "(#{I18n.t(:minimum_length, scope: [:devise, :views], count: @minimum_password_length)})"
+          br
+          = f.password_field :password, autofocus: true, autocomplete: "new-password"
+        .field
+          = f.label I18n.t(:new_password_confirmation, scope: [:user, :attributes])
+          br
+          = f.password_field :password_confirmation, autocomplete: "new-password"
+        .actions
+          = f.submit I18n.t(:change_password, scope: [:devise, :views]), class: 'btn btn-primary btn-devise'
+    .form-footer
