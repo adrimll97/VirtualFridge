@@ -13,7 +13,10 @@
                 = image_tag(@ingredient.image.url) if @ingredient.image.present?
             div.col-md-6
               div.ingredient_quantity
-                = "Cantidad: #{@ingredient.quantity_number} #{@ingredient.quantity_unit}"
-      .modal-footer
-        button.btn.btn-danger type='button' data-bs-dismiss='modal' Close
-        button.btn.btn-primary type='button' Save
+                = I18n.t(:ingredient_quantity, scope: :ingredients, number: @ingredient.quantity_number, unit: @ingredient.quantity_unit)
+      .modal-footer.space-between
+        = button_to I18n.t(:add_fridge_ingredient, scope: :ingredients),
+                    fridge_ingredients_path, method: :post, class: 'btn btn-primary',
+                    params: { ingredient_id: @ingredient.id }
+
+        button.btn.btn-primary type='button'= I18n.t(:add_shop_cart_ingredient, scope: :ingredients)

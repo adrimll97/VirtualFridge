@@ -1,4 +1,7 @@
 es:
   ingredients:
+    add_fridge_ingredient: Añadir a la nevera
+    add_shop_cart_ingredient: Añadir al carrito
+    ingredient_quantity: "Cantidad: %{number} %{unit}"
     quantity: Cantidad
     search_placeholder: Buscar ingredientes

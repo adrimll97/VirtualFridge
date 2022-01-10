@@ -1,1 +1,8 @@
+div.col-md-12.col-lg-12
+  - @fridge.fridge_ingredients.each do |fridge_ingredient|
+    div.row
+      div.ingredient
+        = fridge_ingredient.ingredient.name
+        = fridge_ingredient.quantity_number
+        = fridge_ingredient.quantity_unit
 = button_to I18n.t(:btn_ingredients, scope: [:navbar, :sidebar]), ingredients_path, method: :get, class: 'btn btn-ingredients'

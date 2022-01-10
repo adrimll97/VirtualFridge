@@ -8,4 +8,5 @@ Rails.application.routes.draw do
   resources :ingredients, only: %i[index show] do
     get 'search', on: :collection
   end
+  resources :fridge_ingredients, only: %i[create]
 end
