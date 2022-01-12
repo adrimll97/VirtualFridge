@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class FridgeIngredientsController < ApplicationController
+  include ErrorHandler
+
   before_action :set_fridge_ingredient, only: %i[show edit update]
 
   def show
@@ -9,29 +11,12 @@ class FridgeIngredientsController < ApplicationController
     end
   end
 
-  def create
-    ingredient_id = fridge_ingredients_params[:ingredient_id]
-    ingredient = Ingredient.find ingredient_id
-
-    fridge_ingredient = build_fridge_ingredient(ingredient)
-    if fridge_ingredient.save
-      redirect_to(ingredients_path)
-    else
-      redirect_back(fallback_location: root_path)
-    end
-  end
-
-  def edit
-    @fridge_ingredient
-  end
-
   def update
     fi_params = update_fridge_ingredients_params
-    if @fridge_ingredient.update(fi_params)
-      redirect_back(fallback_location: root_path)
-    else
-      render :edit
-    end
+    @fridge_ingredient.update!(fi_params)
+    redirect_back(fallback_location: root_path)
+  rescue StandardError => _e
+    error_js(@fridge_ingredient.errors.full_messages)
   end
 
   private
@@ -46,14 +31,5 @@ class FridgeIngredientsController < ApplicationController
 
   def update_fridge_ingredients_params
     params.require(:fridge_ingredient).permit(:ingredient_id, :expiration_date, :quantity_number)
-  end
-
-  def build_fridge_ingredient(ingredient)
-    FridgeIngredient.new(
-      fridge_id: @fridge.id,
-      ingredient_id: ingredient.id,
-      quantity_number: ingredient.quantity_number,
-      quantity_unit: ingredient.quantity_unit
-    )
   end
 end

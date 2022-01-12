@@ -1,0 +1,6 @@
+$("div#messages").html("");
+$("div#messages").addClass("errors");
+
+<% @errors.each do |error| %>
+    $("div.errors").append($("<li />").html("<%= error.html_safe %>"));
+<% end %>
