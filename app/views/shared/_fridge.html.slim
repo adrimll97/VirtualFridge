@@ -1,0 +1,7 @@
+- @fridge.fridge_ingredients.each do |fridge_ingredient|
+  div.row
+    div.ingredient.fs-s
+      = link_to fridge_ingredient_path(fridge_ingredient.id), remote: true do
+        = fridge_ingredient.ingredient.name
+        = fridge_ingredient.quantity_number
+        = fridge_ingredient.quantity_unit

@@ -67,8 +67,7 @@ nav li {
   border-radius: 5px;
   background-color: #e980744D;
   border: 1px solid $danger;
-  padding-top: 1rem;
-  padding-left: 1rem;
+  padding: 0.5rem;
 }
 .center-screen {
   position: fixed;
@@ -82,6 +81,12 @@ nav li {
   font-style: italic;
   margin-bottom: 0;
 }
+.fs-s {
+  font-size: 0.9rem;
+}
 .fs-l {
   font-size: 1.5rem;
+}
+.fs-xl {
+  font-size: 1.7rem;
 }

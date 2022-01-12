@@ -1,0 +1,26 @@
+.modal.fade id="fridgeIngredientModal"
+  .modal-dialog
+    .modal-content
+      = form_for @fridge_ingredient, remote: true do |f|
+        .modal-header.bg-light-brown
+          h4.modal-title= @fridge_ingredient.ingredient.name
+          button.btn-close type='button' data-bs-dismiss='modal' aria-label="Close"
+        .modal-body
+          div#messages
+          div.container
+            div.row.align-items-center
+              div.col-md-6
+                div.ingredient_image
+                  = image_tag(@fridge_ingredient.ingredient.image.url) if @fridge_ingredient.ingredient.image.present?
+              div.col-md-6
+                div.row
+                  div.ingredient_quantity
+                    = f.label 'Cantidad'
+                    = f.date_field :expiration_date
+                  div.ingredient_quantity
+                    = f.label 'Cantidad'
+                    = f.number_field :quantity_number, step: :any, min: 0
+                    = @fridge_ingredient.quantity_unit
+        .modal-footer
+          button.btn data-bs-dismiss='modal' type='button'= 'Cancelar'
+          = f.submit 'Guardar', class:"btn btn-primary"
