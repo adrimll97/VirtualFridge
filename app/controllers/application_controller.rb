@@ -18,6 +18,6 @@ class ApplicationController < ActionController::Base
   def set_fridge
     return unless user_signed_in?
 
-    @fridge = Fridge.first_or_create(user_id: current_user.id)
+    @fridge = Fridge.find_or_create_by(user_id: current_user.id)
   end
 end
