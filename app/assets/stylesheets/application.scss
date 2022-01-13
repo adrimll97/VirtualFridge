@@ -69,6 +69,12 @@ nav li {
   border: 1px solid $danger;
   padding: 0.5rem;
 }
+.success {
+  border-radius: 5px;
+  background-color: #21A0A04D;
+  border: 1px solid $primary;
+  padding: 0.5rem;
+}
 .center-screen {
   position: fixed;
   top: 50%;

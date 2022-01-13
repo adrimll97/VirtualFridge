@@ -1,7 +1,17 @@
 - @fridge.fridge_ingredients.each do |fridge_ingredient|
-  div.row
-    div.ingredient.fs-s
+  div.row.row_fridge_ingredient.align-items-center
+    div.fridge_ingredient
       = link_to fridge_ingredient_path(fridge_ingredient.id), remote: true do
-        = fridge_ingredient.ingredient.name
-        = fridge_ingredient.quantity_number
-        = fridge_ingredient.quantity_unit
+        div.name
+          = fridge_ingredient.ingredient.name
+        div.quantity
+          = "Cantidad: "
+          = fridge_ingredient.quantity_number
+          = fridge_ingredient.quantity_unit
+        - if fridge_ingredient.expiration_date.present?
+          div.caducidad
+            = "Caducidad: "
+            = fridge_ingredient.expiration_date
+    div.trash
+      = link_to fridge_ingredient_path(fridge_ingredient.id), class: 'btn', method: :delete, remote:  true
+        i.bi.bi-trash-fill.right

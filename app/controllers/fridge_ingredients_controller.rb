@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
 class FridgeIngredientsController < ApplicationController
-  include ErrorHandler
-
-  before_action :set_fridge_ingredient, only: %i[show edit update]
+  before_action :set_fridge_ingredient, only: %i[show update destroy]
 
   def show
     respond_to do |format|
@@ -13,20 +11,29 @@ class FridgeIngredientsController < ApplicationController
 
   def update
     fi_params = update_fridge_ingredients_params
-    @fridge_ingredient.update!(fi_params)
+    begin
+      @fridge_ingredient.update!(fi_params)
+      flash[:notice] = 'Ingrediente editado correctamente'
+    rescue StandardError => _e
+      flash[:alert] = @fridge_ingredient.errors.full_messages
+    end
     redirect_back(fallback_location: root_path)
-  rescue StandardError => _e
-    error_js(@fridge_ingredient.errors.full_messages)
+  end
+
+  def destroy
+    begin
+      @fridge_ingredient.destroy!
+      flash[:notice] = 'Ingrediente sacado de la nevera'
+    rescue StandardError => _e
+      flash[:alert] = @fridge_ingredient.errors.full_messages
+    end
+    redirect_back(fallback_location: root_path)
   end
 
   private
 
   def set_fridge_ingredient
     @fridge_ingredient = FridgeIngredient.find(params[:id])
-  end
-
-  def fridge_ingredients_params
-    params.permit(:ingredient_id)
   end
 
   def update_fridge_ingredients_params

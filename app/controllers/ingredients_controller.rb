@@ -4,7 +4,6 @@ INGREDIENTS_PER_PAGE = 24
 
 class IngredientsController < ApplicationController
   include FridgeIngredientsConcern
-  include ErrorHandler
 
   before_action :set_ingredient, only: %i[show]
 
@@ -33,11 +32,13 @@ class IngredientsController < ApplicationController
 
   def create_user_ingredient
     ui_params = user_ingredient_params
-    ui_params[:id] = '0'
-    create_fridge_ingredient!(ui_params[:id].to_i) if ui_params['fridge'].present?
+    begin
+      create_fridge_ingredient!(ui_params[:id].to_i) if ui_params['fridge'].present?
+      flash[:notice] = 'Ingrediente metido en la nevera'
+    rescue StandardError => e
+      flash[:alert] = e.message
+    end
     redirect_back(fallback_location: ingredients_path)
-  rescue StandardError => e
-    error_js(e.message)
   end
 
   private

@@ -9,5 +9,5 @@ Rails.application.routes.draw do
     get 'search', on: :collection
     post 'create_user_ingredient', on: :member
   end
-  resources :fridge_ingredients, only: %i[show update]
+  resources :fridge_ingredients, only: %i[show update destroy]
 end
