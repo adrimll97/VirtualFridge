@@ -1,5 +1,11 @@
 - if flash.present?
-  = content_tag :p, flash.notice, class: 'success' if flash.notice.present?
-  = content_tag :p, flash.alert, class: 'errors' if flash.alert.present?
-  / button.btn-close.right type='button' data-bs-dismiss='modal' aria-label="Close"
+  div#messages
+    = content_tag :p, flash.notice, class: 'success' if flash.notice.present?
+    = content_tag :p, flash.alert, class: 'errors' if flash.alert.present?
+
 javascript:
+  $(document).ready(function(){
+   $("#messages").on("click", function(event) {
+      $("#messages").toggle();
+    });
+  });

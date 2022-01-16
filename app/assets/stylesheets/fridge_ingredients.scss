@@ -1,6 +1,6 @@
 .row_fridge_ingredient {
   display: table;
-  background-color: $light-bg;
+  background-color: $light-gray;
   border-radius: 5px;
   padding-top: 0.3rem;
   padding-bottom: 0.3rem;
@@ -17,6 +17,9 @@
   }
 }
 .trash {
+  display: table-cell;
+  padding: unset;
+  vertical-align: middle;
   a{
     &:hover {
       color: $danger;

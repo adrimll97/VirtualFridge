@@ -56,9 +56,6 @@ nav li {
   }
 }
 
-.bg-light-teal {
-  background-color: $light-teal;
-}
 .bg-light-brown {
   background-color: $light-brown;
 }
@@ -86,6 +83,21 @@ nav li {
   font-size: 0.9rem;
   font-style: italic;
   margin-bottom: 0;
+}
+#messages {
+  cursor: pointer;
+  p.errors{
+    &:hover{
+      background-color: $danger;
+      transition: .2s;
+    }
+  }
+  p.success{
+    &:hover{
+      background-color: $blue;
+      transition: .2s;
+    }
+  }
 }
 .fs-s {
   font-size: 0.9rem;

@@ -1,21 +1,18 @@
 .modal.fade id="ingredientModal"
-  .modal-dialog
+  .modal-dialog.modal-sm
     .modal-content
       = form_for @ingredient, url: create_user_ingredient_ingredient_path(@ingredient), method: :post, remote: true do |f|
         .modal-header.bg-light-brown
-          h4.modal-title
+          h5.modal-title
             a href="#{@ingredient.url}" target='_blank' #{@ingredient.name}
           button.btn-close type='button' data-bs-dismiss='modal' aria-label="Close"
         .modal-body
           div#messages
           div.container
-            div.row.align-items-center
-              div.col-md-6
-                div.ingredient_image
-                  = image_tag(@ingredient.image.url) if @ingredient.image.present?
-              div.col-md-6
-                div.ingredient_quantity
-                  = I18n.t(:ingredient_quantity, scope: :ingredients, number: @ingredient.quantity_number, unit: @ingredient.quantity_unit)
+            div.ingredient_image
+              = image_tag(@ingredient.image.url, width: '100%') if @ingredient.image.present?
+            div.ingredient_quantity
+              = I18n.t(:ingredient_quantity, scope: :ingredients, number: @ingredient.quantity_number, unit: @ingredient.quantity_unit)
         .modal-footer.space-between
-          = f.submit I18n.t(:add_fridge_ingredient, scope: :ingredients), name: 'fridge', class: 'btn btn-primary'
-          = f.submit I18n.t(:add_shop_cart_ingredient, scope: :ingredients), name: 'shopping_cart', class: 'btn btn-primary'
+          = f.submit 'Nevera', name: 'fridge', class: 'btn btn-primary'
+          = f.submit 'Carrito', name: 'shopping_cart', class: 'btn btn-primary'
