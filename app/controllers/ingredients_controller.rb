@@ -34,7 +34,7 @@ class IngredientsController < ApplicationController
     ui_params = user_ingredient_params
     begin
       create_fridge_ingredient!(ui_params[:id].to_i) if ui_params['fridge'].present?
-      flash[:notice] = 'Ingrediente metido en la nevera'
+      flash[:notice] = I18n.t(:added_to_fridge, scope: :ingredients)
     rescue StandardError => e
       flash[:alert] = e.message
     end

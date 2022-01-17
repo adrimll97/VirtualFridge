@@ -9,3 +9,8 @@ es:
         name: Nombre
         password: Contraseña
         password_confirmation: Confirmar contraseña
+      fridge_ingredient:
+        expiration_date: Fecha de caducidad
+        fridge: Nevera
+        ingredient: Ingrediente
+        quantity_number: Cantidad

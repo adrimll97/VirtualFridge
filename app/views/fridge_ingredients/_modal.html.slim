@@ -10,11 +10,11 @@
           div.container.align-items-center
             div.ingredient_image
               = image_tag(@fridge_ingredient.ingredient.image.url, width: '100%') if @fridge_ingredient.ingredient.image.present?
-            div.ingredient_quantity
-              = f.label 'Caducidad'
+            div.ingredient_expiration_date
+              = I18n.t(:expiration_date, scope: :ingredients)
               = f.date_field :expiration_date
             div.ingredient_quantity
-              = f.label 'Cantidad'
+              = I18n.t(:quantity, scope: :ingredients)
               = f.number_field :quantity_number, step: :any, min: 0
               = @fridge_ingredient.quantity_unit
         .modal-footer

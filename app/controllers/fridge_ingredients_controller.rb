@@ -13,7 +13,7 @@ class FridgeIngredientsController < ApplicationController
     fi_params = update_fridge_ingredients_params
     begin
       @fridge_ingredient.update!(fi_params)
-      flash[:notice] = 'Ingrediente editado correctamente'
+      flash[:notice] = I18n.t(:edited_correctly, scope: :ingredients)
     rescue StandardError => _e
       flash[:alert] = @fridge_ingredient.errors.full_messages
     end
@@ -23,7 +23,7 @@ class FridgeIngredientsController < ApplicationController
   def destroy
     begin
       @fridge_ingredient.destroy!
-      flash[:notice] = 'Ingrediente sacado de la nevera'
+      flash[:notice] = I18n.t(:removed_from_fridge, scope: :ingredients)
     rescue StandardError => _e
       flash[:alert] = @fridge_ingredient.errors.full_messages
     end

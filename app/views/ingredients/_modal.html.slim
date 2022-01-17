@@ -14,5 +14,5 @@
             div.ingredient_quantity
               = I18n.t(:ingredient_quantity, scope: :ingredients, number: @ingredient.quantity_number, unit: @ingredient.quantity_unit)
         .modal-footer.space-between
-          = f.submit 'Nevera', name: 'fridge', class: 'btn btn-primary'
-          = f.submit 'Carrito', name: 'shopping_cart', class: 'btn btn-primary'
+          = f.submit I18n.t(:add_fridge_ingredient, scope: :ingredients), name: 'fridge', class: 'btn btn-primary'
+          = f.submit I18n.t(:add_shop_cart_ingredient, scope: :ingredients), name: 'fridge', class: 'btn btn-primary'
