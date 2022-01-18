@@ -10,4 +10,5 @@ Rails.application.routes.draw do
     post 'create_user_ingredient', on: :member
   end
   resources :fridge_ingredients, only: %i[show update destroy]
+  resources :shopping_cart_ingredients, only: %i[show]
 end

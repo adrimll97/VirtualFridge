@@ -1,13 +1,13 @@
 - @shopping_cart.shopping_cart_ingredients.order(updated_at: :desc).each do |shopping_cart_ingredient|
   div.row.row_user_ingredient.align-items-center
     div.user_ingredient
-      / = link_to shopping_cart_ingredient_path(shopping_cart_ingredient.id), remote: true do
-      div.name
-        = shopping_cart_ingredient.ingredient.name
-      div.quantity
-        - number = shopping_cart_ingredient.quantity_number
-        - unit = shopping_cart_ingredient.quantity_unit
-        = I18n.t(:ingredient_quantity, scope: :ingredients, number: number, unit: unit)
+      = link_to shopping_cart_ingredient_path(shopping_cart_ingredient.id), remote: true do
+        div.name
+          = shopping_cart_ingredient.ingredient.name
+        div.quantity
+          - number = shopping_cart_ingredient.quantity_number
+          - unit = shopping_cart_ingredient.quantity_unit
+          = I18n.t(:ingredient_quantity, scope: :ingredients, number: number, unit: unit)
     div.trash
       / = link_to shopping_cart_ingredient_path(shopping_cart_ingredient.id),
                 / class: 'btn', method: :delete, remote:  true,
