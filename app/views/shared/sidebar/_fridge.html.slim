@@ -1,6 +1,6 @@
 - @fridge.fridge_ingredients.order(updated_at: :desc).each do |fridge_ingredient|
-  div.row.row_fridge_ingredient.align-items-center
-    div.fridge_ingredient
+  div.row.row_user_ingredient.align-items-center
+    div.user_ingredient
       = link_to fridge_ingredient_path(fridge_ingredient.id), remote: true do
         div.name
           = fridge_ingredient.ingredient.name

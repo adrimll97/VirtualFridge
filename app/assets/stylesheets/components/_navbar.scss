@@ -1,7 +1,3 @@
-body {
-  margin-left: 250px !important;
-  transition: .5s;
-}
 .nav-shadow {
   box-shadow: 0px 0px 5px;
 }
@@ -19,44 +15,4 @@ body {
   border: none;
   background: transparent;
   margin-left: 1rem;
-}
-.sidebar {
-  height: 100%;
-  width: 250px;
-  position: fixed;
-  z-index: 1025;
-  top: 0;
-  left: 0;
-  overflow-x: hidden;
-  transition: .5s;
-  box-shadow: 1px 0px 5px;
-}
-.hidden-sidebar{
-  left: -250px !important;
-}
-
-.nav-tabs .nav-link{
-  background-color: $light-gray;
-  border: none;
-  &.active{
-    background-color: $light-brown;
-  }
-}
-.tab-content {
-  height: 85%;
-  overflow-y: auto;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-}
-
-.btn-ingredients {
-  background-color: $blue;
-  position: absolute;
-  bottom: 1em;
-  width: 90%;
-  left: 50%;
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%);
 }
