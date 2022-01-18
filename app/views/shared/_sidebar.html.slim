@@ -1,1 +1,12 @@
+nav
+  div.nav.nav-tabs.nav-fill role='tablist'
+    a#fridge-tab.nav-link.active data-bs-toggle='tab' data-bs-target='#fridge' type='button' role='tab' aria-controls='fridge' aria-selected='true'
+      i.bi.bi-house-fill.fs-xl
+    a#shop-tab.nav-link data-bs-toggle='tab' data-bs-target='#shopping-cart' type='button' role='tab' aria-controls='fridge' aria-selected='false'
+      i.bi.bi-cart-fill.fs-xl
+
+div#tabContent.tab-content
+  div#fridge.tab-pane.fade.show.active role='tabpanel' aria-labelledby='fridge-tab'
+    = render 'shared/fridge'
+  div#shopping-cart.tab-pane.fade role='tabpanel' aria-labelledby='shop-tab'
 = button_to I18n.t(:btn_ingredients, scope: [:navbar, :sidebar]), ingredients_path, method: :get, class: 'btn btn-ingredients'

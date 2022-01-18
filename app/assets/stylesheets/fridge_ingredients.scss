@@ -1,0 +1,28 @@
+.row_fridge_ingredient {
+  display: table;
+  background-color: $light-gray;
+  border-radius: 5px;
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
+  margin-bottom: 0.5rem;
+}
+.fridge_ingredient {
+  display: table-cell;
+  a {
+    color: black;
+    text-decoration: none;
+  }
+  .name {
+    border-bottom: 1px solid;
+  }
+}
+.trash {
+  display: table-cell;
+  padding: unset;
+  vertical-align: middle;
+  a{
+    &:hover {
+      color: $danger;
+    }
+  }
+}

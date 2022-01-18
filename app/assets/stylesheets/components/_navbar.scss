@@ -28,12 +28,27 @@ body {
   top: 0;
   left: 0;
   overflow-x: hidden;
-  padding: 1em;
   transition: .5s;
   box-shadow: 1px 0px 5px;
 }
 .hidden-sidebar{
   left: -250px !important;
+}
+
+.nav-tabs .nav-link{
+  background-color: $light-gray;
+  border: none;
+  &.active{
+    background-color: $light-brown;
+  }
+}
+.tab-content {
+  height: 85%;
+  overflow-y: auto;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 .btn-ingredients {
