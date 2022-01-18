@@ -45,6 +45,10 @@
   padding-top: 0.3rem;
   padding-bottom: 0.3rem;
   margin-bottom: 0.5rem;
+  &:hover {
+    transition: .25s;
+    background-color: $gray-400;
+  }
 }
 .user_ingredient {
   display: table-cell;
@@ -54,6 +58,16 @@
   }
   .name {
     border-bottom: 1px solid;
+  }
+}
+.fridge {
+  display: table-cell;
+  padding: unset;
+  vertical-align: middle;
+  a{
+    &:hover {
+      color: $primary;
+    }
   }
 }
 .trash {

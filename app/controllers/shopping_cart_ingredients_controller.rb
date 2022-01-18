@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 class ShoppingCartIngredientsController < ApplicationController
-  before_action :set_shopping_cart_ingredient, only: %i[show update destroy]
+  include FridgeIngredientsConcern
+
+  before_action :set_shopping_cart_ingredient, only: %i[show update destroy add_to_fridge]
 
   def show
     respond_to do |format|
@@ -26,6 +28,20 @@ class ShoppingCartIngredientsController < ApplicationController
       flash[:notice] = I18n.t(:removed_from_fridge, scope: :ingredients)
     rescue StandardError => _e
       flash[:alert] = @shopping_cart_ingredient.errors.full_messages
+    end
+    redirect_back(fallback_location: root_path)
+  end
+
+  def add_to_fridge
+    begin
+      ingredient_id = @shopping_cart_ingredient.ingredient_id
+      quantity_number = @shopping_cart_ingredient.quantity_number
+      quantity_unit = @shopping_cart_ingredient.quantity_unit
+      create_fridge_ingredient!(ingredient_id, quantity_number, quantity_unit)
+      @shopping_cart_ingredient.destroy!
+      flash[:notice] = I18n.t(:added_to_fridge, scope: :ingredients)
+    rescue StandardError => e
+      flash[:alert] = e.message
     end
     redirect_back(fallback_location: root_path)
   end

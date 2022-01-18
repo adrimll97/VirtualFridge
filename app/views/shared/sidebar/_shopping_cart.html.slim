@@ -8,6 +8,10 @@
           - number = shopping_cart_ingredient.quantity_number
           - unit = shopping_cart_ingredient.quantity_unit
           = I18n.t(:ingredient_quantity, scope: :ingredients, number: number, unit: unit)
+    div.fridge
+      = link_to add_to_fridge_shopping_cart_ingredient_path(shopping_cart_ingredient.id),
+                class: 'btn', method: :post, remote:  true
+        i.bi.bi-house-fill
     div.trash
       = link_to shopping_cart_ingredient_path(shopping_cart_ingredient.id),
                 class: 'btn', method: :delete, remote:  true,
