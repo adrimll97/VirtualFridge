@@ -4,6 +4,7 @@ INGREDIENTS_PER_PAGE = 24
 
 class IngredientsController < ApplicationController
   include FridgeIngredientsConcern
+  include ShoppingCartIngredientsConcern
 
   before_action :set_ingredient, only: %i[show]
 
@@ -33,8 +34,14 @@ class IngredientsController < ApplicationController
   def create_user_ingredient
     ui_params = user_ingredient_params
     begin
-      create_fridge_ingredient!(ui_params[:id].to_i) if ui_params['fridge'].present?
-      flash[:notice] = I18n.t(:added_to_fridge, scope: :ingredients)
+      if ui_params['fridge'].present?
+        create_fridge_ingredient!(ui_params[:id].to_i)
+        message = I18n.t(:added_to_fridge, scope: :ingredients)
+      else
+        create_shopping_cart_ingredient!(ui_params[:id].to_i)
+        message = 'Pal carrito que va'
+      end
+      flash[:notice] = message
     rescue StandardError => e
       flash[:alert] = e.message
     end
