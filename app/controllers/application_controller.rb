@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :set_fridge
+  before_action :set_shopping_cart
 
   protected
 
@@ -19,5 +20,11 @@ class ApplicationController < ActionController::Base
     return unless user_signed_in?
 
     @fridge = Fridge.find_or_create_by(user_id: current_user.id)
+  end
+
+  def set_shopping_cart
+    return unless user_signed_in?
+
+    @shopping_cart = ShoppingCart.find_or_create_by(user_id: current_user.id)
   end
 end
