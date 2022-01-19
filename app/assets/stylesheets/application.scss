@@ -24,8 +24,13 @@
 // CSS partials
 @import "components/index";
 
-body .content{
-  padding: 1em 10em;
+body {
+  margin-left: 250px !important;
+  transition: .5s;
+
+  .content{
+    padding: 1em 10em;
+  }
 }
 
 nav {

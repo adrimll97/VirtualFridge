@@ -7,6 +7,7 @@ nav
 
 div#tabContent.tab-content
   div#fridge.tab-pane.fade.show.active role='tabpanel' aria-labelledby='fridge-tab'
-    = render 'shared/fridge'
+    = render 'shared/sidebar/fridge'
   div#shopping-cart.tab-pane.fade role='tabpanel' aria-labelledby='shop-tab'
+    = render 'shared/sidebar/shopping_cart'
 = button_to I18n.t(:btn_ingredients, scope: [:navbar, :sidebar]), ingredients_path, method: :get, class: 'btn btn-ingredients'
