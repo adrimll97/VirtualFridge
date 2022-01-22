@@ -13,4 +13,5 @@ Rails.application.routes.draw do
   resources :shopping_cart_ingredients, only: %i[show update destroy] do
     post 'add_to_fridge', on: :member
   end
+  resources :recipes, only: %i[index]
 end

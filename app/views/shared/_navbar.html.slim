@@ -11,6 +11,8 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light-brown.nav-shadow.sticky-top
     ul.navbar-nav.ml-auto
       - if user_signed_in?
         li.nav-item
+          = link_to I18n.t(:recipes, scope: :navbar), recipes_path, class: 'nav-link'
+        li.nav-item
           = link_to I18n.t(:profile, scope: :navbar), user_path(current_user.id), class: 'nav-link'
       - else
         li.nav-item
