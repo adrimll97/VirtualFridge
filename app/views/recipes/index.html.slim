@@ -9,5 +9,7 @@ div.col-md-12.col-lg-12
             / = image_tag(recipe.image.medium_fill.url) if recipe.image.present?
           div.recipe_name
             = recipe.name
+          div.recipe_author_name
+            = recipe.user.name
 
 = paginate @recipes, theme: 'bootstrap-5'

@@ -8,5 +8,4 @@ class Recipe < ApplicationRecord
   has_many :recipe_ingredients, dependent: :destroy
 
   validates :user, presence: true
-  validates :user, uniqueness: true
 end
