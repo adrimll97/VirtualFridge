@@ -4,12 +4,12 @@ div.col-md-12.col-lg-12
     - @recipes.each do |recipe|
       div.col-md-2
         div.recipe
-          / = link_to ingredient_path(recipe), remote: true do
-          div.recipe_image
-            / = image_tag(recipe.image.medium_fill.url) if recipe.image.present?
-          div.recipe_name
-            = recipe.name
-          div.recipe_author_name
-            = recipe.user.name
+          = link_to recipe_path(recipe) do
+            div.recipe_image
+              / = image_tag(recipe.image.medium_fill.url) if recipe.image.present?
+            div.recipe_name
+              = recipe.name
+            div.recipe_author_name
+              = recipe.user.name
 
 = paginate @recipes, theme: 'bootstrap-5'

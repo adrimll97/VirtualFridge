@@ -1,0 +1,14 @@
+= form_for @recipe do |f|
+  div.header
+    / = image_tag(@recipe.image.url) if @recipe.image?
+    h5 = @recipe.name
+    p = @recipe.user.name
+  div.container
+    .field
+      h5= f.label :ingredients
+      - @recipe.recipe_ingredients&.each do |ri|
+        p= "#{ri.ingredient.name} #{ri.quantity_number}#{ri.quantity_unit}"
+    .field
+      h5= f.label :steps
+      - @recipe.steps&.each do |step|
+        p= step
