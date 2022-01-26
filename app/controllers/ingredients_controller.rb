@@ -16,7 +16,7 @@ class IngredientsController < ApplicationController
   # GET /ingredients/1 or /ingredients/1.json
   def show
     respond_to do |format|
-      format.js { render 'show.js.erb' }
+      format.js { render 'show' }
     end
   end
 
