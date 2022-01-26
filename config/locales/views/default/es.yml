@@ -2,3 +2,5 @@ es:
   default:
     search:
       placeholder: Buscar %{zone}...
+    form:
+      save: Guardar
