@@ -2,11 +2,14 @@ div.col-md-12.col-lg-12
   div.row
     = render partial: 'shared/search', locals: { zone: 'ingredientes' }
     - @ingredients.each do |ingredient|
-      div.col-md-2
+      div.col-md-3
         div.ingredient
           = link_to ingredient_path(ingredient), remote: true do
             div.ingredient_image
-              = image_tag(ingredient.image.medium_fill.url) if ingredient.image.present?
+              - if ingredient.image.present?
+                = image_tag(ingredient.image.medium_fill.url, alt: ingredient.name)
+              - else
+                = image_tag('default-ingredients.png', alt: ingredient.name)
             div.ingredient_name
               = ingredient.name
 

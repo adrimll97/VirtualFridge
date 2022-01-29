@@ -4,15 +4,15 @@
       = link_to fridge_ingredient_path(fridge_ingredient.id), remote: true do
         div.name
           = fridge_ingredient.ingredient.name
-        div.quantity
-          - number = fridge_ingredient.quantity_number
-          - unit = fridge_ingredient.quantity_unit
-          = I18n.t(:ingredient_quantity, scope: :ingredients, number: number, unit: unit)
         - if fridge_ingredient.expiration_date.present?
           div.caducidad
             - expiration_label = I18n.t(:expiration_date, scope: :ingredients)
             - expiration_date = fridge_ingredient.expiration_date
             = "#{expiration_label}: #{expiration_date}"
+        div.quantity
+          - number = fridge_ingredient.quantity_number
+          - unit = fridge_ingredient.quantity_unit
+          = I18n.t(:ingredient_quantity, scope: :ingredients, number: number, unit: unit)
     div.trash
       = link_to fridge_ingredient_path(fridge_ingredient.id),
                 class: 'btn', method: :delete, remote:  true,

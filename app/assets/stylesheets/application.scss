@@ -48,21 +48,27 @@ nav li {
 }
 .page-item.active{
   .page-link{
-    background-color: $blue;
-    border-color: $blue;
+    background-color: $primary;
+    border-color: $primary;
   }
 }
 .page-link{
-  color: $blue;
+  color: $primary;
   &:hover{
-    color: $blue;
+    color: $primary;
     background-color: $gray-300;
     transition: .25s;
   }
 }
 
-.bg-light-brown {
-  background-color: $light-brown;
+.bg-primary {
+  background-color: $primary;
+}
+.bg-secondary {
+  background-color: $secondary;
+}
+.font-white {
+  color: white;
 }
 
 .errors {
@@ -99,10 +105,13 @@ nav li {
   }
   p.success{
     &:hover{
-      background-color: $blue;
+      background-color: $primary;
       transition: .2s;
     }
   }
+}
+.text-center {
+  text-align: center;
 }
 .fs-s {
   font-size: 0.9rem;

@@ -1,6 +1,7 @@
 es:
   ingredients:
     added_to_fridge: Ingrediente metido en la nevera
+    added_to_shop_cart: Ingrediente añadido al carrito de la compra
     add_fridge_ingredient: Nevera
     add_shop_cart_ingredient: Carrito
     destroy_confirmation: ¿Estás seguro de que quieres sacar el ingrediente de la nevera?

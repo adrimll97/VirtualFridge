@@ -2,13 +2,13 @@
   .modal-dialog.modal-sm
     .modal-content
       = form_for @ingredient, url: create_user_ingredient_ingredient_path(@ingredient), method: :post, remote: true do |f|
-        .modal-header.bg-light-brown
+        .modal-header
           h5.modal-title
             a href="#{@ingredient.url}" target='_blank' #{@ingredient.name}
           button.btn-close type='button' data-bs-dismiss='modal' aria-label="Close"
         .modal-body
           div#messages
-          div.container
+          div.container.text-center
             div.ingredient_image
               = image_tag(@ingredient.image.url, width: '100%') if @ingredient.image.present?
             div.ingredient_quantity

@@ -1,6 +1,9 @@
 .ingredient {
-  width: 250px;
-  margin-bottom: 1em;
+  width: 200px;
+  margin: 1em auto;
+  background-color: $white;
+  border-radius: 5px;
+  box-shadow: 5px 5px 8px grey;
   &:hover {
     -webkit-filter: brightness(70%);
     transition: .2s;
@@ -10,15 +13,29 @@
     text-decoration: none;
   }
 }
-
 .ingredient_image{
-  padding: 1em 1em 0 1em;
+  text-align: center;
+  img {
+    vertical-align: middle;
+    border-radius: 5px;
+  }
+}
+.ingredient_name{
+  padding: 0.5em;
+}
+.ingredient_quantity {
+  margin-top: 1em;
 }
 
-.ingredient_name{
-  padding: 0 1em;
-  &:hover {
-    color: $blue;
-    transition: .2s;
+.user_ingredient_info {
+  padding-top: 1em;
+  .expiration_date {
+    margin-bottom: 0.5em;
+    input {
+      width: 150px;
+    }
+  }
+  .quantity input {
+    width: 120px;
   }
 }

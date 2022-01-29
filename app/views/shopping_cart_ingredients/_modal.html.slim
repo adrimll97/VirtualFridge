@@ -2,18 +2,22 @@
   .modal-dialog.modal-sm
     .modal-content
       = form_for @shopping_cart_ingredient, remote: true do |f|
-        .modal-header.bg-light-brown
+        .modal-header
           h5.modal-title= @shopping_cart_ingredient.ingredient.name
           button.btn-close type='button' data-bs-dismiss='modal' aria-label="Close"
         .modal-body
           div#messages
-          div.container.align-items-center
+          div.container
             div.ingredient_image
               = image_tag(@shopping_cart_ingredient.ingredient.image.url, width: '100%') if @shopping_cart_ingredient.ingredient.image.present?
-            div.ingredient_quantity
-              = I18n.t(:quantity, scope: :ingredients)
-              = f.number_field :quantity_number, step: :any, min: 0
-              = @shopping_cart_ingredient.quantity_unit
+            div.user_ingredient_info
+              div.row.quantity
+                div.col-md-4
+                  = I18n.t(:quantity, scope: :ingredients)
+                div.col-md-6
+                  = f.number_field :quantity_number, step: :any, min: 0
+                div.col-md-1
+                  = @shopping_cart_ingredient.quantity_unit
         .modal-footer
           button.btn data-bs-dismiss='modal' type='button'= 'Cancelar'
-          = f.submit 'Guardar', class:"btn btn-primary"
+          = f.submit I18n.t(:save, scope: [:default, :form]), class:"btn btn-primary"

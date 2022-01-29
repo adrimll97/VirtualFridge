@@ -14,10 +14,13 @@
 }
 
 .nav-tabs .nav-link{
-  background-color: $light-gray;
+  background-color: $secondary;
+  color: $light-gray;
   border: none;
   &.active{
-    background-color: $light-brown;
+    background-color: $secondary;
+    color: $primary;
+    border-bottom: 3px solid;
   }
 }
 .tab-content {
@@ -30,7 +33,7 @@
 }
 
 .btn-ingredients {
-  background-color: $blue;
+  background-color: $primary;
   position: absolute;
   bottom: 1em;
   width: 90%;
