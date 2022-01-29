@@ -2,7 +2,7 @@
   .modal-dialog.modal-sm
     .modal-content
       = form_for @fridge_ingredient, remote: true do |f|
-        .modal-header.bg-light-brown
+        .modal-header
           h5.modal-title= @fridge_ingredient.ingredient.name
           button.btn-close type='button' data-bs-dismiss='modal' aria-label="Close"
         .modal-body
