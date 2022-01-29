@@ -1,8 +1,8 @@
 - if user_signed_in?
-  div.sidebar.bg-light-brown
+  div.sidebar.bg-secondary
     = render 'shared/sidebar'
 
-nav.navbar.navbar-expand-lg.navbar-light.bg-light-brown.nav-shadow.sticky-top
+nav.navbar.navbar-expand-lg.navbar-dark.bg-secondary.nav-shadow.sticky-top
   - if user_signed_in?
     button.sidebar-toggler
       span.navbar-toggler-icon

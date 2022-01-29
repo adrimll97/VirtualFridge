@@ -2,6 +2,10 @@
   padding-right: 0 !important;
   overflow: inherit !important;
 }
+.modal-header {
+  background-color: $secondary;
+  color: $light-gray;
+}
 
 .modal-body {
   background-color: $light-gray;

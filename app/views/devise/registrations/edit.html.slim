@@ -3,7 +3,7 @@
     div.errors
       = render "devise/shared/error_messages", resource: resource
   .devise-form.center-screen
-    .form-header.bg-light-brown
+    .form-header
       h4.form-title= I18n.t(:edit_user, scope: [:devise, :views])
       = link_to '', user_path(current_user.id), class: 'btn btn-close right', style: 'margin-top: -1.7rem'
     .form-body

@@ -16,7 +16,7 @@ class IngredientsController < ApplicationController
   # GET /ingredients/1 or /ingredients/1.json
   def show
     respond_to do |format|
-      format.js { render 'show.js.erb' }
+      format.js { render 'show' }
     end
   end
 
@@ -39,7 +39,7 @@ class IngredientsController < ApplicationController
         message = I18n.t(:added_to_fridge, scope: :ingredients)
       else
         create_shopping_cart_ingredient!(ui_params[:id].to_i)
-        message = 'Pal carrito que va'
+        message = I18n.t(:added_to_shop_cart, scope: :ingredients)
       end
       flash[:notice] = message
     rescue StandardError => e

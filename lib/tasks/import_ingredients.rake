@@ -43,7 +43,7 @@ namespace :ingredients do
       next if quantity_number.blank? || quantity_unit.blank?
 
       url = row['url']
-      image_url = row['image_small_url']
+      image_url = row['image_url']
 
       Ingredient.create(
         {
@@ -55,6 +55,7 @@ namespace :ingredients do
         }
       )
       ingredients << name
+      p "Imported ingredient #{name}"
     end
   end
 
