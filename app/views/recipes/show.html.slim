@@ -1,14 +1,25 @@
-= form_for @recipe do |f|
-  div.header
-    / = image_tag(@recipe.image.url) if @recipe.image?
-    h5 = @recipe.name
-    p = @recipe.user.name
-  div.container
-    .field
-      h5= f.label :ingredients
+div.recipe_full.col-md-12
+  = form_for @recipe do |f|
+    div.row
+      = image_tag(@recipe.image.url) if @recipe.image?
+    div.row.recipe_info
+      div.col-md-10
+        h2 = @recipe.name
+      div.align-self-end.text-end.col-md-2
+        h5 = @recipe.user.name
+    div.container
+      h4.recipe-field= f.label :ingredientes
       - @recipe.recipe_ingredients&.each do |ri|
-        p= "#{ri.ingredient.name} #{ri.quantity_number}#{ri.quantity_unit}"
-    .field
-      h5= f.label :steps
-      - @recipe.steps&.each do |step|
-        p= step
+        div.row.recipe_ingredient
+          div.col-md-10
+            p= "#{ri.ingredient.name}"
+          div.col-md-2.text-end
+            p= "#{ri.quantity_number} #{ri.quantity_unit}"
+      h4.recipe-field= f.label :pasos
+      - @recipe.steps&.each_with_index do |step, index|
+        - step_number = index + 1
+        div.row
+          div.col-md-1.text-center
+            h5.step_number= step_number
+          div.col-md-11
+            p= step

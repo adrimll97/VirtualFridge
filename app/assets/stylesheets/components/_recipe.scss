@@ -26,3 +26,29 @@
 .recipe_author_name{
   padding: 0 0.5em 0.5em 0.5em;
 }
+
+.recipe_full {
+  background-color: white;
+  padding: 1em;
+  border-radius: 5px;
+  box-shadow: 5px 5px 8px grey;
+  max-width: 800px;
+  margin: auto;
+}
+.recipe_info {
+  margin: 1em 0 1em 0;
+  padding: 1rem 0;
+  border-bottom: 2px inset;
+}
+.recipe_ingredient {
+  padding: 0 1rem;
+}
+.recipe-field {
+  padding: 1em;
+  text-align: center;
+}
+.step_number {
+  background-color: $primary;
+  color: white;
+  border-radius: 50%;
+}
