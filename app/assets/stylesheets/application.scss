@@ -71,6 +71,11 @@ nav li {
   color: white;
 }
 
+.btn-primary {
+  background-color: $primary;
+  color: white;
+}
+
 .errors {
   border-radius: 5px;
   background-color: #e980744D;
@@ -110,6 +115,15 @@ nav li {
     }
   }
 }
+
+.bg-gray-hover{
+  &:hover{
+    transition: .2s;
+    background-color: $light-gray;
+    border-radius: 5px;
+  }
+}
+
 .fs-s {
   font-size: 0.9rem;
 }
