@@ -13,6 +13,10 @@ class RecipesController < ApplicationController
   def show
   end
 
+  def new
+    @recipe = Recipe.new
+  end
+
   private
 
   def set_recipe

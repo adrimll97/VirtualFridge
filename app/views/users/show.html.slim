@@ -6,4 +6,5 @@ div.col-md-12
       = link_to edit_user_registration_path, class: 'btn fs-l', method: :get
         i.bi.bi-pencil-fill
 
+= link_to 'Crear receta', new_recipe_path, method: :get, class: 'btn btn-primary'
 = link_to I18n.t(:log_out, scope: :navbar), destroy_user_session_path, method: :delete, class: 'btn btn-danger'
