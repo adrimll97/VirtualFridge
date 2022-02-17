@@ -52,3 +52,39 @@
   color: white;
   border-radius: 50%;
 }
+
+.delete-recipe-ingredient {
+  font-size: 1.2em;
+  padding: 0;
+  i{
+    &:hover {
+      color: $danger;
+    }
+  }
+}
+
+.q_unit_ingredient {
+  input {
+    background-color: #dddddd;
+    &:focus{
+      outline: none;
+    }
+  }
+}
+
+.q_unit_ingredient {
+  input {
+    background-color: #dddddd;
+    cursor: default;
+    &:focus{
+      outline: none;
+    }
+  }
+}
+
+.select2-result-ingredient__image{
+  img{
+    max-height: 100px;
+    max-width: 100px;
+  }
+}
