@@ -123,6 +123,12 @@ nav li {
     border-radius: 5px;
   }
 }
+.danger-hover{
+  &:hover {
+    transition: .2s;
+    color: $danger;
+  }
+}
 
 .fs-s {
   font-size: 0.9rem;

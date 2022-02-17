@@ -26,9 +26,9 @@ div.recipe_full.col-md-12
         div#recipe-steps
           - if @recipe.steps.present?
             - @recipe.steps.each do |step|
-              = f.text_area :steps, name: 'recipe[steps][]', value: step, class: 'w-100'
+              = render partial: 'step', locals: { f: f, value: step }
           - else
-            = f.text_area :steps, name: 'recipe[steps][]', value: '', class: 'w-100'
+            = render partial: 'step', locals: { f: f, value: '' }
       div.row.text-center
         span.btn.fs-l.add-recipe-step.bg-gray-hover
           i.bi.bi-plus-lg
@@ -46,13 +46,24 @@ javascript:
     });
 
     $('.add-recipe-step').on('click', function() {
-      var newStep = $('<textarea name="recipe[steps][]" style="width: 100%" id="recipe_steps"></textarea>')
+      var newStep = $(
+        '<div class="row">'+
+          '<div class="col-md-11"><textarea name="recipe[steps][]" class="w-100" id="recipe_steps"></textarea></div>'+
+          '<div class="col-md-1">'+
+            '<span class="btn fs-l delete-recipe-step"><i class="bi bi-trash-fill danger-hover"></i></span>'+
+          '</div>'+
+        '</div>'
+      )
       $('#recipe-steps').append(newStep);
     });
 
     $(document).on('click', '.delete-recipe-ingredient', function() {
       $(this).siblings('input').val(-1);
       $(this).closest('.row').hide();
+    });
+
+    $(document).on('click', '.delete-recipe-step', function() {
+      $(this).closest('.row').empty();
     });
 
     $(".ingredient_select").each(function() {

@@ -17,4 +17,4 @@
       = link_to fridge_ingredient_path(fridge_ingredient.id),
                 class: 'btn', method: :delete, remote:  true,
                 data: { confirm: I18n.t(:destroy_confirmation, scope: :ingredients) }
-        i.bi.bi-trash-fill
+        i.bi.bi-trash-fill.danger-hover

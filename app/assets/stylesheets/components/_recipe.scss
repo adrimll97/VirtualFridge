@@ -56,11 +56,6 @@
 .delete-recipe-ingredient {
   font-size: 1.2em;
   padding: 0;
-  i{
-    &:hover {
-      color: $danger;
-    }
-  }
 }
 
 .q_unit_ingredient {

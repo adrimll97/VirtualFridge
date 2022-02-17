@@ -1,0 +1,6 @@
+div.row
+  div.col-md-11
+    = f.text_area :steps, name: 'recipe[steps][]', value: value, class: 'w-100'
+  div.col-md-1
+    span.btn.fs-l.delete-recipe-step
+      i.bi.bi-trash-fill.danger-hover
