@@ -38,7 +38,6 @@
 .recipe_info {
   margin: 1em 0 1em 0;
   padding: 1rem 0;
-  border-bottom: 2px inset;
 }
 .recipe_ingredient {
   padding: 0 1rem;
@@ -47,6 +46,13 @@
   padding: 1em 1em 0 1em;
   text-align: center;
 }
+
+.image-recipe {
+  img{
+    padding-bottom: 1em;
+  }
+}
+
 .step_number {
   background-color: $primary;
   color: white;

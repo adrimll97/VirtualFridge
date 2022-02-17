@@ -1,7 +1,7 @@
 div.recipe_full.col-md-12
   div.row
     = image_tag(@recipe.image.url) if @recipe.image?
-  div.row.recipe_info
+  div.row.recipe_info.border-bottom
     div.col-md-10
       h2 = @recipe.name
     div.align-self-end.text-end.col-md-2
@@ -10,19 +10,25 @@ div.recipe_full.col-md-12
           i.bi.bi-pencil-fill
       - else
         h5 = @recipe.user.name
-  div.container
-    h4.recipe-field= I18n.t(:ingredients, scope: :recipes)
-    - @recipe.recipe_ingredients&.each do |ri|
-      div.row.recipe_ingredient
-        div.col-md-10
-          p= "#{ri.ingredient.name}"
-        div.col-md-2.text-end
-          p= "#{ri.quantity_number} #{ri.quantity_unit}"
-    h4.recipe-field= I18n.t(:steps, scope: :recipes)
-    - @recipe.steps&.each_with_index do |step, index|
-      - step_number = index + 1
-      div.row
-        div.col-md-1.text-center
-          h5.step_number= step_number
-        div.col-md-11
-          p= step
+  div.container.border-bottom
+    div#ingredients.border-bottom
+      h4.recipe-field= I18n.t(:ingredients, scope: :recipes)
+      - @recipe.recipe_ingredients&.each do |ri|
+        div.row.recipe_ingredient
+          div.col-md-10
+            p= "#{ri.ingredient.name}"
+          div.col-md-2.text-end
+            p= "#{ri.quantity_number} #{ri.quantity_unit}"
+    div#steps
+      h4.recipe-field= I18n.t(:steps, scope: :recipes)
+      - @recipe.steps&.each_with_index do |step, index|
+        - step_number = index + 1
+        div.row
+          div.col-md-1.text-center
+            h5.step_number= step_number
+          div.col-md-11
+            p= step
+  div.actions.mt-3
+    - if self_recipe?
+      = link_to I18n.t(:destroy_recipe, scope: :recipes), recipe_path(@recipe), method: :delete, class: 'btn btn-danger',
+                data: { confirm: I18n.t(:destroy_confirmation, scope: :recipes) }

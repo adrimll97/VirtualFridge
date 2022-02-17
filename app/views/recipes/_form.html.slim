@@ -1,16 +1,16 @@
 div.recipe_full.col-md-12
   = form_for @recipe do |f|
-    div.row#image-recipe
+    div.row.image-recipe
       = image_tag(@recipe.image.url) if @recipe.image?
     div.row.image_field
       = f.label :image
         span.btn.fs-l
           i.bi.bi-camera-fill
       = f.file_field :image, accept: 'image/png,image/jpeg', style: 'display: none'
-    div.row.recipe_info
+    div.row.recipe_info.border-bottom
       div.field
         = f.text_field :name, class: 'w-100', placeholder: I18n.t(:placeholder_name, scope: :recipes)
-    div.container
+    div.container.border-bottom
       h4.recipe-field= f.label :ingredientes
       div#recipe-ingredients
         - if @recipe.recipe_ingredients.present?
@@ -18,7 +18,7 @@ div.recipe_full.col-md-12
             = render partial: 'recipe_ingredient', locals: { f: f, row: index, ingredient: ingredient}
         - else
           = render partial: 'recipe_ingredient', locals: { f: f, row: 0 }
-      div.row.text-center
+      div.row.text-center.border-bottom
         span.btn.fs-l.add-recipe-ingredient.bg-gray-hover
           i.bi.bi-plus-lg
       div.field
@@ -32,7 +32,7 @@ div.recipe_full.col-md-12
       div.row.text-center
         span.btn.fs-l.add-recipe-step.bg-gray-hover
           i.bi.bi-plus-lg
-    div.actions.text-end
+    div.actions.text-end.mt-3
       = link_to I18n.t(:cancel, scope: [:default, :form]), :back, class: 'btn bg-gray-hover me-3'
       = f.submit I18n.t(:save, scope: [:default, :form]), class:"btn btn-primary"
 
@@ -40,9 +40,9 @@ javascript:
   $(document).ready(function(){
     $('#recipe_image').change(function(e) {
       var src = URL.createObjectURL(this.files[0]);
-      var newImage = $('<img src="'+ src +'" style="padding-bottom: 1em"></img>');
-      $('#image-recipe').empty();
-      $('#image-recipe').append(newImage);
+      var newImage = $('<img src="'+ src +'"></img>');
+      $('.image-recipe').empty();
+      $('.image-recipe').append(newImage);
     });
 
     $('.add-recipe-step').on('click', function() {
