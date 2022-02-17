@@ -1,0 +1,6 @@
+es:
+  recipes:
+    ingredients: Ingredientes
+    steps: Pasos
+    placeholder_name: Nombre de la receta
+    recipe_created: Receta creada correctamente

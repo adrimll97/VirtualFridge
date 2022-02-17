@@ -12,6 +12,7 @@ class RecipesController < ApplicationController
   end
 
   def show
+    @recipe
   end
 
   def new
@@ -23,7 +24,7 @@ class RecipesController < ApplicationController
     @recipe.user_id = current_user.id
     begin
       @recipe.save!
-      flash[:notice] = 'Receta creada correctamente'
+      flash[:notice] = I18n.t(:recipe_created, scope: :recipes)
       redirect_to user_path(current_user.id)
     rescue StandardError => _e
       flash[:alert] = @recipe.errors.full_messages

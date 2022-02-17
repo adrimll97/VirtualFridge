@@ -8,7 +8,7 @@ div.recipe_full.col-md-12
       = f.file_field :image, accept: 'image/png,image/jpeg', style: 'display: none'
     div.row.recipe_info
       div.field
-        = f.text_field :name, class: 'w-100', placeholder: 'Nombre de la receta'
+        = f.text_field :name, class: 'w-100', placeholder: I18n.t(:placeholder_name, scope: :recipes)
     div.container
       h4.recipe-field= f.label :ingredientes
       div#recipe-ingredients
@@ -42,7 +42,7 @@ div.recipe_full.col-md-12
         span.btn.fs-l.add-recipe-step.bg-gray-hover
           i.bi.bi-plus-lg
     div.actions.text-end
-      = link_to 'Cancelar', :back, class: 'btn bg-gray-hover me-3'
+      = link_to I18n.t(:cancel, scope: [:default, :form]), :back, class: 'btn bg-gray-hover me-3'
       = f.submit I18n.t(:save, scope: [:default, :form]), class:"btn btn-primary"
 
 javascript:

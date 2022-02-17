@@ -7,14 +7,14 @@ div.recipe_full.col-md-12
     div.align-self-end.text-end.col-md-2
       h5 = @recipe.user.name
   div.container
-    h4.recipe-field= 'Ingredientes'
+    h4.recipe-field= I18n.t(:ingredients, scope: :recipes)
     - @recipe.recipe_ingredients&.each do |ri|
       div.row.recipe_ingredient
         div.col-md-10
           p= "#{ri.ingredient.name}"
         div.col-md-2.text-end
           p= "#{ri.quantity_number} #{ri.quantity_unit}"
-    h4.recipe-field= 'Pasos'
+    h4.recipe-field= I18n.t(:steps, scope: :recipes)
     - @recipe.steps&.each_with_index do |step, index|
       - step_number = index + 1
       div.row
