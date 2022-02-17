@@ -5,7 +5,7 @@ INGREDIENTS_PER_PAGE = 24
 
 # Controlador de recetas
 class RecipesController < ApplicationController
-  before_action :set_recipe, only: %i[show edit]
+  before_action :set_recipe, only: %i[show edit update]
 
   def index
     @recipes = Recipe.all.page(params[:page]).per(RECIPES_PER_PAGE)
@@ -34,6 +34,15 @@ class RecipesController < ApplicationController
       flash[:alert] = @recipe.errors.full_messages
       render :new
     end
+  end
+
+  def update
+    @recipe.update!(recipe_params)
+    flash[:notice] = I18n.t(:recipe_updated, scope: :recipes)
+    redirect_to user_path(current_user.id)
+  rescue StandardError => _e
+    flash[:alert] = @recipe.errors.full_messages
+    render :edit
   end
 
   def search_ingredients
