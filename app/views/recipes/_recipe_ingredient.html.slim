@@ -1,0 +1,16 @@
+div.row id="row-#{row}"
+  - ingredient ||= RecipeIngredient.new
+  = f.fields_for :recipe_ingredients, ingredient do |sf|
+    div.col-md-7
+      div.field
+        = sf.select("ingredient_id", [[ingredient.ingredient&.name, ingredient.id]], { include_blank: true, selected: ingredient.id }, id: row, class: 'ingredient_select w-100')
+    div.col-md-3.q_number_ingredient
+      div.field
+        = sf.number_field :quantity_number, step: :any, min: 0, class: 'w-100'
+    div.col-md-1.q_unit_ingredient
+      div.field
+        = sf.text_field :quantity_unit, readonly: true, class: 'w-100'
+    div.col-md-1
+      = sf.hidden_field :_destroy
+      span.btn.delete-recipe-ingredient
+        i.bi.bi-trash-fill

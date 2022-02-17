@@ -5,7 +5,7 @@ INGREDIENTS_PER_PAGE = 24
 
 # Controlador de recetas
 class RecipesController < ApplicationController
-  before_action :set_recipe, only: %i[show]
+  before_action :set_recipe, only: %i[show edit]
 
   def index
     @recipes = Recipe.all.page(params[:page]).per(RECIPES_PER_PAGE)
@@ -17,6 +17,10 @@ class RecipesController < ApplicationController
 
   def new
     @recipe = Recipe.new
+  end
+
+  def edit
+    @recipe
   end
 
   def create

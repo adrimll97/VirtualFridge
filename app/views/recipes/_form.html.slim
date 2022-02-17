@@ -1,6 +1,7 @@
 div.recipe_full.col-md-12
   = form_for @recipe do |f|
     div.row#image-recipe
+      = image_tag(@recipe.image.url) if @recipe.image?
     div.row.image_field
       = f.label :image
         span.btn.fs-l
@@ -12,21 +13,11 @@ div.recipe_full.col-md-12
     div.container
       h4.recipe-field= f.label :ingredientes
       div#recipe-ingredients
-        div.row#row-0
-          = f.fields_for :recipe_ingredients, RecipeIngredient.new do |sf|
-            div.col-md-7
-              div.field
-                = sf.select("ingredient_id", [], { include_blank: true }, id: 0, class: 'ingredient_select w-100')
-            div.col-md-3.q_number_ingredient
-              div.field
-                = sf.number_field :quantity_number, step: :any, min: 0, class: 'w-100'
-            div.col-md-1.q_unit_ingredient
-              div.field
-                = sf.text_field :quantity_unit, readonly: true, class: 'w-100'
-            div.col-md-1
-              = sf.hidden_field :_destroy
-              span.btn.delete-recipe-ingredient
-                i.bi.bi-trash-fill
+        - if @recipe.recipe_ingredients.present?
+          - @recipe.recipe_ingredients.each_with_index do |ingredient, index|
+            = render partial: 'recipe_ingredient', locals: { f: f, row: index, ingredient: ingredient}
+        - else
+          = render partial: 'recipe_ingredient', locals: { f: f, row: 0 }
       div.row.text-center
         span.btn.fs-l.add-recipe-ingredient.bg-gray-hover
           i.bi.bi-plus-lg
@@ -54,6 +45,11 @@ javascript:
       $('#image-recipe').append(newImage);
     });
 
+    $('.add-recipe-step').on('click', function() {
+      var newStep = $('<textarea name="recipe[steps][]" style="width: 100%" id="recipe_steps"></textarea>')
+      $('#recipe-steps').append(newStep);
+    });
+
     $(document).on('click', '.delete-recipe-ingredient', function() {
       $(this).siblings('input').val(-1);
       $(this).closest('.row').hide();
@@ -73,12 +69,6 @@ javascript:
     $(document).on('select2:open', () => {
       document.querySelector('.select2-search__field').focus();
     });
-
-    $('.add-recipe-step').on('click', function() {
-      var newStep = $('<textarea name="recipe[steps][]" style="width: 100%" id="recipe_steps"></textarea>')
-      $('#recipe-steps').append(newStep);
-    });
-
 
     $('.add-recipe-ingredient').on('click', function() {
       var index = $('#recipe-ingredients')[0].childElementCount

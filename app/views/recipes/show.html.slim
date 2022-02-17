@@ -5,7 +5,11 @@ div.recipe_full.col-md-12
     div.col-md-10
       h2 = @recipe.name
     div.align-self-end.text-end.col-md-2
-      h5 = @recipe.user.name
+      - if self_recipe?
+        = link_to edit_recipe_path, class: 'btn fs-l', method: :get
+          i.bi.bi-pencil-fill
+      - else
+        h5 = @recipe.user.name
   div.container
     h4.recipe-field= I18n.t(:ingredients, scope: :recipes)
     - @recipe.recipe_ingredients&.each do |ri|
