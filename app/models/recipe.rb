@@ -6,7 +6,9 @@ class Recipe < ApplicationRecord
 
   belongs_to :user
   has_many :recipe_ingredients, dependent: :destroy
+  accepts_nested_attributes_for :recipe_ingredients, allow_destroy: true
 
-  validates :user, presence: true
-  validates :user, uniqueness: true
+  validates :user, :name, presence: true
+
+  scope :of_user, ->(user) { where(user_id: user.id) }
 end

@@ -1,0 +1,17 @@
+div.col-md-12.col-lg-12
+  div.row
+    - @recipes.each do |recipe|
+      div.col-md-3
+        div.recipe.text-start
+          = link_to recipe_path(recipe) do
+            div.recipe_image
+              - if recipe.image.present?
+                = image_tag(recipe.image.medium_fill.url, alt: recipe.name)
+              - else
+                = image_tag('default-recipe.png', alt: recipe.name)
+            div.recipe_name
+              = recipe.name
+            div.recipe_author_name.subtext
+              = recipe.user.name
+
+= paginate @recipes, theme: 'bootstrap-5'

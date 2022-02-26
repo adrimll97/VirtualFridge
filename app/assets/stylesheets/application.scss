@@ -71,6 +71,11 @@ nav li {
   color: white;
 }
 
+.btn-primary {
+  background-color: $primary;
+  color: white;
+}
+
 .errors {
   border-radius: 5px;
   background-color: #e980744D;
@@ -110,9 +115,21 @@ nav li {
     }
   }
 }
-.text-center {
-  text-align: center;
+
+.bg-gray-hover{
+  &:hover{
+    transition: .2s;
+    background-color: $light-gray;
+    border-radius: 5px;
+  }
 }
+.danger-hover{
+  &:hover {
+    transition: .2s;
+    color: $danger;
+  }
+}
+
 .fs-s {
   font-size: 0.9rem;
 }
@@ -121,4 +138,8 @@ nav li {
 }
 .fs-xl {
   font-size: 1.7rem;
+}
+
+.border-bottom {
+  border-bottom: 2px inset !important;
 }

@@ -1,9 +1,20 @@
-div.col-md-12
-  div.row
-    div.col-md-11
-      h1= "Usuario #{current_user.name}"
-    div.col-md-1
-      = link_to edit_user_registration_path, class: 'btn fs-l', method: :get
-        i.bi.bi-pencil-fill
+div.row.border-bottom
+  div.col-md-10
+    h1= "#{current_user.name}"
+    h5= "#{current_user.email}"
+  div.col-md-1
+    = link_to edit_user_registration_path, class: 'btn fs-l', method: :get
+      i.bi.bi-pencil-fill
+  div.col-md-1
+    = link_to destroy_user_session_path, method: :delete, class: 'btn fs-l'
+      i.bi.bi-power
 
-= link_to I18n.t(:log_out, scope: :navbar), destroy_user_session_path, method: :delete, class: 'btn btn-danger'
+nav
+  div.nav.nav-tabs.nav-fill role='tablist'
+    a#recipes-tab.nav-link.active data-bs-toggle='tab' data-bs-target='#recipes' type='button' role='tab' aria-controls='recipes' aria-selected='true'
+      = I18n.t(:recipes, scope: :navbar)
+
+div#tabContent.tab-content.text-center
+  div#recipes.tab-pane.fade.show.active role='tabpanel' aria-labelledby='recipes-tab'
+    = link_to I18n.t(:create_recipe, scope: :profile), new_recipe_path, method: :get, class: 'btn btn-primary'
+    = render 'shared/recipes'

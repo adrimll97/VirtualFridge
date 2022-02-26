@@ -14,6 +14,8 @@ global.$ = require("jquery")
 import "jquery"
 import "jquery-ui"
 import "jquery-ui-dist/jquery-ui"
+import select2 from 'select2'
+import 'select2/dist/css/select2.css';
 
 Rails.start()
 Turbolinks.start()

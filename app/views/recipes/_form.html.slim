@@ -1,0 +1,166 @@
+div.recipe_full.col-md-12
+  = form_for @recipe do |f|
+    div.row.image-recipe
+      = image_tag(@recipe.image.url) if @recipe.image?
+    div.row.image_field
+      = f.label :image
+        span.btn.fs-l
+          i.bi.bi-camera-fill
+      = f.file_field :image, accept: 'image/png,image/jpeg', style: 'display: none'
+    div.row.recipe_info.border-bottom
+      div.field
+        = f.text_field :name, class: 'w-100', placeholder: I18n.t(:placeholder_name, scope: :recipes)
+    div.container.border-bottom
+      h4.recipe-field= f.label :ingredientes
+      div#recipe-ingredients
+        - if @recipe.recipe_ingredients.present?
+          - @recipe.recipe_ingredients.each_with_index do |ingredient, index|
+            = render partial: 'recipe_ingredient', locals: { f: f, row: index, ingredient: ingredient}
+        - else
+          = render partial: 'recipe_ingredient', locals: { f: f, row: 0 }
+      div.row.text-center.border-bottom
+        span.btn.fs-l.add-recipe-ingredient.bg-gray-hover
+          i.bi.bi-plus-lg
+      div.field
+        h4.recipe-field= f.label :pasos
+        div#recipe-steps
+          - if @recipe.steps.present?
+            - @recipe.steps.each do |step|
+              = render partial: 'step', locals: { f: f, value: step }
+          - else
+            = render partial: 'step', locals: { f: f, value: '' }
+      div.row.text-center
+        span.btn.fs-l.add-recipe-step.bg-gray-hover
+          i.bi.bi-plus-lg
+    div.actions.text-end.mt-3
+      = link_to I18n.t(:cancel, scope: [:default, :form]), :back, class: 'btn bg-gray-hover me-3'
+      = f.submit I18n.t(:save, scope: [:default, :form]), class:"btn btn-primary"
+
+javascript:
+  $(document).ready(function(){
+    $('#recipe_image').change(function(e) {
+      var src = URL.createObjectURL(this.files[0]);
+      var newImage = $('<img src="'+ src +'"></img>');
+      $('.image-recipe').empty();
+      $('.image-recipe').append(newImage);
+    });
+
+    $('.add-recipe-step').on('click', function() {
+      var newStep = $(
+        '<div class="row">'+
+          '<div class="col-md-11"><textarea name="recipe[steps][]" class="w-100" id="recipe_steps"></textarea></div>'+
+          '<div class="col-md-1">'+
+            '<span class="btn fs-l delete-recipe-step"><i class="bi bi-trash-fill danger-hover"></i></span>'+
+          '</div>'+
+        '</div>'
+      )
+      $('#recipe-steps').append(newStep);
+    });
+
+    $(document).on('click', '.delete-recipe-ingredient', function() {
+      $(this).siblings('input').val(-1);
+      $(this).closest('.row').hide();
+    });
+
+    $(document).on('click', '.delete-recipe-step', function() {
+      $(this).closest('.row').empty();
+    });
+
+    $(".ingredient_select").each(function() {
+      initializeSelect2($(this));
+    });
+
+    $(document).on('select2:select', function(e) {
+      var data = e.params.data;
+      var index = e.target.id
+      $("#recipe_recipe_ingredients_attributes_"+ index +"_quantity_number").val(data.q_number)
+      $("#recipe_recipe_ingredients_attributes_"+ index +"_quantity_unit").val(data.q_unit)
+    });
+
+    $(document).on('select2:open', () => {
+      document.querySelector('.select2-search__field').focus();
+    });
+
+    $('.add-recipe-ingredient').on('click', function() {
+      var index = $('#recipe-ingredients')[0].childElementCount
+      var newIngredient = $(
+        '<div id="row-'+ index +'"class="row">'+
+          '<div class="col-md-7">'+
+            '<div class="field">'+
+              '<select id="'+ index +'" class="ingredient_select w-100" name="recipe[recipe_ingredients_attributes]['+ index +'][ingredient_id]">'+
+                '<option value="" label=" "></option>'+
+                  '</select>'+
+                '</div>'+
+            '</div>'+
+            '<div class="col-md-3 q_number_ingredient">'+
+              '<div class="field"><input step="any" min="0" class="w-100" type="number" name="recipe[recipe_ingredients_attributes]['+ index +'][quantity_number]" id="recipe_recipe_ingredients_attributes_'+ index +'_quantity_number" /></div>'+
+            '</div>'+
+            '<div class="col-md-1 q_unit_ingredient">'+
+              '<div class="field"><input readonly="readonly" class="w-100" type="text" name="recipe[recipe_ingredients_attributes]['+ index +'][quantity_unit]" id="recipe_recipe_ingredients_attributes_'+ index +'_quantity_unit" /></div>'+
+            '</div>'+
+            '<div class="col-md-1">'+
+              '<input type="hidden" value="false" name="recipe[recipe_ingredients_attributes]['+ index +'][_destroy]" id="recipe_recipe_ingredients_attributes_'+ index +'__destroy" />'+
+              '<span class="btn delete-recipe-ingredient">'+
+                '<i class="bi bi-trash-fill danger-hover"></i>'+
+              '</span>'+
+            '</div>'+
+          '</div>'+
+        '</div>'
+      )
+      $('#recipe-ingredients').append(newIngredient);
+      initializeSelect2(newIngredient.find('.ingredient_select'));
+    });
+  });
+
+  function initializeSelect2(object) {
+    object.select2({
+      ajax: {
+        url: "/recipes/search_ingredients",
+        dataType: 'json',
+        delay: 250,
+        data: function (params) {
+          return {
+            search: params.term,
+            page: params.page
+          };
+        },
+        processResults: function (data, params) {
+          params.page = params.page || 1;
+
+          return {
+            results: data.ingredients,
+            pagination: {
+              more: (params.page * 24) < data.total_count
+            }
+          };
+        },
+        cache: true
+      },
+      placeholder: 'Buscar un ingrediente...',
+      minimumInputLength: 2,
+      templateResult: formatIngredient,
+      templateSelection: function(item) { return item.name || item.text; }
+    });
+  }
+
+  function formatIngredient (ingredient) {
+    if (ingredient.loading) {
+      return ingredient.text;
+    }
+    var $container = $(
+      "<div class='select2-result-ingredient row'>" +
+        "<div class='select2-result-ingredient__image col-md-3'>"+
+          "<img src='" + ingredient.image_url + "' />"+
+        "</div>"+
+        "<div class='select2-result-ingredient__info col-md-9'>" +
+          "<div class='select2-result-ingredient__name'></div>" +
+          "<div class='select2-result-repository__quantity'></div>" +
+        "</div>" +
+      "</div>"
+    );
+
+    $container.find(".select2-result-ingredient__name").text(ingredient.name);
+    $container.find(".select2-result-repository__quantity").text(ingredient.q_number + " " + ingredient.q_unit);
+
+    return $container;
+  }

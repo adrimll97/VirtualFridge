@@ -1,0 +1,10 @@
+es:
+  recipes:
+    destroy_confirmation: ¿Estás seguro de que quieres borrar la receta?
+    destroy_recipe: Borrar receta
+    ingredients: Ingredientes
+    steps: Pasos
+    placeholder_name: Nombre de la receta
+    recipe_created: Receta creada correctamente
+    recipe_destroy: Receta borrada correctamente
+    recipe_updated: Receta editada correctamente

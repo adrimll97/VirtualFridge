@@ -15,8 +15,12 @@
 
 .nav-tabs .nav-link{
   background-color: $secondary;
-  color: $light-gray;
+  color: $white;
   border: none;
+  &:hover {
+    color: $gray-400;
+    border-bottom: 3px solid;
+  }
   &.active{
     background-color: $secondary;
     color: $primary;
@@ -34,6 +38,7 @@
 
 .btn-ingredients {
   background-color: $primary;
+  color: white;
   position: absolute;
   bottom: 1em;
   width: 90%;
@@ -43,7 +48,7 @@
 }
 .row_user_ingredient {
   display: table;
-  background-color: $light-gray;
+  background-color: $white;
   border-radius: 5px;
   padding-top: 0.3rem;
   padding-bottom: 0.3rem;
@@ -77,9 +82,4 @@
   display: table-cell;
   padding: unset;
   vertical-align: middle;
-  a{
-    &:hover {
-      color: $danger;
-    }
-  }
 }

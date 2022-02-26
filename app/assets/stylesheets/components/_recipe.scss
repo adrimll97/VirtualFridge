@@ -1,0 +1,91 @@
+.recipe {
+  width: 200px;
+  margin: 1em auto;
+  background-color: $white;
+  border-radius: 5px;
+  box-shadow: 5px 5px 8px grey;
+  &:hover {
+    -webkit-filter: brightness(70%);
+    transition: .2s;
+  }
+  a {
+    color: black;
+    text-decoration: none;
+  }
+}
+.recipe_image{
+  text-align: center;
+  img {
+    vertical-align: middle;
+    border-radius: 5px;
+  }
+}
+.recipe_name{
+  padding: 0.5em 0.5em 0 0.5em;
+}
+.recipe_author_name{
+  padding: 0 0.5em 0.5em 0.5em;
+}
+
+.recipe_full {
+  background-color: white;
+  padding: 1em;
+  border-radius: 5px;
+  box-shadow: 5px 5px 8px grey;
+  max-width: 800px;
+  margin: auto;
+}
+.recipe_info {
+  margin: 1em 0 1em 0;
+  padding: 1rem 0;
+}
+.recipe_ingredient {
+  padding: 0 1rem;
+}
+.recipe-field {
+  padding: 1em 1em 0 1em;
+  text-align: center;
+}
+
+.image-recipe {
+  img{
+    padding-bottom: 1em;
+  }
+}
+
+.step_number {
+  background-color: $primary;
+  color: white;
+  border-radius: 50%;
+}
+
+.delete-recipe-ingredient {
+  font-size: 1.2em;
+  padding: 0;
+}
+
+.q_unit_ingredient {
+  input {
+    background-color: #dddddd;
+    &:focus{
+      outline: none;
+    }
+  }
+}
+
+.q_unit_ingredient {
+  input {
+    background-color: #dddddd;
+    cursor: default;
+    &:focus{
+      outline: none;
+    }
+  }
+}
+
+.select2-result-ingredient__image{
+  img{
+    max-height: 100px;
+    max-width: 100px;
+  }
+}

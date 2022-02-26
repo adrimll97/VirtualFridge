@@ -3,6 +3,7 @@ es:
     app_name: VirtualFridge
     log_out: Cerrar sesión
     profile: Perfil
+    recipes: Recetas
     sign_in: Acceder
     sign_up: Registrarse
     sidebar:

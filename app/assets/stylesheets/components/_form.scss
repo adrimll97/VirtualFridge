@@ -30,6 +30,23 @@
   width: 100%;
 }
 
+.select2-search__field {
+  border-radius: 5px;
+  &:focus{
+    outline-color: $primary;
+  }
+}
+
+.image_field {
+  margin: 0 1em;
+  label {
+    background-color: $light-gray;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+  }
+}
+
 .field {
   padding-bottom: 0.5rem;
 
@@ -38,6 +55,20 @@
   }
 
   input {
+    border-radius: 5px;
+    border: 1px solid;
+    &:focus{
+      outline-color: $primary;
+    }
+  }
+  textarea {
+    border-radius: 5px;
+    border: 1px solid;
+    &:focus{
+      outline-color: $primary;
+    }
+  }
+  span {
     border-radius: 5px;
     &:focus{
       outline-color: $primary;
