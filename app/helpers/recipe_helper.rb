@@ -2,6 +2,6 @@
 
 module RecipeHelper
   def self_recipe?
-    @recipe.user_id == current_user.id
+    @recipe.user_id == current_user&.id
   end
 end
