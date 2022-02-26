@@ -9,4 +9,6 @@ class Recipe < ApplicationRecord
   accepts_nested_attributes_for :recipe_ingredients, allow_destroy: true
 
   validates :user, :name, presence: true
+
+  scope :of_user, ->(user) { where(user_id: user.id) }
 end
