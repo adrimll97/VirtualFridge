@@ -2,7 +2,7 @@ div.col-md-12.col-lg-12
   div.row
     - @recipes.each do |recipe|
       div.col-md-3
-        div.recipe
+        div.recipe.text-start
           = link_to recipe_path(recipe) do
             div.recipe_image
               - if recipe.image.present?
