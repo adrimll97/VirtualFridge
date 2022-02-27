@@ -24,5 +24,5 @@
                 div.col-md-1
                   = @fridge_ingredient.quantity_unit
         .modal-footer
-          button.btn data-bs-dismiss='modal' type='button'= I18n.t(:cancel, scope: [:default, :form])
+          button.btn.bg-gray-hover data-bs-dismiss='modal' type='button'= I18n.t(:cancel, scope: [:default, :form])
           = f.submit I18n.t(:save, scope: [:default, :form]), class:"btn btn-primary"

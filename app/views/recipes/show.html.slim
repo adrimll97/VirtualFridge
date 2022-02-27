@@ -6,7 +6,7 @@ div.recipe_full.col-md-12
       h2 = @recipe.name
     div.align-self-end.text-end.col-md-2
       - if self_recipe?
-        = link_to edit_recipe_path, class: 'btn fs-l', method: :get
+        = link_to edit_recipe_path, class: 'btn fs-l primary-hover', method: :get
           i.bi.bi-pencil-fill
       - else
         h5 = @recipe.user.name
