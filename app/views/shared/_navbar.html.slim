@@ -16,6 +16,8 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-secondary.nav-shadow.sticky-top
           = link_to I18n.t(:profile, scope: :navbar), user_path(current_user.id), class: 'nav-link'
       - else
         li.nav-item
+          = link_to I18n.t(:recipes, scope: :navbar), recipes_path, class: 'nav-link'
+        li.nav-item
           = link_to I18n.t(:sign_in, scope: :navbar), new_user_session_path, class: 'nav-link'
         li.nav-item
           = link_to I18n.t(:sign_up, scope: :navbar), new_user_registration_path, class: 'nav-link'

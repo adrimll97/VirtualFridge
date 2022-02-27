@@ -120,13 +120,18 @@ nav li {
   &:hover{
     transition: .2s;
     background-color: $light-gray;
-    border-radius: 5px;
   }
 }
 .danger-hover{
   &:hover {
     transition: .2s;
     color: $danger;
+  }
+}
+.primary-hover{
+  &:hover {
+    transition: .2s;
+    color: $primary;
   }
 }
 
