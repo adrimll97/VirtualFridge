@@ -1,13 +1,10 @@
 div.row.border-bottom
-  div.col-md-10
+  div.col-md-11
     h1= "#{current_user.name}"
     h5= "#{current_user.email}"
   div.col-md-1
     = link_to edit_user_registration_path, class: 'btn fs-l primary-hover', method: :get
       i.bi.bi-pencil-fill
-  div.col-md-1
-    = link_to destroy_user_session_path, method: :delete, class: 'btn fs-l danger-hover'
-      i.bi.bi-power
 
 nav
   div.nav.nav-tabs.nav-fill role='tablist'

@@ -14,6 +14,9 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-secondary.nav-shadow.sticky-top
           = link_to I18n.t(:recipes, scope: :navbar), recipes_path, class: 'nav-link'
         li.nav-item
           = link_to I18n.t(:profile, scope: :navbar), user_path(current_user.id), class: 'nav-link'
+        li.nav-item
+          = link_to destroy_user_session_path, method: :delete, class: 'btn danger-hover text-light'
+            i.bi.bi-power
       - else
         li.nav-item
           = link_to I18n.t(:recipes, scope: :navbar), recipes_path, class: 'nav-link'
