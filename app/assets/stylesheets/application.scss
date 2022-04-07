@@ -125,7 +125,7 @@ nav li {
 .danger-hover{
   &:hover {
     transition: .2s;
-    color: $danger;
+    color: $danger !important;
   }
 }
 .primary-hover{

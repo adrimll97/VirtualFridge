@@ -1,5 +1,5 @@
 - @fridge.fridge_ingredients.order(updated_at: :desc).each do |fridge_ingredient|
-  div.row.row_user_ingredient.align-items-center
+  div.row.row_user_ingredient.align-items-center class = (expired_class(fridge_ingredient))
     div.user_ingredient
       = link_to fridge_ingredient_path(fridge_ingredient.id), remote: true do
         div.name

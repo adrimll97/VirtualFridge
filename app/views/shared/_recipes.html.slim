@@ -9,9 +9,14 @@ div.col-md-12.col-lg-12
                 = image_tag(recipe.image.medium_fill.url, alt: recipe.name)
               - else
                 = image_tag('default-recipe.png', alt: recipe.name)
-            div.recipe_name
-              = recipe.name
-            div.recipe_author_name.subtext
-              = recipe.user.name
+            div.d-md-table.col-md-12
+              div.recipe_name
+                = recipe.name
+              div.recipe_author_name.subtext
+                = recipe.user.name
+              - if self_recipe?(recipe)
+                = link_to recipe_path(recipe), method: :delete, class: 'btn d-md-table-cell danger-hover',
+                  data: { confirm: I18n.t(:destroy_confirmation, scope: :recipes) }
+                  i.bi.bi-trash-fill
 
 = paginate @recipes, theme: 'bootstrap-5'

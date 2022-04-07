@@ -55,8 +55,14 @@
   margin-bottom: 0.5rem;
   &:hover {
     transition: .25s;
-    background-color: $gray-400;
+    -webkit-filter: brightness(80%);
   }
+}
+.expired_ingredient{
+  background-color: $danger;
+}
+.close_expired_ingredient{
+  background-color: #E9C074;
 }
 .user_ingredient {
   display: table-cell;
