@@ -1,4 +1,4 @@
-div.recipe_full.col-md-12
+div.card.col-md-12
   = form_for @recipe do |f|
     div.row.image-recipe
       = image_tag(@recipe.image.url) if @recipe.image?
@@ -10,7 +10,7 @@ div.recipe_full.col-md-12
     div.row.recipe_info.border-bottom
       div.field
         = f.text_field :name, class: 'w-100', placeholder: I18n.t(:placeholder_name, scope: :recipes)
-    div.container.border-bottom
+    div.border-bottom
       h4.recipe-field= f.label :ingredientes
       div#recipe-ingredients
         - if @recipe.recipe_ingredients.present?

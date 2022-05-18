@@ -1,4 +1,4 @@
-div.recipe_full.col-md-12
+div.card.col-md-12
   div.row
     = image_tag(@recipe.image.url) if @recipe.image?
   div.row.recipe_info.border-bottom
@@ -12,7 +12,7 @@ div.recipe_full.col-md-12
           i.bi.bi-pencil-fill
       - else
         h5 = @recipe.user.name
-  div.container.border-bottom
+  div.border-bottom
     div#ingredients.border-bottom
       h4.recipe-field= I18n.t(:ingredients, scope: :recipes)
       - @recipe.recipe_ingredients&.each do |ri|

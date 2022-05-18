@@ -1,0 +1,12 @@
+div.recipe
+  = link_to recipe_path(recipe), target: :_blank do
+    div.recipe_image
+      - if recipe.image.present?
+        = image_tag(recipe.image.medium_fill.url, alt: recipe.name)
+      - else
+        = image_tag('default-recipe.png', alt: recipe.name)
+    div.d-md-table.col-md-12
+      div.recipe_name
+        = recipe.name
+      div.recipe_author_name.subtext
+        = recipe.user.name
