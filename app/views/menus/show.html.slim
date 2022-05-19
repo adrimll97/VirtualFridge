@@ -14,11 +14,11 @@ div.card.col-md-12
     div.col-md-6.pt-1
       = "#{@lunchs_number} comidas y #{@dinners_number} cenas"
   div.row
-    div.col-md-12.pt-3.pb-3
+    div.col-md-12.pt-3.pb-3.border-bottom
       = @menu.description
-  nav
+  nav.mt-3
     div.nav.nav-tabs.nav-fill.nav-menu role='tablist'
-      a#monday-tab.nav-link.top-left-radius.active data-bs-toggle='tab' data-bs-target='#monday' type='button' role='tab' aria-controls='fridge' aria-selected='true'
+      a#monday-tab.nav-link.rounded-start.active data-bs-toggle='tab' data-bs-target='#monday' type='button' role='tab' aria-controls='fridge' aria-selected='true'
         = 'Lunes'
       a#tuesday-tab.nav-link data-bs-toggle='tab' data-bs-target='#tuesday' type='button' role='tab' aria-controls='fridge' aria-selected='false'
         = 'Martes'
@@ -30,10 +30,10 @@ div.card.col-md-12
         = 'Viernes'
       a#saturday-tab.nav-link data-bs-toggle='tab' data-bs-target='#saturday' type='button' role='tab' aria-controls='fridge' aria-selected='false'
         = 'Sábado'
-      a#sunday-tab.nav-link.top-right-radius data-bs-toggle='tab' data-bs-target='#sunday' type='button' role='tab' aria-controls='fridge' aria-selected='false'
+      a#sunday-tab.nav-link.rounded-end data-bs-toggle='tab' data-bs-target='#sunday' type='button' role='tab' aria-controls='fridge' aria-selected='false'
         = 'Domingo'
 
-  div#tabContent.tab-content.menu_content
+  div#tabContent.tab-content
     div#monday.tab-pane.fade.show.active role='tabpanel' aria-labelledby='monday-tab'
       = render partial: 'day', locals: { lunchs: @lunchs_per_day[0], dinners: @dinners_per_day[0] }
     div#tuesday.tab-pane.fade role='tabpanel' aria-labelledby='tuesday-tab'

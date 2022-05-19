@@ -4,6 +4,8 @@ class Menu < ApplicationRecord
   belongs_to :user
   has_many :menu_recipes, dependent: :destroy
 
+  scope :of_user, ->(user) { where(user_id: user.id) }
+
   def lunchs_number
     menu_recipes.lunch.count
   end

@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-RECIPES_PER_PAGE = 24
-
+PER_PAGE = 24
 class UsersController < ApplicationController
   before_action :set_user, only: %i[show]
 
   # GET /users/1 or /users/1.json
   def show
-    @recipes = Recipe.of_user(@user).page(params[:page]).per(RECIPES_PER_PAGE)
+    @recipes = Recipe.of_user(@user).page(params[:page]).per(PER_PAGE)
+    @menus = Menu.of_user(@user).page(params[:page]).per(PER_PAGE)
   end
 
   private
