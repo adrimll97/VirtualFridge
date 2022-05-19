@@ -3,8 +3,8 @@ div.card.col-md-12
     div.col-md-10
       h2 = @menu.name
     div.align-self-end.text-end.col-md-2
-      - if self_recipe?(@menu)
-        = link_to menu_path(@menu), method: :delete, class: 'btn fs-l danger-hover', data: { confirm: I18n.t(:destroy_confirmation, scope: :recipes) }
+      - if self_menu?(@menu)
+        = link_to menu_path(@menu), method: :delete, class: 'btn fs-l danger-hover', data: { confirm: I18n.t(:destroy_confirmation, scope: :menus) }
           i.bi.bi-trash-fill
         = link_to edit_menu_path, class: 'btn fs-l primary-hover', method: :get
           i.bi.bi-pencil-fill
