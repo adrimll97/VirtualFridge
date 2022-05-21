@@ -1,7 +1,7 @@
 div.card.col-md-12
   div.row
     = image_tag(@recipe.image.url) if @recipe.image?
-  div.row.recipe_info.border-bottom
+  div.row.recipe_info
     div.col-md-10
       h2 = @recipe.name
     div.align-self-end.text-end.col-md-2
@@ -13,20 +13,21 @@ div.card.col-md-12
       - else
         h5 = @recipe.user.name
   div.border-bottom
-    div#ingredients.border-bottom
-      h4.recipe-field= I18n.t(:ingredients, scope: :recipes)
-      - @recipe.recipe_ingredients&.each do |ri|
-        div.row.recipe_ingredient
-          div.col-md-10
-            p= "#{ri.ingredient.name}"
-          div.col-md-2.text-end
-            p= "#{ri.quantity_number} #{ri.quantity_unit}"
-    div#steps
-      h4.recipe-field= I18n.t(:steps, scope: :recipes)
-      - @recipe.steps&.each_with_index do |step, index|
-        - step_number = index + 1
-        div.row
-          div.col-md-1.text-center
-            h5.step_number= step_number
-          div.col-md-11
-            p= step
+  div#ingredients
+    h4.recipe-field= I18n.t(:ingredients, scope: :recipes)
+    - @recipe.recipe_ingredients&.each do |ri|
+      div.row.recipe_ingredient
+        div.col-md-10
+          p= "#{ri.ingredient.name}"
+        div.col-md-2.text-end
+          p= "#{ri.quantity_number} #{ri.quantity_unit}"
+  div.border-bottom
+  div#steps
+    h4.recipe-field= I18n.t(:steps, scope: :recipes)
+    - @recipe.steps&.each_with_index do |step, index|
+      - step_number = index + 1
+      div.row
+        div.col-md-1.text-center
+          h5.step_number= step_number
+        div.col-md-11
+          p= step

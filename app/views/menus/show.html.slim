@@ -1,5 +1,5 @@
 div.card.col-md-12
-  div.row.border-bottom
+  div.row
     div.col-md-10
       h2 = @menu.name
     div.align-self-end.text-end.col-md-2
@@ -10,12 +10,14 @@ div.card.col-md-12
           i.bi.bi-pencil-fill
       - else
         h5 = @menu.user.name
+  div.border-bottom
   div.row
     div.col-md-6.pt-1
       = "#{@lunchs_number} comidas y #{@dinners_number} cenas"
   div.row
-    div.col-md-12.pt-3.pb-3.border-bottom
+    div.col-md-12.pt-3.pb-3
       = @menu.description
+  div.border-bottom
   nav.mt-3
     div.nav.nav-tabs.nav-fill.nav-menu role='tablist'
       a#monday-tab.nav-link.rounded-start.active data-bs-toggle='tab' data-bs-target='#monday' type='button' role='tab' aria-controls='fridge' aria-selected='true'
