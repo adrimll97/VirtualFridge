@@ -18,5 +18,5 @@ div#tabContent.tab-content.text-center.overflow-visible
     = link_to I18n.t(:create_recipe, scope: :profile), new_recipe_path, method: :get, class: 'btn btn-primary mb-3'
     = render 'shared/recipes'
   div#menus.tab-pane.fade role='tabpanel' aria-labelledby='menus-tab'
-    = link_to I18n.t(:create_recipe, scope: :profile), new_recipe_path, method: :get, class: 'btn btn-primary mb-3'
+    = link_to I18n.t(:create_menu, scope: :profile), new_menu_path, method: :get, class: 'btn btn-primary mb-3'
     = render 'shared/menus'

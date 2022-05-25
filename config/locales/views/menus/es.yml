@@ -1,4 +1,7 @@
 es:
   menus:
     destroy_confirmation: ¿Estás seguro de que quieres borrar menú?
+    menu_created: Menú creado correctamente
     menu_destroy: Menú borrado correctamente
+    placeholder_name: Nombre del menú
+    placeholder_description: Descripción del menú

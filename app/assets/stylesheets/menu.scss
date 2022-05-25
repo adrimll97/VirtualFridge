@@ -27,16 +27,13 @@
   padding: 1em;
 }
 
-// .menu_content{
-//   padding: 1rem;
-//   margin: 0 !important;
-//   border-bottom: 2px solid #2c3e4d;
-//   border-left: 2px solid #2c3e4d;
-//   border-right: 2px solid #2c3e4d;
-//   border-bottom-left-radius: 5px;
-//   border-bottom-right-radius: 5px;
-// }
-
 .nav-menu .nav-link {
   border-radius: 0;
+}
+
+.select2-result-recipe__image{
+  img{
+    max-height: 100px;
+    max-width: 100px;
+  }
 }

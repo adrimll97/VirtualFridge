@@ -3,6 +3,7 @@
 class Menu < ApplicationRecord
   belongs_to :user
   has_many :menu_recipes, dependent: :destroy
+  accepts_nested_attributes_for :menu_recipes, allow_destroy: true
 
   scope :of_user, ->(user) { where(user_id: user.id) }
 

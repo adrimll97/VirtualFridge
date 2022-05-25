@@ -156,13 +156,13 @@ javascript:
         "</div>"+
         "<div class='select2-result-ingredient__info col-md-9'>" +
           "<div class='select2-result-ingredient__name'></div>" +
-          "<div class='select2-result-repository__quantity'></div>" +
+          "<div class='select2-result-ingredient__quantity'></div>" +
         "</div>" +
       "</div>"
     );
 
     $container.find(".select2-result-ingredient__name").text(ingredient.name);
-    $container.find(".select2-result-repository__quantity").text(ingredient.q_number + " " + ingredient.q_unit);
+    $container.find(".select2-result-ingredient__quantity").text(ingredient.q_number + " " + ingredient.q_unit);
 
     return $container;
   }
