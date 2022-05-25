@@ -4,7 +4,7 @@ MENUS_PER_PAGE = 10
 RECIPES_PER_PAGE = 20
 
 class MenusController < ApplicationController
-  before_action :set_menu, only: %i[show destroy]
+  before_action :set_menu, only: %i[show edit update destroy]
 
   def index
     @menus = Menu.all.page(params[:page]).per(MENUS_PER_PAGE)
@@ -21,6 +21,11 @@ class MenusController < ApplicationController
     @menu = Menu.new
   end
 
+  def edit
+    @lunchs_per_day = @menu.lunchs_per_day
+    @dinners_per_day = @menu.dinners_per_day
+  end
+
   def create
     @menu = Menu.new(menu_params)
     @menu.user_id = current_user.id
@@ -32,6 +37,15 @@ class MenusController < ApplicationController
       flash[:alert] = @menu.errors.full_messages
       render :new
     end
+  end
+
+  def update
+    @menu.update!(menu_params)
+    flash[:notice] = I18n.t(:menu_updated, scope: :menus)
+    redirect_to user_path(current_user.id)
+  rescue StandardError => _e
+    flash[:alert] = @menu.errors.full_messages
+    render :edit
   end
 
   def destroy

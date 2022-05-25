@@ -5,6 +5,8 @@ class Menu < ApplicationRecord
   has_many :menu_recipes, dependent: :destroy
   accepts_nested_attributes_for :menu_recipes, allow_destroy: true
 
+  validates_presence_of :name
+
   scope :of_user, ->(user) { where(user_id: user.id) }
 
   def lunchs_number
@@ -42,7 +44,6 @@ class Menu < ApplicationRecord
   private
 
   def recipes_per_kind_day(kind, day)
-    recipes = menu_recipes.send(kind).send(day)
-    recipes.map(&:recipe)
+    menu_recipes.send(kind).send(day)
   end
 end
