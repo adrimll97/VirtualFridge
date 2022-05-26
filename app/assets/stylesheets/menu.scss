@@ -1,0 +1,39 @@
+// Place all the styles related to the Menu controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+.menu{
+  background-color: $white;
+  border-radius: 5px;
+  box-shadow: 5px 5px 8px grey;
+}
+
+.menu_recipes_images{
+  padding: 0 0 1em 0;
+  text-align: center;
+  img{
+    width: 100px;
+    margin: 0 1em;
+    vertical-align: middle;
+    border-radius: 5px;
+    &:hover {
+      -webkit-filter: brightness(70%);
+      transition: .2s;
+    }
+  }
+}
+
+.menu_info{
+  padding: 1em;
+}
+
+.nav-menu .nav-link {
+  border-radius: 0;
+}
+
+.select2-result-recipe__image{
+  img{
+    max-height: 100px;
+    max-width: 100px;
+  }
+}

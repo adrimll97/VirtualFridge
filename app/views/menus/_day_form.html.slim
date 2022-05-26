@@ -1,0 +1,30 @@
+div.col-md-12.col-lg-12
+  div.row.space-between
+    div.col-md-6.border-right
+      h4.text-center = 'Comidas'
+      div.menu-recipes-container
+        - lunch_recipes_day = @lunchs_per_day ? @lunchs_per_day[MenuRecipe.days[day]] : nil
+        - if lunch_recipes_day.present?
+          - lunch_recipes_day.each do |recipe|
+            = render partial: 'menu_recipe', locals: { f: f, day: day, kind: 'lunch', index: @counter, recipe: recipe }
+            - @counter += 1
+        - else
+          = render partial: 'menu_recipe', locals: { f: f, day: day, kind: 'lunch', index: @counter }
+          - @counter += 1
+      div.row.text-center
+        span.btn.fs-l.add-recipe.bg-gray-hover
+          i.bi.bi-plus-lg
+    div.col-md-6
+      h4.text-center = 'Cenas'
+      div.menu-recipes-container
+        - dinner_recipes_day = @dinners_per_day ? @dinners_per_day[MenuRecipe.days[day]] : nil
+        - if dinner_recipes_day.present?
+          - dinner_recipes_day.each do |recipe|
+            = render partial: 'menu_recipe', locals: { f: f, day: day, kind: 'dinner', index: @counter, recipe: recipe }
+            - @counter += 1
+        - else
+          = render partial: 'menu_recipe', locals: { f: f, day: day, kind: 'dinner', index: @counter }
+          - @counter += 1
+      div.row.text-center
+        span.btn.fs-l.add-recipe.bg-gray-hover
+          i.bi.bi-plus-lg

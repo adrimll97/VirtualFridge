@@ -2,6 +2,7 @@ es:
   navbar:
     app_name: VirtualFridge
     log_out: Cerrar sesión
+    menus: Menus
     profile: Perfil
     recipes: Recetas
     sign_in: Acceder

@@ -1,0 +1,14 @@
+div.row.menu_recipe id="row-#{index}"
+  - recipe ||= MenuRecipe.new
+  = f.fields_for :menu_recipes, recipe do |sf|
+    div.col-md-10
+      div.field
+        = sf.select("recipe_id", [[recipe.recipe&.name, recipe.recipe&.id]],
+                    { include_blank: true, selected: recipe.recipe&.id },
+                    id: index, class: 'recipe_select w-100')
+    = sf.hidden_field :day, value: day, class: 'recipe_day'
+    = sf.hidden_field :kind, value: kind, class: 'recipe_kind'
+    div.col-md-1
+      = sf.hidden_field :_destroy
+      span.btn.delete-menu-recipe
+        i.bi.bi-trash-fill.danger-hover

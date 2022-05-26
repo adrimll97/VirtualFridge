@@ -6,12 +6,17 @@ div.row.border-bottom
     = link_to edit_user_registration_path, class: 'btn fs-l primary-hover', method: :get
       i.bi.bi-pencil-fill
 
-nav
-  div.nav.nav-tabs.nav-fill role='tablist'
-    a#recipes-tab.nav-link.active data-bs-toggle='tab' data-bs-target='#recipes' type='button' role='tab' aria-controls='recipes' aria-selected='true'
+nav.mt-4
+  div.nav.nav-tabs.nav-fill.nav-menu role='tablist'
+    a#recipes-tab.nav-link.rounded-start.active data-bs-toggle='tab' data-bs-target='#recipes' type='button' role='tab' aria-controls='recipes' aria-selected='true'
       = I18n.t(:recipes, scope: :navbar)
+    a#recipes-tab.nav-link.rounded-end data-bs-toggle='tab' data-bs-target='#menus' type='button' role='tab' aria-controls='menus' aria-selected='false'
+      = I18n.t(:menus, scope: :navbar)
 
-div#tabContent.tab-content.text-center
+div#tabContent.tab-content.text-center.overflow-visible
   div#recipes.tab-pane.fade.show.active role='tabpanel' aria-labelledby='recipes-tab'
-    = link_to I18n.t(:create_recipe, scope: :profile), new_recipe_path, method: :get, class: 'btn btn-primary'
+    = link_to I18n.t(:create_recipe, scope: :profile), new_recipe_path, method: :get, class: 'btn btn-primary mb-3'
     = render 'shared/recipes'
+  div#menus.tab-pane.fade role='tabpanel' aria-labelledby='menus-tab'
+    = link_to I18n.t(:create_menu, scope: :profile), new_menu_path, method: :get, class: 'btn btn-primary mb-3'
+    = render 'shared/menus'

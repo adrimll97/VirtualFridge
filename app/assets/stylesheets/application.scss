@@ -42,6 +42,22 @@ nav ul {
 nav li {
     display:inline-block;
 }
+
+.nav-tabs .nav-link{
+  background-color: $secondary;
+  color: $white;
+  border: none;
+  &:hover {
+    color: $gray-400;
+    border-bottom: 3px solid;
+  }
+  &.active{
+    background-color: $secondary;
+    color: $primary;
+    border-bottom: 3px solid;
+  }
+}
+
 .pagination{
   margin: 1em 0 0 0;
   display:inline-block;
@@ -95,6 +111,14 @@ nav li {
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
+.card {
+  background-color: white;
+  padding: 1em;
+  border-radius: 5px;
+  box-shadow: 5px 5px 8px grey;
+  max-width: 800px;
+  margin: auto;
+}
 .subtext {
   font-size: 0.9rem;
   font-style: italic;
@@ -147,4 +171,15 @@ nav li {
 
 .border-bottom {
   border-bottom: 2px inset !important;
+}
+
+.border-right {
+  border-right: 2px inset !important;
+}
+
+.top-left-radius {
+  border-top-left-radius: 5px !important;
+}
+.top-right-radius {
+  border-top-right-radius: 5px !important;
 }

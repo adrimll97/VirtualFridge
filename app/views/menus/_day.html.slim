@@ -1,0 +1,10 @@
+div.col-md-12.col-lg-12
+  div.row.space-between
+    div.col-md-6.border-right
+      h4.text-center = 'Comidas'
+      - lunchs.each do |lunch|
+        = render partial: 'recipe', locals: { recipe: lunch.recipe }
+    div.col-md-6
+      h4.text-center = 'Cenas'
+      - dinners.each do |dinner|
+        = render partial: 'recipe', locals: { recipe: dinner.recipe }

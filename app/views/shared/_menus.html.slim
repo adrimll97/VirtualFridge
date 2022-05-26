@@ -1,0 +1,27 @@
+div.col-md-12.col-lg-12
+  - @menus.each do |menu|
+    div.row.menu.mt-3.mb-4
+      = link_to menu_path(menu), class: 'text-decoration-none text-center' do
+        h3.mt-2.text-decoration-none= menu.name
+        div.menu_recipes_images.border-bottom
+          - menu.menu_recipes.first(10).each do |m_recipe|
+            - recipe = m_recipe.recipe
+            = link_to recipe_path(recipe), target: :_blank do
+              - if recipe.image.present?
+                = image_tag(recipe.image.medium_fill.url, alt: recipe.name)
+              - else
+                = image_tag('default-recipe.png', alt: recipe.name)
+        div.col-md-12
+          div.row.p-3
+            div.col-md-6.text-start
+              - lunchs = menu.lunchs_number
+              - dinners = menu.dinners_number
+              = "#{lunchs} comidas y #{dinners} cenas"
+            div.col-md-6.text-end
+              - if self_menu?(menu)
+                = link_to menu_path(menu), method: :delete, class: 'btn danger-hover',
+                  data: { confirm: I18n.t(:destroy_confirmation, scope: :menus) }
+                  i.bi.bi-trash-fill
+              = menu.user.name
+
+= paginate @menus, theme: 'bootstrap-5'

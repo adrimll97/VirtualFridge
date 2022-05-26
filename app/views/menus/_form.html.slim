@@ -1,0 +1,142 @@
+div.card.col-md-12
+  = form_for @menu do |f|
+    div.row
+      div.field
+        = f.text_field :name, class: 'w-100', placeholder: I18n.t(:placeholder_name, scope: :menus)
+    div.border-bottom
+    div.row
+      div.field
+        = f.text_area :description, class: 'w-100', placeholder: I18n.t(:placeholder_description, scope: :menus)
+    div.border-bottom
+    nav.mt-3.pb-3
+      div.nav.nav-tabs.nav-fill.nav-menu role='tablist'
+        a#monday-tab.nav-link.rounded-start.active data-bs-toggle='tab' data-bs-target='#monday' type='button' role='tab' aria-controls='fridge' aria-selected='true'
+          = 'Lunes'
+        a#tuesday-tab.nav-link data-bs-toggle='tab' data-bs-target='#tuesday' type='button' role='tab' aria-controls='fridge' aria-selected='false'
+          = 'Martes'
+        a#wednesday-tab.nav-link data-bs-toggle='tab' data-bs-target='#wednesday' type='button' role='tab' aria-controls='fridge' aria-selected='false'
+          = 'Miércoles'
+        a#thursday-tab.nav-link data-bs-toggle='tab' data-bs-target='#thursday' type='button' role='tab' aria-controls='fridge' aria-selected='false'
+          = 'Jueves'
+        a#friday-tab.nav-link data-bs-toggle='tab' data-bs-target='#friday' type='button' role='tab' aria-controls='fridge' aria-selected='false'
+          = 'Viernes'
+        a#saturday-tab.nav-link data-bs-toggle='tab' data-bs-target='#saturday' type='button' role='tab' aria-controls='fridge' aria-selected='false'
+          = 'Sábado'
+        a#sunday-tab.nav-link.rounded-end data-bs-toggle='tab' data-bs-target='#sunday' type='button' role='tab' aria-controls='fridge' aria-selected='false'
+          = 'Domingo'
+    div#tabContent.tab-content
+      - @counter = 0
+      div#monday.tab-pane.fade.show.active role='tabpanel' aria-labelledby='monday-tab'
+        = render partial: 'day_form', locals: { f: f, day: 'monday' }
+      div#tuesday.tab-pane.fade role='tabpanel' aria-labelledby='tuesday-tab'
+        = render partial: 'day_form', locals: { f: f, day: 'tuesday' }
+      div#wednesday.tab-pane.fade role='tabpanel' aria-labelledby='wednesday-tab'
+        = render partial: 'day_form', locals: { f: f, day: 'wednesday' }
+      div#thursday.tab-pane.fade role='tabpanel' aria-labelledby='thursday-tab'
+        = render partial: 'day_form', locals: { f: f, day: 'thursday' }
+      div#friday.tab-pane.fade role='tabpanel' aria-labelledby='friday-tab'
+        = render partial: 'day_form', locals: { f: f, day: 'friday' }
+      div#saturday.tab-pane.fade role='tabpanel' aria-labelledby='saturday-tab'
+        = render partial: 'day_form', locals: { f: f, day: 'saturday' }
+      div#sunday.tab-pane.fade role='tabpanel' aria-labelledby='sunday-tab'
+        = render partial: 'day_form', locals: { f: f, day: 'sunday' }
+    div.border-bottom
+    div.actions.text-end.mt-3
+      = link_to I18n.t(:cancel, scope: [:default, :form]), :back, class: 'btn bg-gray-hover me-3'
+      = f.submit I18n.t(:save, scope: [:default, :form]), class:"btn btn-primary"
+
+javascript:
+  $(document).ready(function(){
+    $(document).on('click', '.delete-menu-recipe', function() {
+      $(this).siblings('input').val(-1);
+      $(this).closest('.row').hide();
+    })
+
+    $(".recipe_select").each(function() {
+      initializeSelect2($(this));
+    });
+
+    $(document).on('select2:open', () => {
+      document.querySelector('.select2-search__field').focus();
+    });
+
+    $('.add-recipe').on('click', function() {
+      var index = $('.recipe_select').length
+      var day = $(this).closest('.row').siblings('.menu-recipes-container').find('.recipe_day').val()
+      var kind = $(this).closest('.row').siblings('.menu-recipes-container').find('.recipe_kind').val()
+      var newRecipe = $(
+        '<div id="row-'+ index +'"class="row">'+
+          '<div class="col-md-10">'+
+            '<div class="field">'+
+              '<select id="'+ index +'" class="recipe_select w-100" name="menu[menu_recipes_attributes]['+ index +'][recipe_id]">'+
+                '<option value="" label=" "></option>'+
+                  '</select>'+
+                '</div>'+
+            '</div>'+
+            '<input value='+ day +' class="recipe_day" type="hidden" name="menu[menu_recipes_attributes]['+ index +'][day]" id="menu_menu_recipes_attributes_'+ index +'_day">' +
+            '<input value='+ kind +' class="recipe_kind" type="hidden" name="menu[menu_recipes_attributes]['+ index +'][kind]" id="menu_menu_recipes_attributes_'+ index +'_kind">' +
+            '<div class="col-md-1">'+
+              '<input type="hidden" value="false" name="menu[menu_recipes_attributes]['+ index +'][_destroy]" id="menu_menu_recipes_attributes_'+ index +'__destroy" />'+
+              '<span class="btn delete-menu-recipe">'+
+                '<i class="bi bi-trash-fill danger-hover"></i>'+
+              '</span>'+
+            '</div>'+
+          '</div>'+
+        '</div>'
+      )
+      $(this).closest('.row').siblings('.menu-recipes-container').append(newRecipe);
+      initializeSelect2(newRecipe.find('.recipe_select'));
+    });
+  });
+
+  function initializeSelect2(object) {
+    object.select2({
+      ajax: {
+        url: "/menus/search_recipes",
+        dataType: 'json',
+        delay: 250,
+        data: function (params) {
+          return {
+            search: params.term,
+            page: params.page
+          };
+        },
+        processResults: function (data, params) {
+          params.page = params.page || 1;
+
+          return {
+            results: data.recipes,
+            pagination: {
+              more: (params.page * 20) < data.total_count
+            }
+          };
+        },
+        cache: true
+      },
+      placeholder: 'Buscar recetas...',
+      minimumInputLength: 2,
+      width: '290px',
+      templateResult: formatRecipe,
+      templateSelection: function(item) { return item.name || item.text; }
+    });
+  }
+
+  function formatRecipe (recipe) {
+    if (recipe.loading) {
+      return recipe.text;
+    }
+    var $container = $(
+      "<div class='select2-result-recipe row'>" +
+        "<div class='select2-result-recipe__image col-md-6'>"+
+          "<img src='" + recipe.image_url + "' />"+
+        "</div>"+
+        "<div class='select2-result-recipe__info col-md-6'>" +
+          "<div class='select2-result-recipe__name'></div>" +
+        "</div>" +
+      "</div>"
+    );
+
+    $container.find(".select2-result-recipe__name").text(recipe.name);
+
+    return $container;
+  }

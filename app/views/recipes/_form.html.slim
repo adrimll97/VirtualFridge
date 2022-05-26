@@ -1,4 +1,4 @@
-div.recipe_full.col-md-12
+div.card.col-md-12
   = form_for @recipe do |f|
     div.row.image-recipe
       = image_tag(@recipe.image.url) if @recipe.image?
@@ -7,31 +7,33 @@ div.recipe_full.col-md-12
         span.btn.fs-l
           i.bi.bi-camera-fill
       = f.file_field :image, accept: 'image/png,image/jpeg', style: 'display: none'
-    div.row.recipe_info.border-bottom
+    div.row.recipe_info
       div.field
         = f.text_field :name, class: 'w-100', placeholder: I18n.t(:placeholder_name, scope: :recipes)
-    div.container.border-bottom
-      h4.recipe-field= f.label :ingredientes
-      div#recipe-ingredients
-        - if @recipe.recipe_ingredients.present?
-          - @recipe.recipe_ingredients.each_with_index do |ingredient, index|
-            = render partial: 'recipe_ingredient', locals: { f: f, row: index, ingredient: ingredient}
+    div.border-bottom
+    h4.recipe-field= f.label :ingredientes
+    div#recipe-ingredients
+      - if @recipe.recipe_ingredients.present?
+        - @recipe.recipe_ingredients.each_with_index do |ingredient, index|
+          = render partial: 'recipe_ingredient', locals: { f: f, row: index, ingredient: ingredient}
+      - else
+        = render partial: 'recipe_ingredient', locals: { f: f, row: 0 }
+    div.row.text-center
+      span.btn.fs-l.add-recipe-ingredient.bg-gray-hover
+        i.bi.bi-plus-lg
+    div.border-bottom
+    div.field
+      h4.recipe-field= f.label :pasos
+      div#recipe-steps
+        - if @recipe.steps.present?
+          - @recipe.steps.each do |step|
+            = render partial: 'step', locals: { f: f, value: step }
         - else
-          = render partial: 'recipe_ingredient', locals: { f: f, row: 0 }
-      div.row.text-center.border-bottom
-        span.btn.fs-l.add-recipe-ingredient.bg-gray-hover
-          i.bi.bi-plus-lg
-      div.field
-        h4.recipe-field= f.label :pasos
-        div#recipe-steps
-          - if @recipe.steps.present?
-            - @recipe.steps.each do |step|
-              = render partial: 'step', locals: { f: f, value: step }
-          - else
-            = render partial: 'step', locals: { f: f, value: '' }
-      div.row.text-center
-        span.btn.fs-l.add-recipe-step.bg-gray-hover
-          i.bi.bi-plus-lg
+          = render partial: 'step', locals: { f: f, value: '' }
+    div.row.text-center
+      span.btn.fs-l.add-recipe-step.bg-gray-hover
+        i.bi.bi-plus-lg
+    div.border-bottom
     div.actions.text-end.mt-3
       = link_to I18n.t(:cancel, scope: [:default, :form]), :back, class: 'btn bg-gray-hover me-3'
       = f.submit I18n.t(:save, scope: [:default, :form]), class:"btn btn-primary"
@@ -154,13 +156,13 @@ javascript:
         "</div>"+
         "<div class='select2-result-ingredient__info col-md-9'>" +
           "<div class='select2-result-ingredient__name'></div>" +
-          "<div class='select2-result-repository__quantity'></div>" +
+          "<div class='select2-result-ingredient__quantity'></div>" +
         "</div>" +
       "</div>"
     );
 
     $container.find(".select2-result-ingredient__name").text(ingredient.name);
-    $container.find(".select2-result-repository__quantity").text(ingredient.q_number + " " + ingredient.q_unit);
+    $container.find(".select2-result-ingredient__quantity").text(ingredient.q_number + " " + ingredient.q_unit);
 
     return $container;
   }
