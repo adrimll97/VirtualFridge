@@ -3,8 +3,9 @@
 RECIPES_PER_PAGE = 24
 INGREDIENTS_PER_PAGE = 24
 
-# Controlador de recetas
 class RecipesController < ApplicationController
+  include ShowDeleteable
+
   before_action :set_recipe, only: %i[show edit update destroy]
 
   def index
@@ -12,7 +13,7 @@ class RecipesController < ApplicationController
   end
 
   def show
-    @recipe
+    session[:prev_url_recipe] = request.referer
   end
 
   def new
@@ -39,7 +40,7 @@ class RecipesController < ApplicationController
   def update
     @recipe.update!(recipe_params)
     flash[:notice] = I18n.t(:recipe_updated, scope: :recipes)
-    redirect_to user_path(current_user.id)
+    redirect_to recipe_path(@recipe)
   rescue StandardError => _e
     flash[:alert] = @recipe.errors.full_messages
     render :edit
@@ -51,7 +52,11 @@ class RecipesController < ApplicationController
   rescue StandardError => _e
     flash[:alert] = @recipe.errors.full_messages
   ensure
-    redirect_to user_path(current_user.id)
+    if delete_from_show?(recipe_path)
+      redirect_to session[:prev_url_recipe]
+    else
+      redirect_back(fallback_location: user_path(current_user.id))
+    end
   end
 
   def search_ingredients

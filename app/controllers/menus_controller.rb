@@ -4,6 +4,8 @@ MENUS_PER_PAGE = 10
 RECIPES_PER_PAGE = 20
 
 class MenusController < ApplicationController
+  include ShowDeleteable
+
   before_action :set_menu, only: %i[show edit update destroy]
 
   def index
@@ -15,6 +17,7 @@ class MenusController < ApplicationController
     @dinners_number = @menu.dinners_number
     @lunchs_per_day = @menu.lunchs_per_day
     @dinners_per_day = @menu.dinners_per_day
+    session[:prev_url_menu] = request.referer
   end
 
   def new
@@ -42,7 +45,7 @@ class MenusController < ApplicationController
   def update
     @menu.update!(menu_params)
     flash[:notice] = I18n.t(:menu_updated, scope: :menus)
-    redirect_to user_path(current_user.id)
+    redirect_to menu_path(menu)
   rescue StandardError => _e
     flash[:alert] = @menu.errors.full_messages
     render :edit
@@ -54,7 +57,11 @@ class MenusController < ApplicationController
   rescue StandardError => _e
     flash[:alert] = @menu.errors.full_messages
   ensure
-    redirect_to user_path(current_user.id)
+    if delete_from_show?(menu_path)
+      redirect_to session[:prev_url_menu]
+    else
+      redirect_back(fallback_location: user_path(current_user.id))
+    end
   end
 
   def search_recipes
