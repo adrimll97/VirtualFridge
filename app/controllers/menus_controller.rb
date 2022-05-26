@@ -45,7 +45,7 @@ class MenusController < ApplicationController
   def update
     @menu.update!(menu_params)
     flash[:notice] = I18n.t(:menu_updated, scope: :menus)
-    redirect_to menu_path(menu)
+    redirect_to menu_path(@menu)
   rescue StandardError => _e
     flash[:alert] = @menu.errors.full_messages
     render :edit
