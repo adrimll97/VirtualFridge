@@ -1,8 +1,8 @@
-div.row.border-bottom
+div.row.border-bottom-secondary
   div.col-md-11
     h1= "#{current_user.name}"
     h5= "#{current_user.email}"
-  div.col-md-1
+  div.col-md-1.lh-5
     = link_to edit_user_registration_path, class: 'btn fs-l primary-hover', method: :get
       i.bi.bi-pencil-fill
 

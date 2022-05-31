@@ -1,4 +1,9 @@
-- name = current_user.present? ? current_user.name : 'Stranger'
-h1
-  | Welcome, #{name}
-p Find me in app/views/home/index.html.erb
+h1.text-center= I18n.t(:title, scope: [:recipes, :available])
+div.border-bottom-secondary
+br
+- if @recipes.present?
+  = render partial: 'shared/recipes'
+- else
+  div.text-center
+    h4= I18n.t(:no_recipes, scope: [:recipes, :available])
+    = link_to I18n.t(:show_all_recipes, scope: [:recipes, :available]), recipes_path, method: :get, class: 'btn btn-primary mb-3'

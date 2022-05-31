@@ -1,9 +1,14 @@
 es:
   recipes:
+    available:
+      no_recipes: No hay recetas que puedas hacer con los ingredientes que tienes en la nevera
+      show_all_recipes: Ver todas las recetas
+      title: Recetas disponibles
     destroy_confirmation: ¿Estás seguro de que quieres borrar la receta?
     destroy_recipe: Borrar receta
     ingredients: Ingredientes
     steps: Pasos
+    title: Recetas
     placeholder_name: Nombre de la receta
     recipe_created: Receta creada correctamente
     recipe_destroy: Receta borrada correctamente

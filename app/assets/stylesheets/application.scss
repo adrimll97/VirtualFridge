@@ -173,6 +173,10 @@ nav li {
   border-bottom: 2px inset !important;
 }
 
+.border-bottom-secondary {
+  border-bottom: 2px inset $secondary !important;
+}
+
 .border-right {
   border-right: 2px inset !important;
 }
@@ -182,4 +186,8 @@ nav li {
 }
 .top-right-radius {
   border-top-right-radius: 5px !important;
+}
+
+.lh-5 {
+  line-height: 5 !important;
 }
