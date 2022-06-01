@@ -115,7 +115,7 @@ nav li {
   background-color: white;
   padding: 1em;
   border-radius: 5px;
-  box-shadow: 5px 5px 8px grey;
+  box-shadow: 2px 2px 10px grey;
   max-width: 800px;
   margin: auto;
 }
@@ -173,6 +173,10 @@ nav li {
   border-bottom: 2px inset !important;
 }
 
+.border-bottom-secondary {
+  border-bottom: 2px inset $secondary !important;
+}
+
 .border-right {
   border-right: 2px inset !important;
 }
@@ -182,4 +186,8 @@ nav li {
 }
 .top-right-radius {
   border-top-right-radius: 5px !important;
+}
+
+.lh-5 {
+  line-height: 5 !important;
 }

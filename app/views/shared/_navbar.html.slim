@@ -2,11 +2,14 @@
   div.sidebar.bg-secondary
     = render 'shared/sidebar'
 
-nav.navbar.navbar-expand-lg.navbar-dark.bg-secondary.nav-shadow.sticky-top
+nav.navbar.navbar-expand-lg.navbar-dark.bg-secondary.sticky-top
   - if user_signed_in?
     button.sidebar-toggler
       span.navbar-toggler-icon
-  a.navbar-brand href="/"= I18n.t(:app_name, scope: :navbar)
+  = link_to root_path do
+    div.navbar-brand
+      = image_tag('favicon.ico', alt: I18n.t(:app_name, scope: :navbar))
+      a.navbar-brand href="/"= I18n.t(:app_name, scope: :navbar)
   div.right
     ul.navbar-nav.ml-auto
       - if user_signed_in?
