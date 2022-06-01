@@ -4,6 +4,9 @@ br
 - if @recipes.present?
   = render partial: 'shared/recipes'
 - else
-  div.text-center
-    h4= I18n.t(:no_recipes, scope: [:recipes, :available])
-    = link_to I18n.t(:show_all_recipes, scope: [:recipes, :available]), recipes_path, method: :get, class: 'btn btn-primary mb-3'
+  div.card.text-center
+    div.container.pb-2
+      h4= I18n.t(:no_recipes, scope: [:recipes, :available])
+    div.border-bottom
+    div.container.pt-3
+      = link_to I18n.t(:show_all_recipes, scope: [:recipes, :available]), recipes_path, method: :get, class: 'btn btn-primary'
