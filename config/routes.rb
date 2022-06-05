@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     post 'add_to_fridge', on: :member
   end
   resources :recipes do
+    get 'search', on: :collection
     get 'search_ingredients', on: :collection
   end
   resources :menus do

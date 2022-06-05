@@ -1,7 +1,5 @@
 es:
   default:
-    search:
-      placeholder: Buscar %{zone}...
     form:
       cancel: Cancelar
       save: Guardar

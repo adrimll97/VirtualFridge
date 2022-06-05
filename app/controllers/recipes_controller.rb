@@ -77,6 +77,19 @@ class RecipesController < ApplicationController
     render json: { ingredients: data, total_count: ingredients.total_count }
   end
 
+  def search
+    name = search_params['search'].downcase
+    if name.present?
+      @recipes = Recipe.joins(recipe_ingredients: :ingredient)
+                       .where('lower(recipes.name) LIKE :search OR lower(ingredients.name) LIKE :search',
+                              search: "%#{name}%")
+                       .distinct.page(search_params['page']).per(RECIPES_PER_PAGE)
+      render 'index'
+    else
+      redirect_to action: :index
+    end
+  end
+
   private
 
   def set_recipe

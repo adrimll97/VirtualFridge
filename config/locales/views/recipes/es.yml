@@ -13,3 +13,4 @@ es:
     recipe_created: Receta creada correctamente
     recipe_destroy: Receta borrada correctamente
     recipe_updated: Receta editada correctamente
+    search_placeholder: Buscar recetas por nombre o ingredientes...

@@ -1,6 +1,6 @@
 - value = search_value
 div.row.text-center.d-flex.search-row
-  = form_tag search_ingredients_path, method: :get, class: 'search-div' do
-    = search_field_tag 'search', value, class: 'search form-control', placeholder: I18n.t(:placeholder, scope: [:default, :search], zone: zone)
+  = form_tag send("search_#{zone}_path"), method: :get, class: 'search-div' do
+    = search_field_tag 'search', value, class: 'search form-control', placeholder: I18n.t(:search_placeholder, scope: [zone])
     = button_tag name: nil, type: 'submit', class: 'btn btn-outline-primary btn-search'
       i.bi.bi-search
