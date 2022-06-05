@@ -1,3 +1,6 @@
+h1.text-center= I18n.t(:title, scope: :ingredients)
+div.border-bottom-secondary
+br
 div.col-md-12.col-lg-12
   div.row
     = render partial: 'shared/search', locals: { zone: 'ingredients' }

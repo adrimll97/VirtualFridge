@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 RECIPES_PER_PAGE = 24
-INGREDIENTS_PER_PAGE = 24
 
 class RecipesController < ApplicationController
   include ShowDeleteable
