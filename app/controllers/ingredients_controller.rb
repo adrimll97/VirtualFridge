@@ -22,12 +22,12 @@ class IngredientsController < ApplicationController
 
   def search
     name = search_params['search'].downcase
-    if name.present?
-      @ingredients = Ingredient.where('lower(name) LIKE :search', search: "%#{name}%")
-                               .page(params[:page]).per(INGREDIENTS_PER_PAGE)
-      render 'index'
-    else
-      redirect_to action: :index
+    page = search_params['page']
+    @ingredients = Ingredient.where('lower(name) LIKE :search', search: "%#{name}%")
+                             .page(page).per(INGREDIENTS_PER_PAGE)
+    respond_to do |format|
+      format.html { render 'index' }
+      format.json { render json: build_ingredients_json }
     end
   end
 
@@ -56,10 +56,23 @@ class IngredientsController < ApplicationController
   end
 
   def search_params
-    params.permit(:search)
+    params.permit(:search, :page)
   end
 
   def user_ingredient_params
     params.permit(:id, :fridge, :shopping_cart)
+  end
+
+  def build_ingredients_json
+    data = @ingredients.map do |ingredient|
+      {
+        id: ingredient.id,
+        name: ingredient.name,
+        image_url: ingredient.image_url || ActionController::Base.helpers.image_url('default-ingredients.png'),
+        q_number: ingredient.quantity_number,
+        q_unit: ingredient.quantity_unit
+      }
+    end
+    { ingredients: data, total_count: @ingredients.total_count }
   end
 end
