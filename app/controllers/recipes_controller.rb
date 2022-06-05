@@ -65,7 +65,11 @@ class RecipesController < ApplicationController
                      .where('lower(recipes.name) LIKE :search OR lower(ingredients.name) LIKE :search',
                             search: "%#{name}%")
                      .distinct.page(page).per(RECIPES_PER_PAGE)
-    render 'index'
+
+    respond_to do |format|
+      format.html { render 'index' }
+      format.json { render json: build_recipes_json }
+    end
   end
 
   private
@@ -82,5 +86,17 @@ class RecipesController < ApplicationController
 
   def search_params
     params.permit(:search, :page)
+  end
+
+  def build_recipes_json
+    data = @recipes.map do |recipe|
+      {
+        id: recipe.id,
+        name: recipe.name,
+        image_url: recipe.image_url || ActionController::Base.helpers.image_url('default-recipe.png'),
+        author: recipe.user.name
+      }
+    end
+    { recipes: data, total_count: @recipes.total_count }
   end
 end

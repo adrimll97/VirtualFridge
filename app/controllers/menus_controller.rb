@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 MENUS_PER_PAGE = 10
-RECIPES_PER_PAGE = 20
 
 class MenusController < ApplicationController
   include ShowDeleteable
@@ -64,21 +63,12 @@ class MenusController < ApplicationController
     end
   end
 
-  def search_recipes
+  def search
     name = search_params['search'].downcase
     page = search_params['page']
-    recipes = Recipe.where('lower(name) LIKE :search', search: "%#{name}%")
-                    .page(page).per(RECIPES_PER_PAGE)
-
-    data = recipes.map do |recipe|
-      {
-        id: recipe.id,
-        name: recipe.name,
-        image_url: recipe.image_url || ActionController::Base.helpers.image_url('default-recipe.png'),
-        author: recipe.user.name
-      }
-    end
-    render json: { recipes: data, total_count: recipes.total_count }
+    @menus = Menu.where('lower(name) LIKE :search', search: "%#{name}%")
+                 .distinct.page(page).per(MENUS_PER_PAGE)
+    render 'index'
   end
 
   private
