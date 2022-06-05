@@ -60,15 +60,12 @@ class RecipesController < ApplicationController
 
   def search
     name = search_params['search'].downcase
-    if name.present?
-      @recipes = Recipe.joins(recipe_ingredients: :ingredient)
-                       .where('lower(recipes.name) LIKE :search OR lower(ingredients.name) LIKE :search',
-                              search: "%#{name}%")
-                       .distinct.page(search_params['page']).per(RECIPES_PER_PAGE)
-      render 'index'
-    else
-      redirect_to action: :index
-    end
+    page = search_params['page']
+    @recipes = Recipe.joins(recipe_ingredients: :ingredient)
+                     .where('lower(recipes.name) LIKE :search OR lower(ingredients.name) LIKE :search',
+                            search: "%#{name}%")
+                     .distinct.page(page).per(RECIPES_PER_PAGE)
+    render 'index'
   end
 
   private
