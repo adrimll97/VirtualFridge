@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 RECIPES_PER_PAGE = 24
-INGREDIENTS_PER_PAGE = 24
 
 class RecipesController < ApplicationController
   include ShowDeleteable
@@ -59,22 +58,14 @@ class RecipesController < ApplicationController
     end
   end
 
-  def search_ingredients
+  def search
     name = search_params['search'].downcase
     page = search_params['page']
-    ingredients = Ingredient.where('lower(name) LIKE :search', search: "%#{name}%")
-                            .page(page).per(INGREDIENTS_PER_PAGE)
-
-    data = ingredients.map do |ingredient|
-      {
-        id: ingredient.id,
-        name: ingredient.name,
-        image_url: ingredient.image_url || ActionController::Base.helpers.image_url('default-ingredients.png'),
-        q_number: ingredient.quantity_number,
-        q_unit: ingredient.quantity_unit
-      }
-    end
-    render json: { ingredients: data, total_count: ingredients.total_count }
+    @recipes = Recipe.joins(recipe_ingredients: :ingredient)
+                     .where('lower(recipes.name) LIKE :search OR lower(ingredients.name) LIKE :search',
+                            search: "%#{name}%")
+                     .distinct.page(page).per(RECIPES_PER_PAGE)
+    render 'index'
   end
 
   private
