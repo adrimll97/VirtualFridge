@@ -17,6 +17,6 @@ Rails.application.routes.draw do
     get 'search', on: :collection
   end
   resources :menus do
-    get 'search_recipes', on: :collection
+    get 'search', on: :collection
   end
 end
