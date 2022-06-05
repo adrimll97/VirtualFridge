@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_27_172730) do
+ActiveRecord::Schema.define(version: 2022_06_05_190853) do
 
   create_table "fridge_ingredients", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "fridge_id"
@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 2022_02_27_172730) do
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "public", default: false, null: false
     t.index ["user_id"], name: "index_menus_on_user_id"
   end
 
@@ -82,6 +83,7 @@ ActiveRecord::Schema.define(version: 2022_02_27_172730) do
     t.text "steps"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "public", default: false, null: false
     t.index ["user_id"], name: "index_recipes_on_user_id"
   end
 
