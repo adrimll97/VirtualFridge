@@ -15,8 +15,10 @@ Rails.application.routes.draw do
   end
   resources :recipes do
     get 'search', on: :collection
+    post 'change_privacity', on: :member
   end
   resources :menus do
     get 'search', on: :collection
+    post 'change_privacity', on: :member
   end
 end

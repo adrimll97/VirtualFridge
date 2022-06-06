@@ -10,6 +10,18 @@ es:
     steps: Pasos
     title: Recetas
     placeholder_name: Nombre de la receta
+    privacity:
+      actions:
+        publicate: Publicar
+        privatize: Hacer privada
+      alert:
+        privatize: ¿Quieres hacer privada la receta?
+        publicate: ¿Quieres publicar la receta?
+      confirm:
+        privatized: Receta cambiada a privada correctamente
+        publicated: Receta publicada correctamente
+      private: Receta privada
+      publicated: Receta publicada
     recipe_created: Receta creada correctamente
     recipe_destroy: Receta borrada correctamente
     recipe_updated: Receta editada correctamente

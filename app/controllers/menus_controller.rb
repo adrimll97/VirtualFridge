@@ -5,10 +5,10 @@ MENUS_PER_PAGE = 10
 class MenusController < ApplicationController
   include ShowDeleteable
 
-  before_action :set_menu, only: %i[show edit update destroy]
+  before_action :set_menu, only: %i[show edit update destroy change_privacity]
 
   def index
-    @menus = Menu.all.page(params[:page]).per(MENUS_PER_PAGE)
+    @menus = Menu.public_menus.page(params[:page]).per(MENUS_PER_PAGE)
   end
 
   def show
@@ -66,9 +66,23 @@ class MenusController < ApplicationController
   def search
     name = search_params['search'].downcase
     page = search_params['page']
-    @menus = Menu.where('lower(name) LIKE :search', search: "%#{name}%")
+    @menus = Menu.public_menus
+                 .where('lower(name) LIKE :search', search: "%#{name}%")
                  .distinct.page(page).per(MENUS_PER_PAGE)
     render 'index'
+  end
+
+  def change_privacity
+    @menu.update!(public: !@menu.public?)
+    flash[:notice] = if !@menu.public?
+                       I18n.t(:privatized, scope: %i[menus privacity confirm])
+                     else
+                       I18n.t(:publicated, scope: %i[menus privacity confirm])
+                     end
+  rescue StandardError => _e
+    flash[:alert] = @menu.errors.full_messages
+  ensure
+    redirect_to menu_path(@menu)
   end
 
   private

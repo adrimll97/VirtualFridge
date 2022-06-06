@@ -9,6 +9,7 @@ es:
     expiration_date: Caducidad
     edited_correctly: Ingrediente editado correctamente
     ingredient_quantity: "Cantidad: %{number} %{unit}"
+    move_to_fridge: Mover a la nevera
     quantity: Cantidad
     removed_from_fridge: Ingrediente sacado de la nevera
     search_placeholder: Buscar ingredientes

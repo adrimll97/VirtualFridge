@@ -1,18 +1,36 @@
 div.card.col-md-12
-  div.row
-    div.col-md-10
+  div.row.mb-2
+    div.col-md-8
       h2 = @menu.name
+      div.subtext
+        - if self_menu?(@menu)
+          - if @menu.public?
+            = I18n.t(:publicated, scope: [:menus, :privacity])
+          - else
+            = I18n.t(:private, scope: [:menus, :privacity])
+    div.align-self-end.text-end.col-md-2.border-right
+      - if self_menu?(@menu)
+        - if @menu.public?
+          - text = I18n.t(:privatize, scope: [:menus, :privacity, :alert])
+          - tooltip = I18n.t(:privatize, scope: [:menus, :privacity, :actions])
+          - icon = 'bi-lock-fill'
+        - else
+          - text = I18n.t(:publicate, scope: [:menus, :privacity, :alert])
+          - tooltip = I18n.t(:publicate, scope: [:menus, :privacity, :actions])
+          - icon = 'bi-eye-fill'
+        = link_to change_privacity_menu_path, class: 'btn fs-l primary-hover', method: :post, data: { confirm: text }, title: tooltip
+          i.bi class = icon
     div.align-self-end.text-end.col-md-2
       - if self_menu?(@menu)
-        = link_to menu_path(@menu), method: :delete, class: 'btn fs-l danger-hover', data: { confirm: I18n.t(:destroy_confirmation, scope: :menus) }
+        = link_to menu_path(@menu), method: :delete, class: 'btn fs-l danger-hover', data: { confirm: I18n.t(:destroy_confirmation, scope: :menus) }, title: I18n.t(:destroy, scope: [:default, :form])
           i.bi.bi-trash-fill
-        = link_to edit_menu_path, class: 'btn fs-l primary-hover', method: :get
+        = link_to edit_menu_path, class: 'btn fs-l primary-hover', method: :get, title: I18n.t(:edit, scope: [:default, :form])
           i.bi.bi-pencil-fill
       - else
         h5 = @menu.user.name
   div.border-bottom
   div.row
-    div.col-md-6.pt-1
+    div.col-md-6.pt-2
       = "#{@lunchs_number} comidas y #{@dinners_number} cenas"
   div.row
     div.col-md-12.pt-3.pb-3

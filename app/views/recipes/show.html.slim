@@ -2,13 +2,31 @@ div.card.col-md-12
   div.row
     = image_tag(@recipe.image.url) if @recipe.image?
   div.row.recipe_info
-    div.col-md-10
+    div.col-md-8
       h2 = @recipe.name
+      div.subtext
+        - if self_recipe?(@recipe)
+          - if @recipe.public?
+            = I18n.t(:publicated, scope: [:recipes, :privacity])
+          - else
+            = I18n.t(:private, scope: [:recipes, :privacity])
+    div.align-self-end.text-end.col-md-2.border-right
+      - if self_recipe?(@recipe)
+        - if @recipe.public?
+          - text = I18n.t(:privatize, scope: [:recipes, :privacity, :alert])
+          - tooltip = I18n.t(:privatize, scope: [:recipes, :privacity, :actions])
+          - icon = 'bi-lock-fill'
+        - else
+          - text = I18n.t(:publicate, scope: [:recipes, :privacity, :alert])
+          - tooltip = I18n.t(:publicate, scope: [:recipes, :privacity, :actions])
+          - icon = 'bi-eye-fill'
+        = link_to change_privacity_recipe_path, class: 'btn fs-l primary-hover', method: :post, data: { confirm: text }, title: tooltip
+          i.bi class = icon
     div.align-self-end.text-end.col-md-2
       - if self_recipe?(@recipe)
-        = link_to recipe_path(@recipe), method: :delete, class: 'btn fs-l danger-hover', data: { confirm: I18n.t(:destroy_confirmation, scope: :recipes) }
+        = link_to recipe_path(@recipe), method: :delete, class: 'btn fs-l danger-hover', data: { confirm: I18n.t(:destroy_confirmation, scope: :recipes) }, title: I18n.t(:destroy, scope: [:default, :form])
           i.bi.bi-trash-fill
-        = link_to edit_recipe_path, class: 'btn fs-l primary-hover', method: :get
+        = link_to edit_recipe_path, class: 'btn fs-l primary-hover', method: :get, title: I18n.t(:edit, scope: [:default, :form])
           i.bi.bi-pencil-fill
       - else
         h5 = @recipe.user.name

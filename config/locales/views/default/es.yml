@@ -2,4 +2,6 @@ es:
   default:
     form:
       cancel: Cancelar
+      destroy: Eliminar
+      edit: Editar
       save: Guardar
