@@ -8,7 +8,7 @@ class MenusController < ApplicationController
   before_action :set_menu, only: %i[show edit update destroy]
 
   def index
-    @menus = Menu.all.page(params[:page]).per(MENUS_PER_PAGE)
+    @menus = Menu.public_menus.page(params[:page]).per(MENUS_PER_PAGE)
   end
 
   def show
@@ -66,7 +66,8 @@ class MenusController < ApplicationController
   def search
     name = search_params['search'].downcase
     page = search_params['page']
-    @menus = Menu.where('lower(name) LIKE :search', search: "%#{name}%")
+    @menus = Menu.public_menus
+                 .where('lower(name) LIKE :search', search: "%#{name}%")
                  .distinct.page(page).per(MENUS_PER_PAGE)
     render 'index'
   end
