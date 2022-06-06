@@ -15,7 +15,7 @@ div.col-md-12.col-lg-12
               div.recipe_author_name.subtext
                 = recipe.user.name
                 - if self_recipe?(recipe) && !recipe.public?
-                  i.ps-2.bi.bi-lock-fill
+                  i.ps-2.bi.bi-lock-fill title = I18n.t(:private, scope: [:recipes, :privacity])
               - if self_recipe?(recipe)
                 = link_to recipe_path(recipe), method: :delete, class: 'btn d-md-table-cell danger-hover',
                   data: { confirm: I18n.t(:destroy_confirmation, scope: :recipes) },

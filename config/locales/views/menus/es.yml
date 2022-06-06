@@ -7,4 +7,16 @@ es:
     title: Menús
     placeholder_name: Nombre del menú
     placeholder_description: Descripción del menú
+    privacity:
+      actions:
+        publicate: Publicar
+        privatize: Hacer privado
+      alert:
+        privatize: ¿Quieres hacer privado el menú?
+        publicate: ¿Quieres publicar el menú?
+      confirm:
+        privatized: Menú cambiadao a privado correctamente
+        publicated: Menú publicado correctamente
+      private: Menú privado
+      publicated: Menú publicado
     search_placeholder: Buscar menús...

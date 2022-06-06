@@ -17,6 +17,8 @@ div.col-md-12.col-lg-12
               - lunchs = menu.lunchs_number
               - dinners = menu.dinners_number
               = "#{lunchs} comidas y #{dinners} cenas"
+              - if self_menu?(menu) && !menu.public?
+                i.ps-2.bi.bi-lock-fill title = I18n.t(:private, scope: [:menus, :privacity])
             div.col-md-6.text-end
               - if self_menu?(menu)
                 = link_to menu_path(menu), method: :delete, class: 'btn danger-hover',
