@@ -8,7 +8,7 @@ class RecipesController < ApplicationController
   before_action :set_recipe, only: %i[show edit update destroy]
 
   def index
-    @recipes = Recipe.all.page(params[:page]).per(RECIPES_PER_PAGE)
+    @recipes = Recipe.public_recipes.page(params[:page]).per(RECIPES_PER_PAGE)
   end
 
   def show
@@ -61,7 +61,7 @@ class RecipesController < ApplicationController
   def search
     name = search_params['search'].downcase
     page = search_params['page']
-    @recipes = Recipe.joins(recipe_ingredients: :ingredient)
+    @recipes = Recipe.public_recipes.joins(recipe_ingredients: :ingredient)
                      .where('lower(recipes.name) LIKE :search OR lower(ingredients.name) LIKE :search',
                             search: "%#{name}%")
                      .distinct.page(page).per(RECIPES_PER_PAGE)

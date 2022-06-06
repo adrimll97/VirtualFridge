@@ -14,7 +14,7 @@ class HomeController < ApplicationController
   def available_recipes
     available_recipe_ids = []
     ingredients = @fridge.fridge_ingredients.pluck(:ingredient_id)
-    recipes_with_owned_ingredients = Recipe.includes(:recipe_ingredients)
+    recipes_with_owned_ingredients = Recipe.public_recipes.includes(:recipe_ingredients)
                                            .where(recipe_ingredients: { ingredient_id: ingredients })
     recipes_with_owned_ingredients.find_each do |recipe|
       next unless all_ingredients?(recipe)
