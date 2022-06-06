@@ -3,7 +3,7 @@ div.row.border-bottom-secondary
     h1= "#{current_user.name}"
     h5= "#{current_user.email}"
   div.col-md-1.lh-5
-    = link_to edit_user_registration_path, class: 'btn fs-l primary-hover', method: :get
+    = link_to edit_user_registration_path, class: 'btn fs-l primary-hover', method: :get, title: I18n.t(:edit_user, scope: [:devise, :views])
       i.bi.bi-pencil-fill
 
 nav.mt-4

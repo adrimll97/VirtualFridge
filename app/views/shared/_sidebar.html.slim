@@ -1,8 +1,8 @@
 nav
   div.nav.nav-tabs.nav-fill role='tablist'
-    a#fridge-tab.nav-link.active data-bs-toggle='tab' data-bs-target='#fridge' type='button' role='tab' aria-controls='fridge' aria-selected='true'
+    a#fridge-tab.nav-link.active data-bs-toggle='tab' data-bs-target='#fridge' type='button' role='tab' aria-controls='fridge' aria-selected='true' title=I18n.t(:fridge, scope: [:navbar, :sidebar])
       i.bi.bi-house-fill.fs-xl
-    a#shop-tab.nav-link data-bs-toggle='tab' data-bs-target='#shopping-cart' type='button' role='tab' aria-controls='fridge' aria-selected='false'
+    a#shop-tab.nav-link data-bs-toggle='tab' data-bs-target='#shopping-cart' type='button' role='tab' aria-controls='fridge' aria-selected='false' title=I18n.t(:shopping_cart, scope: [:navbar, :sidebar])
       i.bi.bi-cart-fill.fs-xl
 
 div#tabContent.tab-content

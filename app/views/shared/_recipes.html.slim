@@ -18,7 +18,8 @@ div.col-md-12.col-lg-12
                   i.ps-2.bi.bi-lock-fill
               - if self_recipe?(recipe)
                 = link_to recipe_path(recipe), method: :delete, class: 'btn d-md-table-cell danger-hover',
-                  data: { confirm: I18n.t(:destroy_confirmation, scope: :recipes) }
+                  data: { confirm: I18n.t(:destroy_confirmation, scope: :recipes) },
+                  title: I18n.t(:destroy, scope: [:default, :form])
                   i.bi.bi-trash-fill
 
 = paginate @recipes, theme: 'bootstrap-5'

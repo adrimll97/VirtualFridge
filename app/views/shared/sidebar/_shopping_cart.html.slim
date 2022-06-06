@@ -10,10 +10,12 @@
           = I18n.t(:ingredient_quantity, scope: :ingredients, number: number, unit: unit)
     div.fridge
       = link_to add_to_fridge_shopping_cart_ingredient_path(shopping_cart_ingredient.id),
-                class: 'btn', method: :post, remote:  true
+                class: 'btn', method: :post, remote:  true,
+                title: I18n.t(:move_to_fridge, scope: :ingredients)
         i.bi.bi-house-fill
     div.trash
       = link_to shopping_cart_ingredient_path(shopping_cart_ingredient.id),
                 class: 'btn', method: :delete, remote:  true,
-                data: { confirm: I18n.t(:destroy_confirmation, scope: :ingredients) }
+                data: { confirm: I18n.t(:destroy_confirmation, scope: :ingredients) },
+                title: I18n.t(:destroy, scope: [:default, :form])
         i.bi.bi-trash-fill.danger-hover

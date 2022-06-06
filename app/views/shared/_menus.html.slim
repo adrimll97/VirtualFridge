@@ -20,7 +20,8 @@ div.col-md-12.col-lg-12
             div.col-md-6.text-end
               - if self_menu?(menu)
                 = link_to menu_path(menu), method: :delete, class: 'btn danger-hover',
-                  data: { confirm: I18n.t(:destroy_confirmation, scope: :menus) }
+                  data: { confirm: I18n.t(:destroy_confirmation, scope: :menus) },
+                  title: I18n.t(:destroy, scope: [:default, :form])
                   i.bi.bi-trash-fill
               = menu.user.name
 

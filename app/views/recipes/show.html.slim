@@ -24,9 +24,9 @@ div.card.col-md-12
           i.bi class = icon
     div.align-self-end.text-end.col-md-2
       - if self_recipe?(@recipe)
-        = link_to recipe_path(@recipe), method: :delete, class: 'btn fs-l danger-hover', data: { confirm: I18n.t(:destroy_confirmation, scope: :recipes) }
+        = link_to recipe_path(@recipe), method: :delete, class: 'btn fs-l danger-hover', data: { confirm: I18n.t(:destroy_confirmation, scope: :recipes) }, title: I18n.t(:destroy, scope: [:default, :form])
           i.bi.bi-trash-fill
-        = link_to edit_recipe_path, class: 'btn fs-l primary-hover', method: :get
+        = link_to edit_recipe_path, class: 'btn fs-l primary-hover', method: :get, title: I18n.t(:edit, scope: [:default, :form])
           i.bi.bi-pencil-fill
       - else
         h5 = @recipe.user.name

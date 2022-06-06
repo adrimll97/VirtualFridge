@@ -16,5 +16,6 @@
     div.trash
       = link_to fridge_ingredient_path(fridge_ingredient.id),
                 class: 'btn', method: :delete, remote:  true,
-                data: { confirm: I18n.t(:destroy_confirmation, scope: :ingredients) }
+                data: { confirm: I18n.t(:destroy_confirmation, scope: :ingredients) },
+                title: I18n.t(:destroy, scope: [:default, :form])
         i.bi.bi-trash-fill.danger-hover
