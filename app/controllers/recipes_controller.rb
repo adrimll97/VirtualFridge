@@ -5,7 +5,7 @@ RECIPES_PER_PAGE = 24
 class RecipesController < ApplicationController
   include ShowDeleteable
 
-  before_action :set_recipe, only: %i[show edit update destroy]
+  before_action :set_recipe, only: %i[show edit update destroy change_privacity]
 
   def index
     @recipes = Recipe.public_recipes.page(params[:page]).per(RECIPES_PER_PAGE)
@@ -70,6 +70,19 @@ class RecipesController < ApplicationController
       format.html { render 'index' }
       format.json { render json: build_recipes_json }
     end
+  end
+
+  def change_privacity
+    @recipe.update!(public: !@recipe.public?)
+    flash[:notice] = if !@recipe.public?
+                       I18n.t(:privatized, scope: %i[recipes privacity confirm])
+                     else
+                       I18n.t(:publicated, scope: %i[recipes privacity confirm])
+                     end
+  rescue StandardError => _e
+    flash[:alert] = @recipe.errors.full_messages
+  ensure
+    redirect_to recipe_path(@recipe)
   end
 
   private
