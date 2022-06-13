@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_05_190853) do
+ActiveRecord::Schema.define(version: 2022_06_12_200150) do
+
+  create_table "favorite_recipes", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "recipe_id"
+    t.boolean "favorite", default: false, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["recipe_id"], name: "index_favorite_recipes_on_recipe_id"
+    t.index ["user_id"], name: "index_favorite_recipes_on_user_id"
+  end
 
   create_table "fridge_ingredients", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "fridge_id"
@@ -119,6 +129,8 @@ ActiveRecord::Schema.define(version: 2022_06_05_190853) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "favorite_recipes", "recipes"
+  add_foreign_key "favorite_recipes", "users"
   add_foreign_key "fridge_ingredients", "fridges"
   add_foreign_key "fridge_ingredients", "ingredients"
   add_foreign_key "fridges", "users"

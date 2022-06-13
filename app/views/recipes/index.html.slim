@@ -2,4 +2,4 @@ h1.text-center= I18n.t(:title, scope: :recipes)
 div.border-bottom-secondary
 br
 = render partial: 'shared/search', locals: { zone: 'recipes' }
-= render partial: 'shared/recipes'
+= render partial: 'shared/recipes', locals: { recipes: @recipes }

@@ -1,6 +1,6 @@
 div.col-md-12.col-lg-12
   div.row
-    - @recipes.each do |recipe|
+    - recipes.each do |recipe|
       div.col-md-3
         div.recipe.text-start
           = link_to recipe_path(recipe) do
@@ -22,4 +22,4 @@ div.col-md-12.col-lg-12
                   title: I18n.t(:destroy, scope: [:default, :form])
                   i.bi.bi-trash-fill
 
-= paginate @recipes, theme: 'bootstrap-5'
+= paginate recipes, theme: 'bootstrap-5'

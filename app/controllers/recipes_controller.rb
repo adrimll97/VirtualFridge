@@ -5,7 +5,8 @@ RECIPES_PER_PAGE = 24
 class RecipesController < ApplicationController
   include ShowDeleteable
 
-  before_action :set_recipe, only: %i[show edit update destroy change_privacity]
+  before_action :set_recipe, only: %i[show edit update destroy change_privacity change_favority]
+  before_action :set_favorite_recipe, only: %i[show change_favority]
 
   def index
     @recipes = Recipe.public_recipes.page(params[:page]).per(RECIPES_PER_PAGE)
@@ -13,6 +14,7 @@ class RecipesController < ApplicationController
 
   def show
     session[:prev_url_recipe] = request.referer
+    @is_favorite = @favorite_recipe.present?
   end
 
   def new
@@ -85,10 +87,28 @@ class RecipesController < ApplicationController
     redirect_to recipe_path(@recipe)
   end
 
+  def change_favority
+    favorite_recipe = @favorite_recipe || FavoriteRecipe.create(user: current_user, recipe: @recipe)
+    favorite_recipe.update!(favorite: !favorite_recipe.favorite?)
+    flash[:notice] = if favorite_recipe.favorite?
+                       I18n.t(:marked_favorite, scope: %i[recipes favorite confirm])
+                     else
+                       I18n.t(:unmarked_favorite, scope: %i[recipes favorite confirm])
+                     end
+  rescue StandardError => _e
+    flash[:alert] = @recipe.errors.full_messages
+  ensure
+    redirect_to recipe_path(@recipe)
+  end
+
   private
 
   def set_recipe
     @recipe = Recipe.find(params[:id])
+  end
+
+  def set_favorite_recipe
+    @favorite_recipe = FavoriteRecipe.of_user(current_user).of_recipe(@recipe).first
   end
 
   def recipe_params
