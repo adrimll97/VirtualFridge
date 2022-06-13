@@ -14,4 +14,8 @@ class Recipe < ApplicationRecord
   scope :of_user, ->(user) { where(user_id: user.id) }
   scope :public_recipes, -> { where(public: true) }
   scope :private_recipes, -> { where(public: false) }
+
+  def favorite_of_user?(user)
+    favorite_recipes.of_user(user).exists?
+  end
 end

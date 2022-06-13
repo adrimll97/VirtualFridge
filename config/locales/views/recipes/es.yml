@@ -8,6 +8,7 @@ es:
     destroy_recipe: Borrar receta
     favorite:
       title: Recetas favoritas
+      tooltip: Receta favorita
       actions:
         mark_favorite: Añadir a recetas favoritas
         unmark_favorite: Eliminar de recetas favoritas
