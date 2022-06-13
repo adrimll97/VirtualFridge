@@ -6,9 +6,16 @@ es:
       title: Recetas disponibles
     destroy_confirmation: ¿Estás seguro de que quieres borrar la receta?
     destroy_recipe: Borrar receta
+    favorite:
+      title: Recetas favoritas
+      tooltip: Receta favorita
+      actions:
+        mark_favorite: Añadir a recetas favoritas
+        unmark_favorite: Eliminar de recetas favoritas
+      confirm:
+        marked_favorite: Receta añadida a recetas favoritas
+        unmarked_favorite: Receta eliminada de recetas favoritas
     ingredients: Ingredientes
-    steps: Pasos
-    title: Recetas
     placeholder_name: Nombre de la receta
     privacity:
       actions:
@@ -26,3 +33,5 @@ es:
     recipe_destroy: Receta borrada correctamente
     recipe_updated: Receta editada correctamente
     search_placeholder: Buscar recetas por nombre o ingredientes...
+    steps: Pasos
+    title: Recetas

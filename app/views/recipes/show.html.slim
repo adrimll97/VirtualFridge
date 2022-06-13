@@ -11,6 +11,14 @@ div.card.col-md-12
           - else
             = I18n.t(:private, scope: [:recipes, :privacity])
     div.align-self-end.text-end.col-md-2.border-right
+      - if @is_favorite
+        - tooltip = I18n.t(:mark_favorite, scope: [:recipes, :favorite, :actions])
+        - icon = 'bi-heart-fill favorite'
+      - else
+        - tooltip = I18n.t(:unmark_favorite, scope: [:recipes, :favorite, :actions])
+        - icon = 'bi-heart'
+      = link_to change_favority_recipe_path, class: 'btn fs-l danger-hover', method: :post, title: tooltip
+        i.bi class = icon
       - if self_recipe?(@recipe)
         - if @recipe.public?
           - text = I18n.t(:privatize, scope: [:recipes, :privacity, :alert])

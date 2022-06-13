@@ -1,6 +1,6 @@
 div.col-md-12.col-lg-12
   div.row
-    - @recipes.each do |recipe|
+    - recipes.each do |recipe|
       div.col-md-3
         div.recipe.text-start
           = link_to recipe_path(recipe) do
@@ -16,10 +16,12 @@ div.col-md-12.col-lg-12
                 = recipe.user.name
                 - if self_recipe?(recipe) && !recipe.public?
                   i.ps-2.bi.bi-lock-fill title = I18n.t(:private, scope: [:recipes, :privacity])
+                - if recipe.favorite_of_user?(current_user)
+                  i.ps-2.bi.bi-heart-fill.favorite title = I18n.t(:tooltip, scope: [:recipes, :favorite])
               - if self_recipe?(recipe)
                 = link_to recipe_path(recipe), method: :delete, class: 'btn d-md-table-cell danger-hover',
                   data: { confirm: I18n.t(:destroy_confirmation, scope: :recipes) },
                   title: I18n.t(:destroy, scope: [:default, :form])
                   i.bi.bi-trash-fill
 
-= paginate @recipes, theme: 'bootstrap-5'
+= paginate recipes, theme: 'bootstrap-5'

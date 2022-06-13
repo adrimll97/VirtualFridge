@@ -2,7 +2,7 @@ h1.text-center= I18n.t(:title, scope: [:recipes, :available])
 div.border-bottom-secondary
 br
 - if @recipes.present?
-  = render partial: 'shared/recipes'
+  = render partial: 'shared/recipes', locals: { recipes: @recipes }
 - else
   div.card.text-center
     div.container.pb-2

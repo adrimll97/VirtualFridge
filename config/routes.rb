@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   resources :recipes do
     get 'search', on: :collection
     post 'change_privacity', on: :member
+    post 'change_favority', on: :member
   end
   resources :menus do
     get 'search', on: :collection
