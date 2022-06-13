@@ -10,7 +10,7 @@ nav.mt-4
   div.nav.nav-tabs.nav-fill.nav-menu role='tablist'
     a#recipes-tab.nav-link.rounded-start.active data-bs-toggle='tab' data-bs-target='#recipes' type='button' role='tab' aria-controls='recipes' aria-selected='true'
       = I18n.t(:recipes, scope: :navbar)
-    a#favorite_recipes-tab.nav-link.rounded-start data-bs-toggle='tab' data-bs-target='#favorite_recipes' type='button' role='tab' aria-controls='favorite_recipes' aria-selected='false'
+    a#favorite_recipes-tab.nav-link data-bs-toggle='tab' data-bs-target='#favorite_recipes' type='button' role='tab' aria-controls='favorite_recipes' aria-selected='false'
       = 'Recetas favoritas'
     a#menus-tab.nav-link.rounded-end data-bs-toggle='tab' data-bs-target='#menus' type='button' role='tab' aria-controls='menus' aria-selected='false'
       = I18n.t(:menus, scope: :navbar)
