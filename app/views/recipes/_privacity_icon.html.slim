@@ -1,0 +1,11 @@
+- if self_recipe?(@recipe)
+  - if @recipe.public?
+    - text = I18n.t(:privatize, scope: [:recipes, :privacity, :alert])
+    - tooltip = I18n.t(:privatize, scope: [:recipes, :privacity, :actions])
+    - icon = 'bi-lock-fill'
+  - else
+    - text = I18n.t(:publicate, scope: [:recipes, :privacity, :alert])
+    - tooltip = I18n.t(:publicate, scope: [:recipes, :privacity, :actions])
+    - icon = 'bi-eye-fill'
+  = link_to change_privacity_recipe_path, class: 'btn fs-l primary-hover', method: :post, data: { confirm: text }, title: tooltip
+    i.bi class = icon

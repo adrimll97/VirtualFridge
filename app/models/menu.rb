@@ -7,7 +7,7 @@ class Menu < ApplicationRecord
 
   validates_presence_of :name
 
-  scope :of_user, ->(user) { where(user_id: user.id) }
+  scope :of_user, ->(user) { where(user_id: user&.id) }
   scope :public_menus, -> { where(public: true) }
   scope :private_menus, -> { where(public: false) }
 
