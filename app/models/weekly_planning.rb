@@ -40,6 +40,6 @@ class WeeklyPlanning < ApplicationRecord
   private
 
   def recipes_per_kind_day(kind, day)
-    menu_recipes.send(kind).send(day)
+    weekly_planning_recipes.send(kind).send(day)
   end
 end

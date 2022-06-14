@@ -1,0 +1,5 @@
+h1.text-center= I18n.t(:title, scope: :weekly_planning)
+div.border-bottom-secondary
+br
+div.card.col-md-12
+  = render partial: 'shared/week/week', locals: { lunchs_per_day: @lunchs_per_day, dinners_per_day: @dinners_per_day }

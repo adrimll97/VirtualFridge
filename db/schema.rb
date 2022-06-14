@@ -133,7 +133,7 @@ ActiveRecord::Schema.define(version: 2022_06_13_171642) do
     t.bigint "weekly_planning_id"
     t.bigint "recipe_id", null: false
     t.integer "day", default: 0
-    t.integer "type", default: 0
+    t.integer "kind", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["recipe_id"], name: "index_weekly_planning_recipes_on_recipe_id"
