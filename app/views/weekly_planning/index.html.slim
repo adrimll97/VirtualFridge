@@ -1,4 +1,6 @@
 h1.text-center= I18n.t(:title, scope: :weekly_planning)
+= link_to edit_weekly_planning_path(@weekly_planning), class: 'btn fs-l primary-hover edit-planning', method: :get, title: I18n.t(:edit, scope: [:default, :form])
+  i.bi.bi-pencil-fill
 div.border-bottom-secondary
 br
 div.card.col-md-12
