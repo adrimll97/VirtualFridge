@@ -1,0 +1,8 @@
+- if @is_favorite
+  - tooltip = I18n.t(:unmark_favorite, scope: [:recipes, :favorite, :actions])
+  - icon = 'bi-heart-fill favorite'
+- else
+  - tooltip = I18n.t(:mark_favorite, scope: [:recipes, :favorite, :actions])
+  - icon = 'bi-heart'
+= link_to change_favority_recipe_path, class: 'btn fs-l danger-hover', method: :post, title: tooltip
+  i.bi class = icon
