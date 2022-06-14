@@ -50,6 +50,8 @@ class RecipesController < ApplicationController
   def destroy
     @recipe.destroy!
     flash[:notice] = I18n.t(:recipe_destroy, scope: :recipes)
+  rescue ActiveRecord::InvalidForeignKey => _e
+    flash[:alert] = 'No se ha podido borrar la receta por que se está usando en algún menú'
   rescue StandardError => _e
     flash[:alert] = @recipe.errors.full_messages
   ensure
