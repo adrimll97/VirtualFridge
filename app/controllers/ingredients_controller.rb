@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-INGREDIENTS_PER_PAGE = 24
+INGREDIENTS_PER_PAGE = 20
 
 class IngredientsController < ApplicationController
   include FridgeIngredientsConcern

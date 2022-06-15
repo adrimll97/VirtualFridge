@@ -1,6 +1,6 @@
 div.card.col-md-12
   div.row.mb-2
-    div.col-md-8
+    div.col-md-7
       h2 = @menu.name
       div.subtext
         - if self_menu?(@menu)
@@ -20,12 +20,14 @@ div.card.col-md-12
           - icon = 'bi-eye-fill'
         = link_to change_privacity_menu_path, class: 'btn fs-l primary-hover', method: :post, data: { confirm: text }, title: tooltip
           i.bi class = icon
-    div.align-self-end.text-end.col-md-2
+    div.align-self-end.text-end.col-md-3
       - if self_menu?(@menu)
         = link_to menu_path(@menu), method: :delete, class: 'btn fs-l danger-hover', data: { confirm: I18n.t(:destroy_confirmation, scope: :menus) }, title: I18n.t(:destroy, scope: [:default, :form])
           i.bi.bi-trash-fill
         = link_to edit_menu_path, class: 'btn fs-l primary-hover', method: :get, title: I18n.t(:edit, scope: [:default, :form])
           i.bi.bi-pencil-fill
+        = link_to edit_recipe_path, class: 'btn fs-l primary-hover', method: :get, title: 'Usar como planificación semanal'
+          i.bi.bi-calendar2-plus-fill
       - else
         h5 = @menu.user.name
   div.border-bottom
