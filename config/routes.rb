@@ -22,5 +22,7 @@ Rails.application.routes.draw do
     get 'search', on: :collection
     post 'change_privacity', on: :member
   end
-  resources :weekly_planning, only: %i[index edit update]
+  resources :weekly_planning, only: %i[index edit update] do
+    post 'use_menu', on: :collection
+  end
 end
