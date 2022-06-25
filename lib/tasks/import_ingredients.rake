@@ -32,7 +32,7 @@ namespace :ingredients do
       contry = row['countries_en']
       next unless contry == 'Spain'
 
-      name = row['product_name']
+      name = row['product_name']&.downcase
       next if name.blank? || ingredients.include?(name)
 
       quantity = row['quantity']
@@ -47,7 +47,7 @@ namespace :ingredients do
 
       Ingredient.create(
         {
-          name: name,
+          name: name.capitalize,
           url: url,
           image_url: image_url,
           quantity_number: quantity_number,
