@@ -37,6 +37,10 @@ class WeeklyPlanning < ApplicationRecord
     }
   end
 
+  def self.clear_weekly_planning_of_user(user)
+    user.weekly_planning&.weekly_planning_recipes&.destroy_all
+  end
+
   private
 
   def recipes_per_kind_day(kind, day)

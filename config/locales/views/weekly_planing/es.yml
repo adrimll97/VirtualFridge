@@ -2,3 +2,7 @@ es:
   weekly_planning:
     title: Planificación semanal
     weekly_planning_updated: Planificación semanal actualizada correctamente
+    menu:
+      title: Usar menú como planificación semanal
+      confirm: ¿Quieres usar el menú seleccionado como planificación semanal?
+      use_confirmation: Menú usado como planificación semanal correctamente
