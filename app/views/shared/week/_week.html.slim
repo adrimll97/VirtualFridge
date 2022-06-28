@@ -1,0 +1,32 @@
+nav.mt-3
+  div.nav.nav-tabs.nav-fill.nav-menu role='tablist'
+    a#monday-tab.nav-link.rounded-start.active data-bs-toggle='tab' data-bs-target='#monday' type='button' role='tab' aria-controls='fridge' aria-selected='true'
+      = 'Lunes'
+    a#tuesday-tab.nav-link data-bs-toggle='tab' data-bs-target='#tuesday' type='button' role='tab' aria-controls='fridge' aria-selected='false'
+      = 'Martes'
+    a#wednesday-tab.nav-link data-bs-toggle='tab' data-bs-target='#wednesday' type='button' role='tab' aria-controls='fridge' aria-selected='false'
+      = 'Miércoles'
+    a#thursday-tab.nav-link data-bs-toggle='tab' data-bs-target='#thursday' type='button' role='tab' aria-controls='fridge' aria-selected='false'
+      = 'Jueves'
+    a#friday-tab.nav-link data-bs-toggle='tab' data-bs-target='#friday' type='button' role='tab' aria-controls='fridge' aria-selected='false'
+      = 'Viernes'
+    a#saturday-tab.nav-link data-bs-toggle='tab' data-bs-target='#saturday' type='button' role='tab' aria-controls='fridge' aria-selected='false'
+      = 'Sábado'
+    a#sunday-tab.nav-link.rounded-end data-bs-toggle='tab' data-bs-target='#sunday' type='button' role='tab' aria-controls='fridge' aria-selected='false'
+      = 'Domingo'
+
+div#tabContent.tab-content
+  div#monday.tab-pane.fade.show.active role='tabpanel' aria-labelledby='monday-tab'
+    = render partial: 'shared/week/day', locals: { lunchs: lunchs_per_day[0], dinners: dinners_per_day[0] }
+  div#tuesday.tab-pane.fade role='tabpanel' aria-labelledby='tuesday-tab'
+    = render partial: 'shared/week/day', locals: { lunchs: lunchs_per_day[1], dinners: dinners_per_day[1] }
+  div#wednesday.tab-pane.fade role='tabpanel' aria-labelledby='wednesday-tab'
+    = render partial: 'shared/week/day', locals: { lunchs: lunchs_per_day[2], dinners: dinners_per_day[2] }
+  div#thursday.tab-pane.fade role='tabpanel' aria-labelledby='thursday-tab'
+    = render partial: 'shared/week/day', locals: { lunchs: lunchs_per_day[3], dinners: dinners_per_day[3] }
+  div#friday.tab-pane.fade role='tabpanel' aria-labelledby='friday-tab'
+    = render partial: 'shared/week/day', locals: { lunchs: lunchs_per_day[4], dinners: dinners_per_day[4] }
+  div#saturday.tab-pane.fade role='tabpanel' aria-labelledby='saturday-tab'
+    = render partial: 'shared/week/day', locals: { lunchs: lunchs_per_day[5], dinners: dinners_per_day[5] }
+  div#sunday.tab-pane.fade role='tabpanel' aria-labelledby='sunday-tab'
+    = render partial: 'shared/week/day', locals: { lunchs: lunchs_per_day[6], dinners: dinners_per_day[6] }

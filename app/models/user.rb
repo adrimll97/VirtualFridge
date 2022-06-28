@@ -8,6 +8,7 @@ class User < ApplicationRecord
 
   has_one :fridge, dependent: :destroy
   has_one :shopping_cart, dependent: :destroy
+  has_one :weekly_planning, dependent: :destroy
   has_many :fridge_ingredients, through: :fridge
   has_many :shopping_cart_ingredients, through: :shopping_cart
   has_many :recipes, dependent: :destroy

@@ -18,6 +18,8 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-secondary.sticky-top
         li.nav-item
           = link_to I18n.t(:menus, scope: :navbar), menus_path, class: 'nav-link'
         li.nav-item
+          = link_to I18n.t(:weekly_planning, scope: :navbar), weekly_planning_index_path, class: 'nav-link'
+        li.nav-item
           = link_to I18n.t(:profile, scope: :navbar), user_path(current_user.id), class: 'nav-link'
         li.nav-item
           = link_to destroy_user_session_path, method: :delete, class: 'btn danger-hover text-light', title: I18n.t(:log_out, scope: :navbar)

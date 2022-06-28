@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_12_200150) do
+ActiveRecord::Schema.define(version: 2022_06_13_171642) do
 
   create_table "favorite_recipes", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id"
@@ -129,6 +129,24 @@ ActiveRecord::Schema.define(version: 2022_06_12_200150) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "weekly_planning_recipes", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "weekly_planning_id"
+    t.bigint "recipe_id", null: false
+    t.integer "day", default: 0
+    t.integer "kind", default: 0
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["recipe_id"], name: "index_weekly_planning_recipes_on_recipe_id"
+    t.index ["weekly_planning_id"], name: "index_weekly_planning_recipes_on_weekly_planning_id"
+  end
+
+  create_table "weekly_plannings", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_weekly_plannings_on_user_id"
+  end
+
   add_foreign_key "favorite_recipes", "recipes"
   add_foreign_key "favorite_recipes", "users"
   add_foreign_key "fridge_ingredients", "fridges"
@@ -143,4 +161,7 @@ ActiveRecord::Schema.define(version: 2022_06_12_200150) do
   add_foreign_key "shopping_cart_ingredients", "ingredients"
   add_foreign_key "shopping_cart_ingredients", "shopping_carts"
   add_foreign_key "shopping_carts", "users"
+  add_foreign_key "weekly_planning_recipes", "recipes"
+  add_foreign_key "weekly_planning_recipes", "weekly_plannings"
+  add_foreign_key "weekly_plannings", "users"
 end

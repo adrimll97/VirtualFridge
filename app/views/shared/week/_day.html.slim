@@ -1,0 +1,16 @@
+div.col-md-12.col-lg-12
+  div.row.space-between
+    div.col-md-6.border-right
+      h4.text-center = 'Comidas'
+      - if lunchs.present?
+        - lunchs.each do |lunch|
+          = render partial: 'shared/week/recipe', locals: { recipe: lunch.recipe }
+      - else
+        h5.text-center.mt-4 = 'No hay comidas para este día'
+    div.col-md-6
+      h4.text-center = 'Cenas'
+      - if dinners.present?
+        - dinners.each do |dinner|
+          = render partial: 'shared/week/recipe', locals: { recipe: dinner.recipe }
+      - else
+        h5.text-center.mt-4 = 'No hay cenas para este día'

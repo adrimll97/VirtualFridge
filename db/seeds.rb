@@ -1,10 +1,31 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+# frozen_string_literal: true
+
+5.times do
+  user = User.new
+  user.name = Faker::Internet.username
+  user.email = Faker::Internet.email(name: user.name, domain: 'example')
+  user.password = '123456'
+  user.save!
+  fridge = Fridge.create(user_id: user.id)
+  shopping_cart = ShoppingCart.create(user_id: user.id)
+
+  Random.new.rand(10).times do
+    ingredient = Ingredient.find(Ingredient.pluck(:id).sample)
+    FridgeIngredient.create(fridge_id: fridge.id,
+                            ingredient_id: ingredient.id,
+                            quantity_number: ingredient.quantity_number,
+                            quantity_unit: ingredient.quantity_unit)
+  end
+
+  Random.new.rand(10).times do
+    ingredient = Ingredient.find(Ingredient.pluck(:id).sample)
+    ShoppingCartIngredient.create(shopping_cart_id: shopping_cart.id,
+                                  ingredient_id: ingredient.id,
+                                  quantity_number: ingredient.quantity_number,
+                                  quantity_unit: ingredient.quantity_unit)
+  end
+end
+p 'Users created'
 
 100.times do
   steps = []
@@ -23,8 +44,18 @@
                             quantity_number: ingredient.quantity_number,
                             quantity_unit: ingredient.quantity_unit)
   end
+
+  next unless Faker::Boolean.boolean(true_ratio: 0.3)
+
+  fridge = Fridge.all.pluck(:id).sample
+  new_recipe.recipe_ingredients.each do |recipe_ingredient|
+    FridgeIngredient.create(fridge_id: fridge,
+                            ingredient_id: recipe_ingredient.ingredient_id,
+                            quantity_number: recipe_ingredient.quantity_number,
+                            quantity_unit: recipe_ingredient.quantity_unit)
+  end
 end
-p 'Recetas creadas'
+p 'Recipes created'
 
 50.times do
   new_menu = Menu.create(user_id: User.all.pluck(:id).sample,
@@ -42,4 +73,4 @@ p 'Recetas creadas'
     end
   end
 end
-p 'Menus creados'
+p 'Menus created'
