@@ -6,9 +6,9 @@ require 'capistrano-db-tasks'
 set :application, 'VirtualFridge'
 set :repo_url, 'git@github.com:adrimll97/VirtualFridge.git'
 set :branch, ENV['BRANCH'] if ENV['BRANCH']
-set :deploy_to, '/home/depploy/VirtualFridge'
+set :deploy_to, '/home/deploy/VirtualFridge'
 set :keep_releases, 5
-set :rvm_type, :system
+set :rvm_custom_path, '/usr/share/rvm'
 set :rvm_ruby_version, 'ruby-3.0.0'
 set :pty, true
 
