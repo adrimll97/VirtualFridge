@@ -60,5 +60,5 @@
 #     # password: "please use keys"
 #   }
 
-server '3.93.15.170', user: 'deploy', roles: %w[web app db]
+server Rails.application.credentials.dig(:aws, :server), user: Rails.application.credentials.dig(:aws, :user), roles: %w[web app db]
 set :rails_env, 'production'
