@@ -9,19 +9,20 @@ div.card.col-md-12
           - else
             = I18n.t(:private, scope: [:menus, :privacity])
     div.align-self-end.text-end.col-md-3.border-right
-      = link_to use_menu_weekly_planning_index_path({menu: @menu}), class: 'btn fs-l primary-hover', method: :post, title: I18n.t(:title, scope: [:weekly_planning, :menu]), data: { confirm: I18n.t(:confirm, scope: [:weekly_planning, :menu]) }
-        i.bi.bi-calendar2-plus-fill
-      - if self_menu?(@menu)
-        - if @menu.public?
-          - text = I18n.t(:privatize, scope: [:menus, :privacity, :alert])
-          - tooltip = I18n.t(:privatize, scope: [:menus, :privacity, :actions])
-          - icon = 'bi-lock-fill'
-        - else
-          - text = I18n.t(:publicate, scope: [:menus, :privacity, :alert])
-          - tooltip = I18n.t(:publicate, scope: [:menus, :privacity, :actions])
-          - icon = 'bi-eye-fill'
-        = link_to change_privacity_menu_path, class: 'btn fs-l primary-hover', method: :post, data: { confirm: text }, title: tooltip
-          i.bi class = icon
+      - if user_signed_in?
+        = link_to use_menu_weekly_planning_index_path({menu: @menu}), class: 'btn fs-l primary-hover', method: :post, title: I18n.t(:title, scope: [:weekly_planning, :menu]), data: { confirm: I18n.t(:confirm, scope: [:weekly_planning, :menu]) }
+          i.bi.bi-calendar2-plus-fill
+        - if self_menu?(@menu)
+          - if @menu.public?
+            - text = I18n.t(:privatize, scope: [:menus, :privacity, :alert])
+            - tooltip = I18n.t(:privatize, scope: [:menus, :privacity, :actions])
+            - icon = 'bi-lock-fill'
+          - else
+            - text = I18n.t(:publicate, scope: [:menus, :privacity, :alert])
+            - tooltip = I18n.t(:publicate, scope: [:menus, :privacity, :actions])
+            - icon = 'bi-eye-fill'
+          = link_to change_privacity_menu_path, class: 'btn fs-l primary-hover', method: :post, data: { confirm: text }, title: tooltip
+            i.bi class = icon
     div.align-self-end.text-end.col-md-2
       - if self_menu?(@menu)
         = link_to menu_path(@menu), method: :delete, class: 'btn fs-l danger-hover', data: { confirm: I18n.t(:destroy_confirmation, scope: :menus) }, title: I18n.t(:destroy, scope: [:default, :form])
