@@ -11,6 +11,8 @@ class Menu < ApplicationRecord
   scope :public_menus, -> { where(public: true) }
   scope :private_menus, -> { where(public: false) }
 
+  default_scope { order(id: :desc) }
+
   def lunchs_number
     menu_recipes.lunch.count
   end
